@@ -1,7 +1,7 @@
 import {createRoot} from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import "./assets/css/style.css"
 import App from './App'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './pages/Auth/Login'
 import Register from './pages/Auth/Register'
 import ForgotPassword from './pages/Auth/Forgot'
@@ -9,7 +9,7 @@ import ForgotPassword from './pages/Auth/Forgot'
 const router = createBrowserRouter([
     {
         path: '/',
-        element: ''
+        element: <App />
     },
     
     {
