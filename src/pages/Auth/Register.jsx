@@ -1,4 +1,5 @@
 import Section from "../../components/Section"
+import profile_icon from "../../assets/img/Profile.svg"
 import mail_icon from "../../assets/img/mail.svg"
 import password_icon from "../../assets/img/Password.svg"
 import password_show_icon from "../../assets/img/EyeSlash.svg"
@@ -6,31 +7,41 @@ import brand_logo from "../../assets/img/brand.svg"
 import facebook_logo from "../../assets/img/bx_bxl-facebook-circle.svg"
 import google_logo from "../../assets/img/flat-color-icons_google.svg"
 
-const Login = () => {
+const Register = () => {
     return (
         <Section>
-            <div className="hidden md:block bg-[url('../../assets/img/login.jpg')] bg-cover bg-center side-image flex-1"></div>
+            <div className="hidden md:block bg-[url('../../assets/img/register.jpg')] bg-cover bg-center side-image flex-1"></div>
             <div className="container flex flex-col justify-center gap-4 p-4 flex-3 text-(--color-secondary)">
                 <form className="flex flex-col justify-center gap-4 p-4 flex-3">
                     <div className="brand">
                         <img src={brand_logo} alt="Coffee Shop" />
                     </div>
-                    <h1 className="font-bold text-(--color-accent)">Login</h1>
+                    <h1 className="font-bold text-(--color-accent)">Register</h1>
                     <span>Fill out the form correctly</span>
+                    <label htmlFor="fullname" className="font-bold text-black">Fullname</label>
+                    <label className="flex items-center gap-4 p-4 border rounded border-black/40">
+                        <img src={profile_icon} alt="Profile_Icon" />
+                        <input type="text" name="fullname" id="fullname" placeholder="Enter your fullname" className="flex-1 outline-0" />
+                    </label>
                     <label htmlFor="email" className="font-bold text-black">Email</label>
                     <label className="flex items-center gap-4 p-4 border rounded border-black/40">
                         <img src={mail_icon} alt="Email_Icon" />
                         <input type="email" name="email" id="email" placeholder="Enter your email" className="flex-1 outline-0" />
                     </label>
-                    <label htmlFor="email" className="font-bold text-black">Password</label>
+                    <label htmlFor="password" className="font-bold text-black">Password</label>
                     <label className="flex items-center gap-4 p-4 border rounded border-black/40">
                         <img src={password_icon} alt="Password_Icon" />
                         <input type="password" name="password" id="password" placeholder="Enter your password" className="flex-1 outline-0" />
                         <button type="button"><img src={password_show_icon} alt="Password_Icon" className="self-end h-4 cursor-pointer " /></button>
                     </label>
-                    <a href="/forgot-password" className="text-(--color-primary) self-end">Forgot Password?</a>
-                    <button className="bg-(--color-primary) text-black p-4 rounded cursor-pointer">Login</button>
-                    <span className="self-center">Not have an account? <a href="/register" className="text-(--color-primary)">Register</a></span>
+                    <label htmlFor="confirm_password" className="font-bold text-black">Confirm Password</label>
+                    <label className="flex items-center gap-4 p-4 border rounded border-black/40">
+                        <img src={password_icon} alt="Password_Icon" />
+                        <input type="password" name="password" id="confirm_password" placeholder="Enter your password again" className="flex-1 outline-0" />
+                        <button type="button"><img src={password_show_icon} alt="Password_Icon" className="self-end h-4 cursor-pointer " /></button>
+                    </label>
+                    <button className="bg-(--color-primary) text-black p-4 rounded cursor-pointer">Register</button>
+                    <span className="self-center">have an account? <a href="/login" className="text-(--color-primary)">Login</a></span>
                     <span className="self-center">or</span>
                     <div className="flex justify-between gap-4 social-login">
                         <button className="flex items-center justify-center flex-1 gap-4 p-4 text-black bg-white rounded shadow-lg cursor-pointer"><img src={facebook_logo} alt="Facebook_Login_Icon" />Facebook</button>
@@ -41,4 +52,4 @@ const Login = () => {
         </Section>
     )
 }
-export default Login
+export default Register
