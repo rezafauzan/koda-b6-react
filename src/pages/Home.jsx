@@ -47,12 +47,31 @@ const About = () => {
     )
 }
 
+const Product = () => {
+    return (
+        <section>
+            <div className="flex flex-col justify-center items-center gap-4">
+                <h2 className="text-4xl">Here is People's <span className="text-(--color-accent)">Favorite</span></h2>
+                <div className="bg-(--color-primary) h-1 w-10 rounded-full"></div>
+                <p>Let's choose and have a bit taste of poeple's favorite. It might be yours too!</p>
+            </div>
+            <div className="flex flex-col md:flex-row p-4 gap-4 justify-center items-center">
+                <ProductCard />
+                <ProductCard />
+                <ProductCard />
+                <ProductCard />
+            </div>
+        </section>
+    )
+}
+
 const Home = () => {
     return (
         <div className="container max-w-360 mx-auto flex flex-col">
             <Navbar absolute={true} />
             <Hero />
             <About />
+            <Product />
         </div>
     )
 }
