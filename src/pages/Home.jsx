@@ -24,11 +24,35 @@ const Hero = () => {
     )
 }
 
+const About = () => {
+    return (
+        <section className="mb-7">
+            <div className="flex flex-col-reverse md:flex-row min-h-128 max-h-192 h-screen">
+                <div class="copytext-container flex-1 flex items-center justify-center">
+                    <div class="copytext w-[80%] px-6 py-10 flex flex-col gap-4">
+                        <h2 className="copytext-headline text-5xl border-l-4 pl-4 border-l-(--color-primary)">We Provide <span className="text-(--color-accent)">Good Coffee</span> And <span className="text-(--color-accent)">Healthy Meals</span></h2>
+                        <p className="">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
+                        <ul className="list-image-[url(../img/checklist.svg)] flex flex-col gap-8">
+                            <li>High quality beans</li>
+                            <li>Healthy meals, you can request the ingredients</li>
+                            <li>Chat with our staff to get better experience for ordering</li>
+                            <li>Free member card with a minimum purchase of IDR 200.000.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="hero-image flex-1 h-128 md:h-auto bg-[url('/src/assets/img/feature.jpg')] bg-cover bg-no-repeat">
+                </div>
+            </div>
+        </section>
+    )
+}
+
 const Home = () => {
     return (
         <div className="container max-w-360 mx-auto flex flex-col">
             <Navbar absolute={true} />
             <Hero />
+            <About />
         </div>
     )
 }
