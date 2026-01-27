@@ -65,6 +65,22 @@ const Product = () => {
     )
 }
 
+const Map = () => {
+    return (
+        <section>
+            <div className="flex flex-col gap-4">
+                <div className="flex flex-col justify-center items-center gap-4">
+                    <h2 className="text-4xl"><span className="text-(--color-accent)">Visit Our Store</span> in the Spot on the Map Below</h2>
+                    <div className="bg-(--color-primary) h-1 w-10 rounded-full"></div>
+                    <p>You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
+                </div>
+                <div className="min-h-128 w-full bg-[url(/src/assets/img/Global.svg)] bg-no-repeat bg-cover">
+                </div>
+            </div>
+        </section>
+    )
+}
+
 const Home = () => {
     return (
         <div className="container max-w-360 mx-auto flex flex-col">
@@ -72,6 +88,7 @@ const Home = () => {
             <Hero />
             <About />
             <Product />
+            <Map />
         </div>
     )
 }
