@@ -117,6 +117,61 @@ const Testimoni = () => {
     )
 }
 
+const Footer = () => {
+    return (
+        <footer>
+            <div class="flex justify-between gap-4 p-4">
+                <div class="flex-1">
+                    <ul className="flex flex-col gap-4">
+                        <li>
+                            <img src="/src/assets/img/brand.svg" alt="Brand_Icon" />
+                        </li>
+                        <li>Coffee Shop is a store that sells some good meals, and especially coffee. We provide high
+                            quality beans</li>
+                        <li class="copyright">©2020CoffeeStore</li>
+                    </ul>
+                </div>
+                <div class="flex-1">
+                    <ul className="flex flex-col gap-4">
+                        <li><span className="font-bold">Product</span></li>
+                        <li><a href="product.html">Our Product</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Location</a></li>
+                        <li><a href="#">Countries</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="flex-1">
+                    <ul className="flex flex-col gap-4">
+                        <li><span className="font-bold">Engage</span></li>
+                        <li><a href="#">Partner</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Term Of Service</a></li>
+                    </ul>
+                </div>
+                <div class="flex-1">
+                    <ul class="social flex flex-col gap-4">
+                        <li><span className="font-bold">Social Media</span></li>
+                        <li className="flex gap-4 justify-center items-center">
+                            <a href="#">
+                                <img src="/src/assets/img/Facebook.svg" alt="Facebook_icon" />
+                            </a>
+                            <a href="#">
+                                <img src="/src/assets/img/Twitter.svg" alt="Twitter_icon" />
+                            </a>
+                            <a href="#">
+                                <img src="/src/assets/img/Instagram.svg" alt="Instagram_icon" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    )
+}
+
 const Home = () => {
     return (
         <div className="container max-w-360 mx-auto flex flex-col">
@@ -126,6 +181,7 @@ const Home = () => {
             <Product />
             <Map />
             <Testimoni />
+            <Footer />
         </div>
     )
 }
