@@ -1,3 +1,8 @@
+import { BsArrowRight } from "react-icons/bs"; 
+import { BsArrowLeft } from "react-icons/bs"; 
+import { ImInstagram } from "react-icons/im"; 
+import { FaTwitter } from "react-icons/fa"; 
+import { FaFacebookF } from "react-icons/fa"; 
 import Navbar from "../components/Navbar"
 import ProductCard from "../components/ProductCard"
 const Hero = () => {
@@ -102,8 +107,8 @@ const Testimoni = () => {
                         <span>5.0</span>
                     </div>
                     <div className="flex gap-4">
-                        <button className="rounded-full w-10 h-10 bg-white flex justify-center items-center"><img src="/src/assets/img/arrow.svg" alt="prev_icon" /></button>
-                        <button className="rounded-full w-10 h-10 bg-(--color-primary) flex justify-center items-center"><img src="/src/assets/img/arrow_next.svg" alt="next_icon" /></button>
+                        <button className="rounded-full w-10 h-10 bg-white flex justify-center items-center cursor-pointer"><BsArrowLeft className="text-black"/></button>
+                        <button className="rounded-full w-10 h-10 bg-(--color-primary) flex justify-center items-center cursor-pointer"><BsArrowRight className="text-black"/></button>
                     </div>
                     <div id="testimoni-indicator" className="testimoni-indicator"><span></span>
                         <span></span>
@@ -120,49 +125,49 @@ const Testimoni = () => {
 const Footer = () => {
     return (
         <footer>
-            <div class="flex justify-between gap-4 p-4">
-                <div class="flex-1">
-                    <ul className="flex flex-col gap-4">
+            <div className="flex justify-between gap-4 p-4">
+                <div className="flex-1">
+                    <ul className="flex flex-col justify-center gap-4 h-full">
                         <li>
                             <img src="/src/assets/img/brand.svg" alt="Brand_Icon" />
                         </li>
-                        <li>Coffee Shop is a store that sells some good meals, and especially coffee. We provide high
+                        <li className="text-black/70">Coffee Shop is a store that sells some good meals, and especially coffee. We provide high
                             quality beans</li>
-                        <li class="copyright">©2020CoffeeStore</li>
+                        <li className="copyright text-black/70">©2020CoffeeStore</li>
                     </ul>
                 </div>
-                <div class="flex-1">
+                <div className="flex-1">
                     <ul className="flex flex-col gap-4">
                         <li><span className="font-bold">Product</span></li>
-                        <li><a href="product.html">Our Product</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">Location</a></li>
-                        <li><a href="#">Countries</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="product.html" className="text-black/70 hover:text-black">Our Product</a></li>
+                        <li><a href="#" className="text-black/70 hover:text-black">Pricing</a></li>
+                        <li><a href="#" className="text-black/70 hover:text-black">Location</a></li>
+                        <li><a href="#" className="text-black/70 hover:text-black">Countries</a></li>
+                        <li><a href="#" className="text-black/70 hover:text-black">Blog</a></li>
                     </ul>
                 </div>
-                <div class="flex-1">
+                <div className="flex-1">
                     <ul className="flex flex-col gap-4">
                         <li><span className="font-bold">Engage</span></li>
-                        <li><a href="#">Partner</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Term Of Service</a></li>
+                        <li><a href="#" className="text-black/70 hover:text-black">Partner</a></li>
+                        <li><a href="#" className="text-black/70 hover:text-black">FAQ</a></li>
+                        <li><a href="#" className="text-black/70 hover:text-black">About Us</a></li>
+                        <li><a href="#" className="text-black/70 hover:text-black">Privacy Policy</a></li>
+                        <li><a href="#" className="text-black/70 hover:text-black">Term Of Service</a></li>
                     </ul>
                 </div>
-                <div class="flex-1">
-                    <ul class="social flex flex-col gap-4">
+                <div className="flex-1">
+                    <ul>
                         <li><span className="font-bold">Social Media</span></li>
-                        <li className="flex gap-4 justify-center items-center">
-                            <a href="#">
-                                <img src="/src/assets/img/Facebook.svg" alt="Facebook_icon" />
+                        <li className="flex gap-4 items-center">
+                            <a href="#" className="w-10 h-10 rounded-full bg-(--color-primary) hover:bg-(--color-primary-active) flex justify-center items-center">
+                                <FaFacebookF />
                             </a>
-                            <a href="#">
-                                <img src="/src/assets/img/Twitter.svg" alt="Twitter_icon" />
+                            <a href="#" className="w-10 h-10 rounded-full bg-(--color-primary) hover:bg-(--color-primary-active) flex justify-center items-center">
+                                <FaTwitter />
                             </a>
-                            <a href="#">
-                                <img src="/src/assets/img/Instagram.svg" alt="Instagram_icon" />
+                            <a href="#" className="w-10 h-10 rounded-full bg-(--color-primary) hover:bg-(--color-primary-active) flex justify-center items-center">
+                                <ImInstagram />
                             </a>
                         </li>
                     </ul>
