@@ -1,6 +1,7 @@
+import { BiSend } from "react-icons/bi";
+import { GoFlame } from "react-icons/go";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsChatDots } from "react-icons/bs";
-import { BsFillChatDotsFill } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
 import { BsArrowLeft } from "react-icons/bs";
 import { ImInstagram } from "react-icons/im";
@@ -8,6 +9,8 @@ import { FaTwitter } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import Navbar from "../components/Navbar"
 import ProductCard from "../components/ProductCard"
+import { MdOutlineGirl } from "react-icons/md";
+
 const Hero = () => {
     return (
         <section>
@@ -199,7 +202,7 @@ const FloatingChat = () => {
                         <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">Halo ada yang bisa ?</span>
                     </div>
                     <div className="flex flex-row-reverse items-center justify-self-end gap-4 p-2">
-                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><MdOutlineGirl /></div>
                         <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">bisa yuk bisaa !!</span>
                     </div>
                     <div className="flex items-center gap-4 p-2">
@@ -207,7 +210,7 @@ const FloatingChat = () => {
                         <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">jum'at ?</span>
                     </div>
                     <div className="flex flex-row-reverse items-center justify-self-end gap-4 p-2">
-                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><MdOutlineGirl /></div>
                         <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">Weeklyy !!</span>
                     </div>
                     <div className="flex items-center gap-4 p-2">
@@ -215,10 +218,27 @@ const FloatingChat = () => {
                         <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">infokan masjid terdekatt</span>
                     </div>
                     <div className="flex flex-row-reverse items-center justify-self-end gap-4 p-2">
-                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><MdOutlineGirl /></div>
                         <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">masya alloh brother !!</span>
                     </div>
+                    <div className="flex flex-row-reverse items-center justify-self-end gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><MdOutlineGirl /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">jan lupaa!!</span>
+                    </div>
+                    <div className="flex items-center gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">apaa??</span>
+                    </div>
+                    <div className="flex flex-row-reverse items-center justify-self-end gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><MdOutlineGirl /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">Weeklyyyyyy<GoFlame className="text-blue-900" /><GoFlame className="text-blue-900" /></span>
+                    </div>
+                    <div className="flex flex-row-reverse items-center justify-self-end gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><MdOutlineGirl /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">awokawok</span>
+                    </div>
                 </div>
+                
             </div>
             <button className="flex-1 cursor-pointer flex justify-center items-center bg-(--color-primary) w-16 h-16 rounded-full"><BsChatDots className="w-7 h-7" /></button>
         </div>
