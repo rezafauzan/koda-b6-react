@@ -1,8 +1,11 @@
-import { BsArrowRight } from "react-icons/bs"; 
-import { BsArrowLeft } from "react-icons/bs"; 
-import { ImInstagram } from "react-icons/im"; 
-import { FaTwitter } from "react-icons/fa"; 
-import { FaFacebookF } from "react-icons/fa"; 
+import { AiOutlineUser } from "react-icons/ai";
+import { BsChatDots } from "react-icons/bs";
+import { BsFillChatDotsFill } from "react-icons/bs";
+import { BsArrowRight } from "react-icons/bs";
+import { BsArrowLeft } from "react-icons/bs";
+import { ImInstagram } from "react-icons/im";
+import { FaTwitter } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
 import Navbar from "../components/Navbar"
 import ProductCard from "../components/ProductCard"
 const Hero = () => {
@@ -37,7 +40,7 @@ const About = () => {
                     <div className="copytext w-[80%] px-6 py-10 flex flex-col gap-4">
                         <h2 className="copytext-headline text-5xl border-l-4 pl-4 border-l-(--color-primary)">We Provide <span className="text-(--color-accent)">Good Coffee</span> And <span className="text-(--color-accent)">Healthy Meals</span></h2>
                         <p className="">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
-                        <ul className="list-image-[url(../img/checklist.svg)] flex flex-col gap-8">
+                        <ul className="list-image-[url(/src/assets/img/checklist.svg)] flex flex-col gap-8">
                             <li>High quality beans</li>
                             <li>Healthy meals, you can request the ingredients</li>
                             <li>Chat with our staff to get better experience for ordering</li>
@@ -107,8 +110,8 @@ const Testimoni = () => {
                         <span>5.0</span>
                     </div>
                     <div className="flex gap-4">
-                        <button className="rounded-full w-10 h-10 bg-white flex justify-center items-center cursor-pointer"><BsArrowLeft className="text-black"/></button>
-                        <button className="rounded-full w-10 h-10 bg-(--color-primary) flex justify-center items-center cursor-pointer"><BsArrowRight className="text-black"/></button>
+                        <button className="rounded-full w-10 h-10 bg-white flex justify-center items-center cursor-pointer"><BsArrowLeft className="text-black" /></button>
+                        <button className="rounded-full w-10 h-10 bg-(--color-primary) flex justify-center items-center cursor-pointer"><BsArrowRight className="text-black" /></button>
                     </div>
                     <div id="testimoni-indicator" className="testimoni-indicator"><span></span>
                         <span></span>
@@ -177,6 +180,17 @@ const Footer = () => {
     )
 }
 
+const FloatingChat = () => {
+    return (
+        <div className="w-100 flex flex-col justify-center gap-4 fixed bottom-4 right-4 bg-black border-t-10 border-t-(--color-primary) rounded-xl">
+            
+            <button className="flex-1 cursor-pointer flex justify-center items-center bg-(--color-primary) w-16 h-16 rounded-full"><BsChatDots className="w-7 h-7" /></button>
+        </div>
+    )
+}
+
+
+
 const Home = () => {
     return (
         <div className="container max-w-360 mx-auto flex flex-col">
@@ -187,6 +201,7 @@ const Home = () => {
             <Map />
             <Testimoni />
             <Footer />
+            <FloatingChat />
         </div>
     )
 }
