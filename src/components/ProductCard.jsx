@@ -1,3 +1,5 @@
+import { BsCart3 } from "react-icons/bs";
+
 const ProductCard = () => {
     return (
         <div className="h-120 w-75 flex flex-col rounded overflow-hidden relative">
@@ -11,7 +13,7 @@ const ProductCard = () => {
                 <div class="flex gap-4 ">
                     <a href="detail-product.html?id=0" class="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</a>
                     <button class="px-4 py-2 border border-(--color-primary) rounded flex-1 flex justify-center items-center cursor-pointer">
-                        <img src="/src/assets/img/ShoppingCart-yellow.svg" alt="cart_icon" />
+                        <BsCart3 />
                     </button>
                 </div>
             </div>
