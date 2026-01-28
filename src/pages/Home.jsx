@@ -185,8 +185,8 @@ const Footer = () => {
 
 const FloatingChat = () => {
     return (
-        <div className="w-100 flex flex-col justify-center gap-4 fixed bottom-4 right-4 bg-black border-t-10 border-t-(--color-primary) rounded-xl">
-            <div className=" bg-white">
+        <div className="w-100 flex flex-col justify-center gap-2 fixed bottom-4 right-4 border-t-10 border-t-(--color-primary) rounded-xl">
+            <div className=" bg-white rounded-b">
                 <div className="flex items-center gap-4 border-b border-b-black/10 p-4">
                     <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center">
                         <AiOutlineUser />
@@ -237,10 +237,63 @@ const FloatingChat = () => {
                         <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><MdOutlineGirl /></div>
                         <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">awokawok</span>
                     </div>
+                    <div className="flex items-center gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">Fakk!!</span>
+                    </div>
+                    <div className="flex items-center gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2">
+                            <img src="/src/assets/img/kiss-cut-stickers-4x4-default-63863ac6746cb_1200x.webp" alt="Koda-Easter-Egg1" className="w-40 h-40" />
+                        </span>
+                    </div>
+                    <div className="flex flex-row-reverse items-center justify-self-end gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><MdOutlineGirl /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2">
+                            <img src="/src/assets/img/wojak-nss-magazine-3.jpg" alt="Koda-Easter-Egg2" className="w-40 h-40" />
+                        </span>
+                    </div>
+                    <div className="flex items-center gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">Sanss</span>
+                    </div>
+                    <div className="flex items-center gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2">
+                            <img src="/src/assets/img/st,small,845x845-pad,1000x1000,f8f8f8.u2.jpg" alt="Koda-Easter-Egg3" className="w-40 h-40" />
+                        </span>
+                    </div>
+                    <div className="flex items-center gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2">
+                            <img src="/src/assets/img/pngimg.com - wojak_PNG109612.png" alt="Koda-Easter-Egg4" className="w-40 h-40" />
+                        </span>
+                    </div>
+                    <div className="flex flex-row-reverse items-center justify-self-end gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><MdOutlineGirl /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">semangatt<GoFlame className="text-blue-900" /></span>
+                    </div>
+                    <div className="flex items-center gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">sipp tysm<GoFlame className="text-blue-900" /></span>
+                    </div>
+                    <div className="flex items-center gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2">
+                            <img src="src/assets/img/dd3ba633eb5fe0708f057771047d0774.jpg" alt="Koda-Easter-Egg" className="w-40 h-40" />
+                        </span>
+                    </div>
                 </div>
-                
+                <div className="flex justify-center items-center p-4 h-16 gap-4">
+                    <label className="flex-7 border border-black/40 rounded w-full p-1">
+                        <input type="text" className="outline-none" placeholder="Masukan pesan anda" />
+                    </label>
+                    <button className="bg-(--color-primary) flex-1 rounded p-1 h-full flex justify-center items-center">
+                        <BiSend />
+                    </button>
+                </div>
             </div>
-            <button className="flex-1 cursor-pointer flex justify-center items-center bg-(--color-primary) w-16 h-16 rounded-full"><BsChatDots className="w-7 h-7" /></button>
+            <button className="cursor-pointer flex justify-center items-center bg-(--color-primary) w-16 h-16 rounded-full self-end"><BsChatDots className="w-7 h-7" /></button>
         </div>
     )
 }
