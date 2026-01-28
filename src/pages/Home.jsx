@@ -183,7 +183,43 @@ const Footer = () => {
 const FloatingChat = () => {
     return (
         <div className="w-100 flex flex-col justify-center gap-4 fixed bottom-4 right-4 bg-black border-t-10 border-t-(--color-primary) rounded-xl">
-            
+            <div className=" bg-white">
+                <div className="flex items-center gap-4 border-b border-b-black/10 p-4">
+                    <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center">
+                        <AiOutlineUser />
+                    </div>
+                    <div className="flex flex-col justify-center">
+                        <span className="font-bold">Lorem, ipsum.</span>
+                        <span className="text-sm text-(--color-primary)">Lorem, ipsum.</span>
+                    </div>
+                </div>
+                <div className="flex flex-col h-80 overflow-y-auto">
+                    <div className="flex items-center gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">Halo ada yang bisa ?</span>
+                    </div>
+                    <div className="flex flex-row-reverse items-center justify-self-end gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">bisa yuk bisaa !!</span>
+                    </div>
+                    <div className="flex items-center gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">jum'at ?</span>
+                    </div>
+                    <div className="flex flex-row-reverse items-center justify-self-end gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">Weeklyy !!</span>
+                    </div>
+                    <div className="flex items-center gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">infokan masjid terdekatt</span>
+                    </div>
+                    <div className="flex flex-row-reverse items-center justify-self-end gap-4 p-2">
+                        <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
+                        <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">masya alloh brother !!</span>
+                    </div>
+                </div>
+            </div>
             <button className="flex-1 cursor-pointer flex justify-center items-center bg-(--color-primary) w-16 h-16 rounded-full"><BsChatDots className="w-7 h-7" /></button>
         </div>
     )
