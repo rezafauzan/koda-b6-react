@@ -244,13 +244,13 @@ const FloatingChat = () => {
                     <div className="flex flex-row-reverse justify-self-end items-center gap-4 p-2">
                         <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
                         <span className="flex justify-center text-sm bg-slate-100 px-2 py-2">
-                            <img src="/src/assets/img/kiss-cut-stickers-4x4-default-63863ac6746cb_1200x.webp" alt="Koda-Easter-Egg1" className="w-40 h-40" />
+                            <img src="/public/assets/img/kiss-cut-stickers-4x4-default-63863ac6746cb_1200x.webp" alt="Koda-Easter-Egg1" className="w-40 h-40" />
                         </span>
                     </div>
                     <div className="flex items-center gap-4 p-2">
                         <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><MdOutlineGirl /></div>
                         <span className="flex justify-center text-sm bg-slate-100 px-2 py-2">
-                            <img src="/src/assets/img/wojak-nss-magazine-3.jpg" alt="Koda-Easter-Egg2" className="w-40 h-40" />
+                            <img src="/public/assets/img/wojak-nss-magazine-3.jpg" alt="Koda-Easter-Egg2" className="w-40 h-40" />
                         </span>
                     </div>
                     <div className="flex flex-row-reverse justify-self-end items-center gap-4 p-2">
@@ -260,13 +260,13 @@ const FloatingChat = () => {
                     <div className="flex flex-row-reverse justify-self-end items-center gap-4 p-2">
                         <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
                         <span className="flex justify-center text-sm bg-slate-100 px-2 py-2">
-                            <img src="/src/assets/img/st,small,845x845-pad,1000x1000,f8f8f8.u2.jpg" alt="Koda-Easter-Egg3" className="w-40 h-40" />
+                            <img src="/public/assets/img/st,small,845x845-pad,1000x1000,f8f8f8.u2.jpg" alt="Koda-Easter-Egg3" className="w-40 h-40" />
                         </span>
                     </div>
                     <div className="flex flex-row-reverse justify-self-end items-center gap-4 p-2">
                         <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
                         <span className="flex justify-center text-sm bg-slate-100 px-2 py-2">
-                            <img src="/src/assets/img/pngimg.com - wojak_PNG109612.png" alt="Koda-Easter-Egg4" className="w-40 h-40" />
+                            <img src="/public/assets/img/pngimg.com - wojak_PNG109612.png" alt="Koda-Easter-Egg4" className="w-40 h-40" />
                         </span>
                     </div>
                     <div className="flex items-center gap-4 p-2">
@@ -280,13 +280,13 @@ const FloatingChat = () => {
                     <div className="flex flex-row-reverse justify-self-end items-center gap-4 p-2">
                         <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
                         <span className="flex justify-center text-sm bg-slate-100 px-2 py-2">
-                            <img src="src/assets/img/dd3ba633eb5fe0708f057771047d0774.jpg" alt="Koda-Easter-Egg" className="w-40 h-40" />
+                            <img src="/public/assets/img/dd3ba633eb5fe0708f057771047d0774.jpg" alt="Koda-Easter-Egg" className="w-40 h-40" />
                         </span>
                     </div>
                     <div className="flex items-center gap-4 p-2">
                         <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><MdOutlineGirl /></div>
                         <span className="flex justify-center text-sm bg-slate-100 px-2 py-2">
-                            <img src="/src/assets/img/mygirl.jpg" alt="Koda-Easter-Egg6" className="w-40 h-40" />
+                            <img src="/public/assets/img/mygirl.jpg" alt="Koda-Easter-Egg6" className="w-40 h-40" />
                         </span>
                     </div>
                     <div className="flex items-center gap-4 p-2">
