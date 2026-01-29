@@ -5,9 +5,9 @@ import { FaFacebookF } from "react-icons/fa";
 const Footer = () => {
     return (
         <footer>
-            <div className="flex justify-between gap-4 p-4">
-                <div className="flex-1">
-                    <ul className="flex flex-col justify-center gap-4 h-full">
+            <div className="flex flex-col justify-center items-center md:items-start md:flex-row md:justify-between gap-4 p-4">
+                <div className="flex-1 w-full flex justify-center md:justify-start items-center md:items-start">
+                    <ul className="flex flex-col justify-center md:justify-start items-center md:items-start gap-4 h-full w-full">
                         <li>
                             <img src="/src/assets/img/brand.svg" alt="Brand_Icon" />
                         </li>
@@ -16,8 +16,8 @@ const Footer = () => {
                         <li className="copyright text-black/70">©2020CoffeeStore</li>
                     </ul>
                 </div>
-                <div className="flex-1">
-                    <ul className="flex flex-col gap-4">
+                <div className="flex-1 w-full flex justify-center md:justify-start items-center md:items-start">
+                    <ul className="flex flex-col justify-center md:justify-start items-center md:items-start gap-4 h-full w-full">
                         <li><span className="font-bold">Product</span></li>
                         <li><a href="product.html" className="text-black/70 hover:text-black">Our Product</a></li>
                         <li><a href="#" className="text-black/70 hover:text-black">Pricing</a></li>
@@ -26,8 +26,8 @@ const Footer = () => {
                         <li><a href="#" className="text-black/70 hover:text-black">Blog</a></li>
                     </ul>
                 </div>
-                <div className="flex-1">
-                    <ul className="flex flex-col gap-4">
+                <div className="flex-1 w-full flex justify-center md:justify-start items-center md:items-start">
+                    <ul className="flex flex-col justify-center md:justify-start items-center md:items-start gap-4 h-full w-full">
                         <li><span className="font-bold">Engage</span></li>
                         <li><a href="#" className="text-black/70 hover:text-black">Partner</a></li>
                         <li><a href="#" className="text-black/70 hover:text-black">FAQ</a></li>
@@ -36,8 +36,8 @@ const Footer = () => {
                         <li><a href="#" className="text-black/70 hover:text-black">Term Of Service</a></li>
                     </ul>
                 </div>
-                <div className="flex-1">
-                    <ul>
+                <div className="flex-1 w-full flex justify-center md:justify-start items-center md:items-start">
+                    <ul className="flex flex-col justify-center md:justify-start items-center md:items-start gap-4 h-full w-full">
                         <li><span className="font-bold">Social Media</span></li>
                         <li className="flex gap-4 items-center">
                             <a href="#" className="w-10 h-10 rounded-full bg-(--color-primary) hover:bg-(--color-primary-active) flex justify-center items-center">
