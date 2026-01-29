@@ -115,11 +115,11 @@ const Testimoni = () => {
                         <button className="rounded-full w-10 h-10 bg-white flex justify-center items-center cursor-pointer"><BsArrowLeft className="text-black" /></button>
                         <button className="rounded-full w-10 h-10 bg-(--color-primary) flex justify-center items-center cursor-pointer"><BsArrowRight className="text-black" /></button>
                     </div>
-                    <div id="testimoni-indicator" className="testimoni-indicator"><span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    <div id="testimoni-indicator" className="testimoni-indicator">
                         <span className="active"></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
+import ProductCard from "../../components/ProductCard"
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs"
 
 const Hero = () => {
@@ -97,6 +98,15 @@ const TodayPromo = () => {
                     </div>
                 </div>
             </div>
+            <div className="flex gap-1 p-10">
+                <span className="rounded-full w-10 h-4 bg-(--color-primary)"></span>
+                <span className="rounded-full w-4 h-4 bg-slate-400"></span>
+                <span className="rounded-full w-4 h-4 bg-slate-400"></span>
+                <span className="rounded-full w-4 h-4 bg-slate-400"></span>
+                <span className="rounded-full w-4 h-4 bg-slate-400"></span>
+                <span className="rounded-full w-4 h-4 bg-slate-400"></span>
+                <span className="rounded-full w-4 h-4 bg-slate-400"></span>
+            </div>
         </section>
     )
 }
@@ -104,13 +114,77 @@ const TodayPromo = () => {
 const ProductSection = () => {
     return (
         <section>
-            <div className="flex flex-col justify-center gap-4">
-                <h2 className="text-4xl">Today<span className="text-(--color-accent)">Promo</span></h2>
-                <div className="bg-(--color-primary) h-1 w-10 rounded-full"></div>
-                <p>Let's choose and have a bit taste of poeple's favorite. It might be yours too!</p>
+            <div className="flex justify-between gap-4 px-10">
+                <h2 className="text-4xl">Our<span className="text-(--color-accent)">Product</span></h2>
             </div>
-            <div className="flex flex-col md:flex-row p-4 gap-4 justify-center items-center">
+            <div className="flex p-4 gap-4">
+                <aside className="flex-2 h-fit flex flex-col items-center gap-4 bg-[#0B0909] text-white p-4 rounded sticky top-1">
+                    <form className="flex flex-col w-full gap-4">
+                        <div class="flex justify-between items-center">
+                            <h3 className="text-xl">Filter</h3>
+                            <button type="reset" className="text-xl">Reset Filter</button>
+                        </div>
 
+                        <label className="flex flex-col gap-4">
+                            <span className="text-lg font-bold">Search</span>
+                            <input type="text" name="search" placeholder="Search your product !" className="bg-white text-black p-4 rounded"/>
+                        </label>
+
+                        <div id="category-filter">
+                            <span className="text-lg font-bold">Category</span>
+                            <div class="flex items-center gap-4">
+                                <input type="checkbox" name="category" id="favorite-product" className="w-4 h-4 accent-(--color-primary)" />
+                                <label className="text-white/70" htmlFor="favorite-product">Favorite Product</label>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <input type="checkbox" name="category" id="coffee" checked="" className="w-4 h-4 accent-(--color-primary)" />
+                                <label className="text-white/70" htmlFor="coffee">Coffee</label>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <input type="checkbox" name="category" id="non-coffee" className="w-4 h-4 accent-(--color-primary)" />
+                                <label className="text-white/70" htmlFor="non-coffee">Non Coffee</label>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <input type="checkbox" name="category" id="foods" className="w-4 h-4 accent-(--color-primary)" />
+                                <label className="text-white/70" htmlFor="foods">Foods</label>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <input type="checkbox" name="category" id="add-on" className="w-4 h-4 accent-(--color-primary)" />
+                                <label className="text-white/70" htmlFor="add-on">Add On</label>
+                            </div>
+                        </div>
+
+                        <div id="sort-by-filter">
+                            <span className="text-lg font-bold">Sort By</span>
+                            <div class="flex items-center gap-4">
+                                <input type="checkbox" name="sort-by" id="buy-one-get-one" className="w-4 h-4 accent-(--color-primary)" />
+                                <label className="text-white/70" htmlFor="buy-one-get-one">Buy 1 get 1</label>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <input type="checkbox" name="sort-by" id="flash-sale" checked="" className="w-4 h-4 accent-(--color-primary)" />
+                                <label className="text-white/70" htmlFor="flash-sale">Flash Sale</label>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <input type="checkbox" name="sort-by" id="birthday-package" className="w-4 h-4 accent-(--color-primary)" />
+                                <label className="text-white/70" htmlFor="birthday-package">Birthday Package</label>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <input type="checkbox" name="category" id="cheap" className="w-4 h-4 accent-(--color-primary)" />
+                                <label className="text-white/70" htmlFor="cheap">Cheap</label>
+                            </div>
+                        </div>
+
+                        <div id="range-price" className="flex flex-col justify-center gap-4 w-full h-10">
+                            <label className="text-white/70 text-lg font-bold" htmlFor="price-range">Price Range</label>
+                            <div className="relative w-full">
+                                <input type="range" name="price-range" id="price-range-min" min="0" max="100000" step="1000" value="0" className="absolute accent-(--color-primary)"/>
+                                <input type="range" name="price-range" id="price-range-max" min="0" max="100000" step="1000" value="100000" className="absolute accent-(--color-primary)"/>
+                            </div>
+                        </div>
+
+                        <button type="submit" className="w-full h-10 bg-(--color-primary) rounded mt-4">Apply Filter</button>
+                    </form>
+                </aside>
             </div>
         </section>
     )
@@ -122,6 +196,7 @@ const Product = () => {
             <Navbar theme={"dark"} />
             <Hero />
             <TodayPromo />
+            <ProductSection />
             <Footer />
         </div>
     )
