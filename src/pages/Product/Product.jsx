@@ -1,7 +1,7 @@
-import Navbar from "../../components/Navbar"
-import Footer from "../../components/Footer"
+import { useContext } from "react"
 import ProductCard from "../../components/ProductCard"
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs"
+import ProductContext from "../../components/context/ProductContext"
 
 const Hero = () => {
     return (
@@ -28,71 +28,71 @@ const TodayPromo = () => {
                 </div>
             </div>
             <div className="flex p-4 gap-4 items-center overflow-x-auto">
-                <div class="coupon-card w-100 h-40 shrink-0 bg-emerald-700 px-4 rounded-xl flex justify-center items-center gap-4">
+                <div className="coupon-card w-100 h-40 shrink-0 bg-emerald-700 px-4 rounded-xl flex justify-center items-center gap-4">
                     <div className="max-w-40 h-40">
                         <img src="/assets/img/mother-day-coupon-image.png" alt="mother_day_coupon_image" className="h-full object-contain" />
                     </div>
-                    <div class="coupon-body flex flex-col gap-1 py-1">
+                    <div className="coupon-body flex flex-col gap-1 py-1">
                         <h3 className="font-bold">HAPPY MOTHER'S DAY!</h3>
                         <p>Get one of our favorite menu for free!</p>
                         <button className="text-white mt-4 text-start">Claim Coupon</button>
                     </div>
                 </div>
-                <div class="coupon-card w-100 h-40 shrink-0 bg-emerald-700 px-4 rounded-xl flex justify-center items-center gap-4">
+                <div className="coupon-card w-100 h-40 shrink-0 bg-emerald-700 px-4 rounded-xl flex justify-center items-center gap-4">
                     <div className="max-w-40 h-40">
                         <img src="/assets/img/mother-day-coupon-image.png" alt="mother_day_coupon_image" className="h-full object-contain" />
                     </div>
-                    <div class="coupon-body flex flex-col gap-1 py-1">
+                    <div className="coupon-body flex flex-col gap-1 py-1">
                         <h3 className="font-bold">HAPPY MOTHER'S DAY!</h3>
                         <p>Get one of our favorite menu for free!</p>
                         <button className="text-white mt-4 text-start">Claim Coupon</button>
                     </div>
                 </div>
-                <div class="coupon-card w-100 h-40 shrink-0 bg-emerald-700 px-4 rounded-xl flex justify-center items-center gap-4">
+                <div className="coupon-card w-100 h-40 shrink-0 bg-emerald-700 px-4 rounded-xl flex justify-center items-center gap-4">
                     <div className="max-w-40 h-40">
                         <img src="/assets/img/mother-day-coupon-image.png" alt="mother_day_coupon_image" className="h-full object-contain" />
                     </div>
-                    <div class="coupon-body flex flex-col gap-1 py-1">
+                    <div className="coupon-body flex flex-col gap-1 py-1">
                         <h3 className="font-bold">HAPPY MOTHER'S DAY!</h3>
                         <p>Get one of our favorite menu for free!</p>
                         <button className="text-white mt-4 text-start">Claim Coupon</button>
                     </div>
                 </div>
-                <div class="coupon-card w-100 h-40 shrink-0 bg-emerald-700 px-4 rounded-xl flex justify-center items-center gap-4">
+                <div className="coupon-card w-100 h-40 shrink-0 bg-emerald-700 px-4 rounded-xl flex justify-center items-center gap-4">
                     <div className="max-w-40 h-40">
                         <img src="/assets/img/mother-day-coupon-image.png" alt="mother_day_coupon_image" className="h-full object-contain" />
                     </div>
-                    <div class="coupon-body flex flex-col gap-1 py-1">
+                    <div className="coupon-body flex flex-col gap-1 py-1">
                         <h3 className="font-bold">HAPPY MOTHER'S DAY!</h3>
                         <p>Get one of our favorite menu for free!</p>
                         <button className="text-white mt-4 text-start">Claim Coupon</button>
                     </div>
                 </div>
-                <div class="coupon-card w-100 h-40 shrink-0 bg-emerald-700 px-4 rounded-xl flex justify-center items-center gap-4">
+                <div className="coupon-card w-100 h-40 shrink-0 bg-emerald-700 px-4 rounded-xl flex justify-center items-center gap-4">
                     <div className="max-w-40 h-40">
                         <img src="/assets/img/mother-day-coupon-image.png" alt="mother_day_coupon_image" className="h-full object-contain" />
                     </div>
-                    <div class="coupon-body flex flex-col gap-1 py-1">
+                    <div className="coupon-body flex flex-col gap-1 py-1">
                         <h3 className="font-bold">HAPPY MOTHER'S DAY!</h3>
                         <p>Get one of our favorite menu for free!</p>
                         <button className="text-white mt-4 text-start">Claim Coupon</button>
                     </div>
                 </div>
-                <div class="coupon-card w-100 h-40 shrink-0 bg-emerald-700 px-4 rounded-xl flex justify-center items-center gap-4">
+                <div className="coupon-card w-100 h-40 shrink-0 bg-emerald-700 px-4 rounded-xl flex justify-center items-center gap-4">
                     <div className="max-w-40 h-40">
                         <img src="/assets/img/mother-day-coupon-image.png" alt="mother_day_coupon_image" className="h-full object-contain" />
                     </div>
-                    <div class="coupon-body flex flex-col gap-1 py-1">
+                    <div className="coupon-body flex flex-col gap-1 py-1">
                         <h3 className="font-bold">HAPPY MOTHER'S DAY!</h3>
                         <p>Get one of our favorite menu for free!</p>
                         <button className="text-white mt-4 text-start">Claim Coupon</button>
                     </div>
                 </div>
-                <div class="coupon-card w-100 h-40 shrink-0 bg-yellow-700 px-4 rounded-xl flex justify-center items-center gap-4">
+                <div className="coupon-card w-100 h-40 shrink-0 bg-yellow-700 px-4 rounded-xl flex justify-center items-center gap-4">
                     <div className="max-w-40 h-40">
                         <img src="/assets/img/father-coupon.png" alt="sunday_coupon_image" className="h-full object-contain" />
                     </div>
-                    <div class="coupon-body flex flex-col gap-1 py-1">
+                    <div className="coupon-body flex flex-col gap-1 py-1">
                         <h3 className="font-bold">Get a cup of coffee for free on sunday morning</h3>
                         <p>Only at 7 to 9 AM</p>
                     </div>
@@ -112,6 +112,7 @@ const TodayPromo = () => {
 }
 
 const ProductSection = () => {
+    const productData = useContext(ProductContext)
     return (
         <section>
             <div className="flex justify-between gap-4 px-10">
@@ -120,7 +121,7 @@ const ProductSection = () => {
             <div className="flex flex-col lg:flex-row p-4 gap-4">
                 <aside className="flex-4 h-fit flex flex-col items-center gap-4 bg-[#0B0909] text-white p-4 rounded lg:sticky lg:top-1">
                     <form className="flex flex-col w-full gap-4">
-                        <div class="flex justify-between items-center">
+                        <div className="flex justify-between items-center">
                             <h3 className="text-xl">Filter</h3>
                             <button type="reset" className="text-xl">Reset Filter</button>
                         </div>
@@ -132,23 +133,23 @@ const ProductSection = () => {
 
                         <div id="category-filter">
                             <span className="text-lg font-bold">Category</span>
-                            <div class="flex items-center gap-4">
+                            <div className="flex items-center gap-4">
                                 <input type="checkbox" name="category" id="favorite-product" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="favorite-product">Favorite Product</label>
                             </div>
-                            <div class="flex items-center gap-4">
-                                <input type="checkbox" name="category" id="coffee" checked="" className="w-4 h-4 accent-(--color-primary)" />
+                            <div className="flex items-center gap-4">
+                                <input type="checkbox" name="category" id="coffee" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="coffee">Coffee</label>
                             </div>
-                            <div class="flex items-center gap-4">
+                            <div className="flex items-center gap-4">
                                 <input type="checkbox" name="category" id="non-coffee" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="non-coffee">Non Coffee</label>
                             </div>
-                            <div class="flex items-center gap-4">
+                            <div className="flex items-center gap-4">
                                 <input type="checkbox" name="category" id="foods" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="foods">Foods</label>
                             </div>
-                            <div class="flex items-center gap-4">
+                            <div className="flex items-center gap-4">
                                 <input type="checkbox" name="category" id="add-on" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="add-on">Add On</label>
                             </div>
@@ -156,19 +157,19 @@ const ProductSection = () => {
 
                         <div id="sort-by-filter">
                             <span className="text-lg font-bold">Sort By</span>
-                            <div class="flex items-center gap-4">
+                            <div className="flex items-center gap-4">
                                 <input type="checkbox" name="sort-by" id="buy-one-get-one" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="buy-one-get-one">Buy 1 get 1</label>
                             </div>
-                            <div class="flex items-center gap-4">
-                                <input type="checkbox" name="sort-by" id="flash-sale" checked="" className="w-4 h-4 accent-(--color-primary)" />
+                            <div className="flex items-center gap-4">
+                                <input type="checkbox" name="sort-by" id="flash-sale" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="flash-sale">Flash Sale</label>
                             </div>
-                            <div class="flex items-center gap-4">
+                            <div className="flex items-center gap-4">
                                 <input type="checkbox" name="sort-by" id="birthday-package" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="birthday-package">Birthday Package</label>
                             </div>
-                            <div class="flex items-center gap-4">
+                            <div className="flex items-center gap-4">
                                 <input type="checkbox" name="category" id="cheap" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="cheap">Cheap</label>
                             </div>
@@ -216,17 +217,13 @@ const ProductSection = () => {
         </section>
     )
 }
-
 const Product = () => {
     return (
-        <div className="container max-w-360 mx-auto flex flex-col">
-            <Navbar theme={"dark"} />
+        <>
             <Hero />
             <TodayPromo />
             <ProductSection />
-            <Footer />
-        </div>
+        </>
     )
 }
-
 export default Product

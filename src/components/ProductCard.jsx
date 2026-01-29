@@ -11,9 +11,9 @@ const ProductCard = ({ flashsale = false }) => {
                 <h3 className="text-xl font-bold">Hazzelnut Latte</h3>
                 <p>You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
                 <span className="text-xl bold text-(--color-primary)">Rp.22000,-</span>
-                <div class="flex gap-4 ">
-                    <a href="detail-product.html?id=0" class="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</a>
-                    <button class="px-4 py-2 border border-(--color-primary) rounded flex-1 flex justify-center items-center cursor-pointer">
+                <div className="flex gap-4 ">
+                    <a href="detail-product.html?id=0" className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</a>
+                    <button className="px-4 py-2 border border-(--color-primary) rounded flex-1 flex justify-center items-center cursor-pointer">
                         <BsCart3 />
                     </button>
                 </div>
