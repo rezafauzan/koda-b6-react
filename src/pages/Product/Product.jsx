@@ -117,8 +117,8 @@ const ProductSection = () => {
             <div className="flex justify-between gap-4 px-10">
                 <h2 className="text-4xl">Our<span className="text-(--color-accent)">Product</span></h2>
             </div>
-            <div className="flex p-4 gap-4">
-                <aside className="flex-2 h-fit flex flex-col items-center gap-4 bg-[#0B0909] text-white p-4 rounded sticky top-1">
+            <div className="flex flex-col lg:flex-row p-4 gap-4">
+                <aside className="flex-4 h-fit flex flex-col items-center gap-4 bg-[#0B0909] text-white p-4 rounded lg:sticky lg:top-1">
                     <form className="flex flex-col w-full gap-4">
                         <div class="flex justify-between items-center">
                             <h3 className="text-xl">Filter</h3>
@@ -185,6 +185,24 @@ const ProductSection = () => {
                         <button type="submit" className="w-full h-10 bg-(--color-primary) rounded mt-4">Apply Filter</button>
                     </form>
                 </aside>
+                <div className="flex-7 grid grid-cols-1 lg:grid-cols-2 justify-between gap-4 lg:px-40">
+                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true}/>
+                </div>
             </div>
         </section>
     )
