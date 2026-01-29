@@ -202,7 +202,7 @@ const ProductSection = () => {
                     <ProductCard flashsale={true} />
                     <ProductCard flashsale={true} />
                     <ProductCard flashsale={true} />
-                    <div className="flex col-span-2 justify-evenly items-center">
+                    <div className="flex col-span-1 lg:col-span-2 justify-evenly items-center">
                         <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-(--color-primary) hover:bg-(--color-primary-active) rounded-full">1</span>
                         <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-slate-400 hover:bg-slate-300 rounded-full text-slate-700">2</span>
                         <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-slate-400 hover:bg-slate-300 rounded-full text-slate-700">3</span>
