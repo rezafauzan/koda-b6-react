@@ -3,9 +3,22 @@ import Home from "./pages/Home"
 import Login from './pages/Auth/Login'
 import Register from './pages/Auth/Register'
 import ForgotPassword from './pages/Auth/Forgot'
+import ProductLayout from './pages/Product/ProductLayout'
 import Product from './pages/Product/Product'
+import { useEffect, useState } from 'react'
+import ProductContext from './components/context/ProductContext'
+import dataFetcher from './lib/dataFetcher'
 
 const App = () => {
+    const [data, setData] = useState([])
+    useEffect(
+        () => {
+            dataFetcher("https://raw.githubusercontent.com/rezafauzan/koda-b6-react/refs/heads/feat/product-detail/public/assets/data/product.json").then(
+                products=>{setData(products)}
+            )
+        }
+        , []
+    )
     const router = createBrowserRouter([
         {
             path: '/',
@@ -26,11 +39,23 @@ const App = () => {
         },
         {
             path: '/product',
-            element: <Product />
+            element: <ProductLayout />,
+            children: [
+                {
+                    path: '',
+                    element: <Product />
+                },
+                {
+                    path: '/product/:product-id',
+                    // element: <ProductDetail />
+                }
+            ]
         },
     ])
     return (
-        < RouterProvider router = { router } />
+        <ProductContext value={data}>
+            <RouterProvider router={router} />
+        </ProductContext>
     )
 }
 
