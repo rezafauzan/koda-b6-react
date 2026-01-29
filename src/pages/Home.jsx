@@ -4,10 +4,8 @@ import { AiOutlineUser } from "react-icons/ai";
 import { BsChatDots } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
 import { BsArrowLeft } from "react-icons/bs";
-import { ImInstagram } from "react-icons/im";
-import { FaTwitter } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa";
 import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 import ProductCard from "../components/ProductCard"
 import { MdOutlineGirl } from "react-icons/md";
 
@@ -125,61 +123,6 @@ const Testimoni = () => {
                 </div>
             </div>
         </section>
-    )
-}
-
-const Footer = () => {
-    return (
-        <footer>
-            <div className="flex justify-between gap-4 p-4">
-                <div className="flex-1">
-                    <ul className="flex flex-col justify-center gap-4 h-full">
-                        <li>
-                            <img src="/src/assets/img/brand.svg" alt="Brand_Icon" />
-                        </li>
-                        <li className="text-black/70">Coffee Shop is a store that sells some good meals, and especially coffee. We provide high
-                            quality beans</li>
-                        <li className="copyright text-black/70">©2020CoffeeStore</li>
-                    </ul>
-                </div>
-                <div className="flex-1">
-                    <ul className="flex flex-col gap-4">
-                        <li><span className="font-bold">Product</span></li>
-                        <li><a href="product.html" className="text-black/70 hover:text-black">Our Product</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">Pricing</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">Location</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">Countries</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">Blog</a></li>
-                    </ul>
-                </div>
-                <div className="flex-1">
-                    <ul className="flex flex-col gap-4">
-                        <li><span className="font-bold">Engage</span></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">Partner</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">FAQ</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">About Us</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">Privacy Policy</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">Term Of Service</a></li>
-                    </ul>
-                </div>
-                <div className="flex-1">
-                    <ul>
-                        <li><span className="font-bold">Social Media</span></li>
-                        <li className="flex gap-4 items-center">
-                            <a href="#" className="w-10 h-10 rounded-full bg-(--color-primary) hover:bg-(--color-primary-active) flex justify-center items-center">
-                                <FaFacebookF />
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-full bg-(--color-primary) hover:bg-(--color-primary-active) flex justify-center items-center">
-                                <FaTwitter />
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-full bg-(--color-primary) hover:bg-(--color-primary-active) flex justify-center items-center">
-                                <ImInstagram />
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </footer>
     )
 }
 
@@ -307,8 +250,6 @@ const FloatingChat = () => {
         </div>
     )
 }
-
-
 
 const Home = () => {
     return (
