@@ -1,8 +1,9 @@
 import { BsCart3 } from "react-icons/bs";
 
-const ProductCard = () => {
+const ProductCard = ({ flashsale = false }) => {
     return (
-        <div className="h-120 w-75 flex flex-col rounded overflow-hidden relative">
+        <div className="h-120 min-w-75 w-full flex flex-col rounded overflow-hidden relative">
+            {(flashsale ? <div className="w-fit h-4 p-4 text-white bg-red-700 absolute top-4 left-4 flex flex-col justify-center items-center rounded-full"><span>Flash Sale</span></div> : '')}
             <div className="h-80 overflow-hidden">
                 <img src="/src/assets/img/image22.png" alt="Product_Name" className="w-full object-contain" />
             </div>
