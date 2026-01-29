@@ -127,7 +127,7 @@ const ProductSection = () => {
 
                         <label className="flex flex-col gap-4">
                             <span className="text-lg font-bold">Search</span>
-                            <input type="text" name="search" placeholder="Search your product !" className="bg-white text-black p-4 rounded"/>
+                            <input type="text" name="search" placeholder="Search your product !" className="bg-white text-black p-4 rounded" />
                         </label>
 
                         <div id="category-filter">
@@ -177,8 +177,8 @@ const ProductSection = () => {
                         <div id="range-price" className="flex flex-col justify-center gap-4 w-full h-10">
                             <label className="text-white/70 text-lg font-bold" htmlFor="price-range">Price Range</label>
                             <div className="relative w-full">
-                                <input type="range" name="price-range" id="price-range-min" min="0" max="100000" step="1000" value="0" className="absolute accent-(--color-primary)"/>
-                                <input type="range" name="price-range" id="price-range-max" min="0" max="100000" step="1000" value="100000" className="absolute accent-(--color-primary)"/>
+                                <input type="range" name="price-range" id="price-range-min" min="0" max="100000" step="1000" value="0" className="absolute accent-(--color-primary)" />
+                                <input type="range" name="price-range" id="price-range-max" min="0" max="100000" step="1000" value="100000" className="absolute accent-(--color-primary)" />
                             </div>
                         </div>
 
@@ -186,22 +186,31 @@ const ProductSection = () => {
                     </form>
                 </aside>
                 <div className="flex-7 grid grid-cols-1 lg:grid-cols-2 justify-between gap-4 lg:px-40">
-                    <ProductCard flashsale={true}/>
-                    <ProductCard flashsale={true}/>
-                    <ProductCard flashsale={true}/>
-                    <ProductCard flashsale={true}/>
-                    <ProductCard flashsale={true}/>
-                    <ProductCard flashsale={true}/>
-                    <ProductCard flashsale={true}/>
-                    <ProductCard flashsale={true}/>
-                    <ProductCard flashsale={true}/>
-                    <ProductCard flashsale={true}/>
-                    <ProductCard flashsale={true}/>
-                    <ProductCard flashsale={true}/>
-                    <ProductCard flashsale={true}/>
-                    <ProductCard flashsale={true}/>
-                    <ProductCard flashsale={true}/>
-                    <ProductCard flashsale={true}/>
+                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} />
+                    <div className="flex col-span-2 justify-evenly items-center">
+                        <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-(--color-primary) hover:bg-(--color-primary-active) rounded-full">1</span>
+                        <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-slate-400 hover:bg-slate-300 rounded-full text-slate-700">2</span>
+                        <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-slate-400 hover:bg-slate-300 rounded-full text-slate-700">3</span>
+                        <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-slate-400 hover:bg-slate-300 rounded-full text-slate-700">4</span>
+                        <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-slate-400 hover:bg-slate-300 rounded-full text-slate-700">5</span>
+                        <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-slate-400 hover:bg-slate-300 rounded-full text-slate-700">6</span>
+                        <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-(--color-primary) hover:bg-(--color-primary-active) rounded-full"><BsArrowRight className="text-white" /></span>
+                    </div>
                 </div>
             </div>
         </section>
