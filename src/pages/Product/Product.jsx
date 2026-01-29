@@ -185,7 +185,7 @@ const ProductSection = () => {
                         <button type="submit" className="w-full h-10 bg-(--color-primary) rounded mt-4">Apply Filter</button>
                     </form>
                 </aside>
-                <div className="flex-7 grid grid-cols-1 lg:grid-cols-2 justify-between gap-4 lg:px-40">
+                <div className="flex-7 grid grid-cols-1 lg:grid-cols-2 justify-center lg:justify-between gap-4 lg:px-40">
                     <ProductCard flashsale={true} />
                     <ProductCard flashsale={true} />
                     <ProductCard flashsale={true} />
