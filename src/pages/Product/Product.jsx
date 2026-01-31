@@ -113,7 +113,6 @@ const TodayPromo = () => {
 }
 
 const ProductSection = () => {
-
     const { register, handleSubmit, formState } = useForm()
     const productData = useContext(ProductContext)
     const minPrice = useRef()
@@ -186,15 +185,15 @@ const ProductSection = () => {
 
                         <div id="range-price" className="flex flex-col justify-center gap-4 w-full">
                             <label className="text-white/70 text-lg font-bold" htmlFor="price-range">Price Range</label>
-                            <div className="flex w-full">
+                            <div className="flex flex-col md:flex-row w-full">
                                 <div className="flex flex-col gap-4">
                                     <label htmlFor="price-range-min">Minimal Price</label>
-                                    <input type="range" {...register("priceRangeMin", {onChange: (e) => {minPrice.current.textContent =`Rp.${parseInt(e.target.value).toLocaleString("id-ID")},-`}})} id="price-range-min" min="0" max="100000" step="1000" className="accent-(--color-primary)" />
+                                    <input type="range" {...register("priceRangeMin", {onChange: (e) => {minPrice.current.textContent =`Rp.${parseInt(e.target.value).toLocaleString("id-ID")},-`}})} id="price-range-min" min="0" max="100000" step="1000" className="w-full accent-(--color-primary)" />
                                     <span ref={minPrice}></span>
                                 </div>
                                 <div className="flex flex-col items-center gap-4">
                                     <label htmlFor="price-range-max">Maximal Price</label>
-                                    <input type="range" {...register("priceRangeMax", {onChange: (e) => {maxPrice.current.textContent =`Rp.${parseInt(e.target.value).toLocaleString("id-ID")},-`}})} id="price-range-max" min="0" max="100000" step="1000" className="accent-(--color-primary)" />
+                                    <input type="range" {...register("priceRangeMax", {onChange: (e) => {maxPrice.current.textContent =`Rp.${parseInt(e.target.value).toLocaleString("id-ID")},-`}})} id="price-range-max" min="0" max="100000" step="1000" className="w-full accent-(--color-primary)" />
                                     <span ref={maxPrice}></span>
                                 </div>
                             </div>
