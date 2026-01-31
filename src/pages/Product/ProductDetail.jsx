@@ -2,13 +2,14 @@ import { useContext } from "react";
 import { BsArrowRight, BsHandThumbsUp } from "react-icons/bs";
 import { BsCart3 } from "react-icons/bs"
 import ProductCard from "../../components/ProductCard";
+import { useParams } from "react-router-dom";
 
 const OtherProducts = () => {
     // const productData = useContext(ProductContext)
     return (
         <section>
             <div className="flex justify-between gap-4 px-10">
-                <h2 className="text-4xl">Recommendation<span className="text-(--color-accent)">For You</span></h2>
+                <h2 className="text-4xl">Recommendation <span className="text-(--color-accent)">For You</span></h2>
             </div>
             <div className="flex flex-col lg:flex-row p-4 gap-4 w-full justify-center items-center">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center lg:justify-between gap-4 px-16 lg:px-4">
@@ -44,6 +45,8 @@ const OtherProducts = () => {
 }
 
 const ProductDetail = () => {
+    const {productId} = useParams()
+    console.log(productId)
     return (
         <>
             <section>
@@ -73,16 +76,16 @@ const ProductDetail = () => {
                         </div>
                         <div className="flex items-center gap-4">
                             <span>18 Review | Recommendation</span>
-                            <button id="recommend" class="button button-transparent">
+                            <button className="cursor-pointer">
                                 <BsHandThumbsUp className="text-(--color-primary)" />
                             </button>
                         </div>
                         <p>You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
-                        <div className="flex items-center w-100 p-4">
-                            <button className="w-10 px-4 py-2 border border-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">+</button>
+                        <div className="flex items-center p-4">
+                            <button className="w-18 px-4 py-2 border border-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">+</button>
                             {/* <input type="number" {...register("quantity")} value={1} id="quantity" disabled className="text-center"/> */}
-                            <input type="number" id="quantity" value={1} disabled className="text-center w-10" />
-                            <button className="w-10 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">-</button>
+                            <input type="number" id="quantity" value={9999} disabled className="text-end w-18" />
+                            <button className="w-18 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">-</button>
                         </div>
                         <span className="text-lg font-bold">Choose Size</span>
                         <div className="flex gap-4 justify-center items-center">
@@ -134,4 +137,5 @@ const ProductDetail = () => {
 
     )
 }
+
 export default ProductDetail

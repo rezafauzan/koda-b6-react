@@ -16,7 +16,7 @@ const navbar = ({ absolute, theme }) => {
                 <ul className="flex items-center gap-4">
                     <li className="hover:text-white"><button className="cursor-pointer"><BiSearch className="text-white w-7 h-7"/></button></li>
                     <li className="hover:text-white"><button className="cursor-pointer"><BsCart3 className="text-white w-7 h-7"/></button></li>
-                    <li className="text-white hover:text-black hidden md:block">
+                    <li className="text-white hover:text-white/40 hidden md:block">
                         <a href="/login" className="p-4 border border-white rounded">Sign In</a>
                     </li>
                     <li className="hover:text-white hidden md:block">
