@@ -233,6 +233,7 @@ const ProductSection = () => {
         </section>
     )
 }
+
 const Product = () => {
     return (
         <>

@@ -5,7 +5,6 @@ import ProductCard from "../../components/ProductCard";
 
 const OtherProducts = () => {
     // const productData = useContext(ProductContext)
-
     return (
         <section>
             <div className="flex justify-between gap-4 px-10">
@@ -87,28 +86,38 @@ const ProductDetail = () => {
                         </div>
                         <span className="text-lg font-bold">Choose Size</span>
                         <div className="flex gap-4 justify-center items-center">
-                            <label htmlFor="reguler" className="flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer">
-                                Reguler
+                            <label htmlFor="reguler" className="group flex-1 flex justify-center items-center">
                                 <input type="radio" name="size" id="reguler" className="hidden" />
+                                <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                <span>Reguler</span>
+                                </div>
                             </label>
-                            <label htmlFor="medium" className="flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer">
-                                Medium
+                            <label htmlFor="medium" className="group flex-1 flex justify-center items-center">
                                 <input type="radio" name="size" id="medium" className="hidden" />
+                                <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                <span>Medium</span>
+                                </div>
                             </label>
-                            <label htmlFor="large" className="flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer">
-                                Large
+                            <label htmlFor="large" className="group flex-1 flex justify-center items-center">
                                 <input type="radio" name="size" id="large" className="hidden" />
+                                <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                <span>Large</span>
+                                </div>
                             </label>
                         </div>
                         <span className="text-lg font-bold">Hot/Ice</span>
                         <div className="flex gap-4 justify-center items-center">
-                            <label htmlFor="hot" className="flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer">
-                                Hot
-                                <input type="radio" name="size" id="hot" className="hidden" />
+                            <label htmlFor="hot" className="group flex-1 flex justify-center items-center">
+                                <input type="radio" name="hotice" id="hot" className="hidden" />
+                                <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                <span>Hot</span>
+                                </div>
                             </label>
-                            <label htmlFor="ice" className="flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer">
-                                Ice
-                                <input type="radio" name="size" id="ice" className="hidden" />
+                            <label htmlFor="ice" className="group flex-1 flex justify-center items-center">
+                                <input type="radio" name="hotice" id="ice" className="hidden" />
+                                <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                <span>Ice</span>
+                                </div>
                             </label>
                         </div>
                         <div className="flex flex-col md:flex-row gap-4">
