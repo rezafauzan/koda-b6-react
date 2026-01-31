@@ -8,6 +8,7 @@ import Product from './pages/Product/Product'
 import { useEffect, useState } from 'react'
 import ProductContext from './components/context/ProductContext'
 import dataFetcher from './lib/dataFetcher'
+import ProductDetail from './pages/Product/ProductDetail'
 
 const App = () => {
     const [data, setData] = useState([])
@@ -46,8 +47,8 @@ const App = () => {
                     element: <Product />
                 },
                 {
-                    path: '/product/:product-id',
-                    // element: <ProductDetail />
+                    path: ':productId',
+                    element: <ProductDetail />
                 }
             ]
         },
