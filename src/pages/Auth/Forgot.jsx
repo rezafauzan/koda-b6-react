@@ -13,11 +13,7 @@ const ForgotPassword = () => {
                         </div>
                         <h1 className="font-bold text-(--color-accent)">Forgot Password</h1>
                         <span>We will send new password to your email</span>
-                        <label htmlFor="email" className="font-bold text-black">Email</label>
-                        <label className="flex items-center gap-4 p-4 border rounded border-black/40">
-                            <img src={mail_icon} alt="Email_Icon" />
-                            <input type="email" name="email" id="email" placeholder="Enter your email" className="flex-1 outline-0" />
-                        </label>
+                        <Input type="email" name="Email" icon={mail_icon} placeholder="Enter email address" />
                         <button className="bg-(--color-primary) text-black p-4 rounded cursor-pointer">Forgot Password</button>
                     </form>
                 </div>

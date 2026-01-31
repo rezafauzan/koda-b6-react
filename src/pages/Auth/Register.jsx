@@ -5,6 +5,7 @@ import password_show_icon from "../../assets/img/EyeSlash.svg"
 import brand_logo from "../../assets/img/brand.svg"
 import facebook_logo from "../../assets/img/bx_bxl-facebook-circle.svg"
 import google_logo from "../../assets/img/flat-color-icons_google.svg"
+import Input from "../../components/Input"
 
 const Register = () => {
     return (
@@ -18,28 +19,10 @@ const Register = () => {
                         </div>
                         <h1 className="font-bold text-(--color-accent)">Register</h1>
                         <span>Fill out the form correctly</span>
-                        <label htmlFor="fullname" className="font-bold text-black">Fullname</label>
-                        <label className="flex items-center gap-4 p-4 border rounded border-black/40">
-                            <img src={profile_icon} alt="Profile_Icon" />
-                            <input type="text" name="fullname" id="fullname" placeholder="Enter your fullname" className="flex-1 outline-0" />
-                        </label>
-                        <label htmlFor="email" className="font-bold text-black">Email</label>
-                        <label className="flex items-center gap-4 p-4 border rounded border-black/40">
-                            <img src={mail_icon} alt="Email_Icon" />
-                            <input type="email" name="email" id="email" placeholder="Enter your email" className="flex-1 outline-0" />
-                        </label>
-                        <label htmlFor="password" className="font-bold text-black">Password</label>
-                        <label className="flex items-center gap-4 p-4 border rounded border-black/40">
-                            <img src={password_icon} alt="Password_Icon" />
-                            <input type="password" name="password" id="password" placeholder="Enter your password" className="flex-1 outline-0" />
-                            <button type="button"><img src={password_show_icon} alt="Password_Icon" className="self-end h-4 cursor-pointer " /></button>
-                        </label>
-                        <label htmlFor="confirm_password" className="font-bold text-black">Confirm Password</label>
-                        <label className="flex items-center gap-4 p-4 border rounded border-black/40">
-                            <img src={password_icon} alt="Password_Icon" />
-                            <input type="password" name="password" id="confirm_password" placeholder="Enter your password again" className="flex-1 outline-0" />
-                            <button type="button"><img src={password_show_icon} alt="Password_Icon" className="self-end h-4 cursor-pointer " /></button>
-                        </label>
+                        <Input type="text" name="Fullname" icon={profile_icon} placeholder="Enter your fullname" />
+                        <Input type="email" name="Email" icon={mail_icon} placeholder="Enter email address" />
+                        <Input type="password" name="Password" icon={password_icon} placeholder="Enter your password" />
+                        <Input type="password" name="Confirm Password" icon={password_icon} placeholder="Confirm your password" />
                         <button className="bg-(--color-primary) text-black p-4 rounded cursor-pointer">Register</button>
                         <span className="self-center">have an account? <a href="/login" className="text-(--color-primary)">Login</a></span>
                         <span className="self-center">or</span>

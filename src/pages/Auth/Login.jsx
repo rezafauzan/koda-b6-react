@@ -4,6 +4,7 @@ import password_show_icon from "../../assets/img/EyeSlash.svg"
 import brand_logo from "../../assets/img/brand.svg"
 import facebook_logo from "../../assets/img/bx_bxl-facebook-circle.svg"
 import google_logo from "../../assets/img/flat-color-icons_google.svg"
+import Input from "../../components/Input"
 
 const Login = () => {
     return (
@@ -17,17 +18,8 @@ const Login = () => {
                         </div>
                         <h1 className="font-bold text-(--color-accent)">Login</h1>
                         <span>Fill out the form correctly</span>
-                        <label htmlFor="email" className="font-bold text-black">Email</label>
-                        <label className="flex items-center gap-4 p-4 border rounded border-black/40">
-                            <img src={mail_icon} alt="Email_Icon" />
-                            <input type="email" name="email" id="email" placeholder="Enter your email" className="flex-1 outline-0" />
-                        </label>
-                        <label htmlFor="email" className="font-bold text-black">Password</label>
-                        <label className="flex items-center gap-4 p-4 border rounded border-black/40">
-                            <img src={password_icon} alt="Password_Icon" />
-                            <input type="password" name="password" id="password" placeholder="Enter your password" className="flex-1 outline-0" />
-                            <button type="button"><img src={password_show_icon} alt="Password_Icon" className="self-end h-4 cursor-pointer " /></button>
-                        </label>
+                        <Input type="email" name="Email" icon={mail_icon} placeholder="Enter email address"/>
+                        <Input type="password" name="Password" icon={password_icon} placeholder="Enter your password"/>
                         <a href="/forgot-password" className="text-(--color-primary) self-end">Forgot Password?</a>
                         <button className="bg-(--color-primary) text-black p-4 rounded cursor-pointer">Login</button>
                         <span className="self-center">Not have an account? <a href="/register" className="text-(--color-primary)">Register</a></span>

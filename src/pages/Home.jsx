@@ -13,7 +13,7 @@ import { useRef } from "react";
 const Hero = () => {
     return (
         <section>
-            <div className="flex flex-col-reverse md:flex-row min-h-128 max-h-192 h-screen">
+            <div className="flex flex-col-reverse md:flex-row min-h-128 max-h-192 h-fit">
                 <div className="copytext-container flex-1 flex items-center justify-center bg-[linear-gradient(168.18deg,#777C82_-114.74%,#0B0909_91.35%)]">
                     <div className="copytext w-[80%] px-6 py-10 flex flex-col gap-4 text-white">
                         <h2 className="copytext-headline text-5xl">Start Your Day with Coffee and Good Meals</h2>
@@ -27,7 +27,7 @@ const Hero = () => {
                         </div>
                     </div>
                 </div>
-                <div className="hero-image flex-1 h-128 md:h-auto bg-[url('/src/assets/img/hero.jpg')] bg-cover bg-no-repeat">
+                <div className="hero-image flex-1 h-128 md:h-auto bg-[url('/src/assets/img/hero.jpg')] bg-cover bg-center bg-no-repeat">
                 </div>
             </div>
         </section>
@@ -65,7 +65,7 @@ const Product = () => {
                 <div className="bg-(--color-primary) h-1 w-10 rounded-full"></div>
                 <p>Let's choose and have a bit taste of poeple's favorite. It might be yours too!</p>
             </div>
-            <div className="flex flex-col md:flex-row p-4 gap-4 justify-center items-center">
+            <div className="flex flex-col xl:flex-row p-4 lg:p-16 gap-4 justify-center items-center">
                 <ProductCard />
                 <ProductCard />
                 <ProductCard />
