@@ -3,6 +3,7 @@ import Input from "/src/components/Input.jsx";
 import profile_icon from "/src/assets/img/Profile.svg"
 import mail_icon from "/src/assets/img/mail.svg"
 import location_icon from "/src/assets/img/Location.svg"
+import { Link } from "react-router-dom";
 
 const Payment = () => {
     return (
@@ -17,7 +18,7 @@ const Payment = () => {
                             <div className="flex-1 flex flex-col gap-4 w-full">
                                 <div className="flex gap-4 items-center justify-between h-10">
                                     <h2 className="text-xl font-bold">Your Order</h2>
-                                    <button className="cursor-pointer bg-(--color-primary) p-2 w-40 rounded">+ add menu</button>
+                                    <Link to="/product" className="cursor-pointer bg-(--color-primary) p-2 w-40 rounded flex justify-center items-center">+ add menu</Link>
                                 </div>
                                 <div className="flex flex-col gap-4 items-center justify-center">
                                     <div className="flex-1 flex flex-col gap-4">
@@ -111,7 +112,7 @@ const Payment = () => {
                                             <span>Sub Total</span>
                                             <span>{"Rp." + (40000 - (40000 * 10 / 100)) + ",-"}</span>
                                         </div>
-                                        <button type="button" className="cursor-pointer flex justify-center items-center h-10 bg-(--color-primary) rounded">Checkout</button>
+                                        <button type="submit" className="cursor-pointer flex justify-center items-center h-10 bg-(--color-primary) rounded">Checkout</button>
                                         <div className="flex flex-col gap-4">
                                             <span>We Accept</span>
                                             <div className="flex gap-4">
