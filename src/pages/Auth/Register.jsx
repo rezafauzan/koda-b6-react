@@ -11,12 +11,16 @@ import Input from "/src/components/Input"
 import { useForm } from "react-hook-form"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
+import UserContext from "/src/components/context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
     const [users, setUsers] = useState([])
     const [alert, setAlert] = useState([])
     const modal = useRef()
+    const user = useContext(UserContext)
+    const navigator = useNavigate()
 
     function modalRemove() {
         setAlert([])
@@ -26,38 +30,42 @@ const Register = () => {
         () => {
             const usersLocalStorage = JSON.parse(localStorage.getItem("users")) || []
             setUsers(usersLocalStorage)
+            if (user.role != null) {
+                navigator("/")
+            }
         },
         []
     )
     const validator = yup.object({
-        fullname: yup.string("Nama tidak valid"),
+        fullname: yup.string("Nama tidak valid").required("Nama harus diisi").min(4, "Nama minimal 4 karakter"),
         email: yup.string("Email tidak valid").required("Email harus diisi").min(4, "Email terlalu pendek").email("Email tidak valid"),
         phone: yup.string("Nomor telepon tidak valid").required("Nomor telepon harus diisi").min(10, "Nomor telepon terlalu pendek minimal 10 digit"),
         address: yup.string("Alamat tidak valid").required("Alamat harus diisi").min(10, "Alamat terlalu pendek minimal 10 karakter"),
         password: yup.string("Password tidak valid").required("Password harus diisi").min(8, "Password minimal 8 karakter"),
-        confirmPassword: yup.string("Konfirmasi Password tidak valid").required("Konfirmasi Password harus diisi"),
+        confirmPassword: yup.string("Konfirmasi Password tidak valid").required("Konfirmasi Password harus diisi").oneOf([yup.ref("password")], "Konfirmasi Password tidak sama")
     })
     const { register, handleSubmit, formState } = useForm({ resolver: yupResolver(validator) })
-    function submit({ fullname = "", email = "", phone = "", address = "", password = "", confirmPassword = "" }) {
+    function signUp({ fullname = "", email = "", phone = "", address = "", password = "", confirmPassword = "" }) {
         const registeredUsers = users
         const emailExist = registeredUsers.filter(user => user.email === email)
-        console.log(registeredUsers)
         if (emailExist.length > 0) {
             setAlert(['fail', 'Email sudah terdaftar silahkan login'])
         } else {
             registeredUsers.push(
                 {
-                    fullname: fullname,
-                    email: email,
-                    phone: phone,
-                    address: address,
-                    password: password,
-                    confirmPassword: confirmPassword
+                    fullname: fullname.trim(),
+                    email: email.trim(),
+                    phone: phone.trim(),
+                    address: address.trim(),
+                    password: password.trim(),
+                    confirmPassword: confirmPassword.trim(),
+                    role: "user"
                 }
             )
             setUsers(registeredUsers)
-            window.localStorage.setItem("users", users)
+            window.localStorage.setItem("users", JSON.stringify(users))
             setAlert(['success', 'Registrasi berhasil silahkan login'])
+            navigator("/login")
         }
     }
 
@@ -66,9 +74,9 @@ const Register = () => {
             <div className="flex gap-4 w-full">
                 <div className="hidden md:block bg-[url('../../assets/img/register.jpg')] bg-cover bg-center flex-1"></div>
                 <div className="w-full flex flex-col justify-center items-center gap-4 p-10 flex-3 text-(--color-secondary)">
-                    {(alert[0] === "success" ? <div ref={modal} className="fixed top-0 left-0 right-0 bottom-0 bg-black/40 backdrop-blur-lg flex justify-center items-center"><div className="bg-green-400 text-green-700 w-[50%] h-[50%] flex items-center justify-center relative"><button type="button" className="text-red-700 w-10 h-10 absolute -top-4 -right-4 cursor-pointer" onClick={modalRemove}><AiOutlineCloseCircle className="text-red-700 w-10 h-10" /></button><span className="text-green-700 text-xl font-bold">{alert[1]}</span></div></div>: "")}
-                    {(alert[0] === "fail" ? <div ref={modal} className="fixed top-0 left-0 right-0 bottom-0 bg-black/40 backdrop-blur-lg flex justify-center items-center"><div className="bg-red-400 text-red-700 w-[50%] h-[50%] flex items-center justify-center relative"><button type="button" className="text-red-700 w-10 h-10 absolute -top-4 -right-4 cursor-pointer" onClick={modalRemove}><AiOutlineCloseCircle className="text-red-700 w-10 h-10" /></button><span className="text-red-700 text-xl font-bold">{alert[1]}</span></div></div>: "")}
-                    <form className="flex w-full flex-col justify-center gap-4 p-4 flex-3" onSubmit={handleSubmit(submit)}>
+                    {(alert[0] === "success" ? <div ref={modal} className="fixed top-0 left-0 right-0 bottom-0 bg-black/40 backdrop-blur-lg flex justify-center items-center"><div className="bg-green-400 text-green-700 w-[50%] h-[50%] flex items-center justify-center relative"><button type="button" className="text-red-700 w-10 h-10 absolute -top-4 -right-4 cursor-pointer" onClick={modalRemove}><AiOutlineCloseCircle className="text-red-700 w-10 h-10" /></button><span className="text-green-700 text-xl font-bold">{alert[1]}</span></div></div> : "")}
+                    {(alert[0] === "fail" ? <div ref={modal} className="fixed top-0 left-0 right-0 bottom-0 bg-black/40 backdrop-blur-lg flex justify-center items-center"><div className="bg-red-400 text-red-700 w-[50%] h-[50%] flex items-center justify-center relative"><button type="button" className="text-red-700 w-10 h-10 absolute -top-4 -right-4 cursor-pointer" onClick={modalRemove}><AiOutlineCloseCircle className="text-red-700 w-10 h-10" /></button><span className="text-red-700 text-xl font-bold">{alert[1]}</span></div></div> : "")}
+                    <form className="flex w-full flex-col justify-center gap-4 p-4 flex-3" onSubmit={handleSubmit(signUp)}>
                         <div className="brand">
                             <img src={brand_logo} alt="Coffee Shop" />
                         </div>
