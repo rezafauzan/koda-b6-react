@@ -4,7 +4,7 @@ import { FaFacebookF } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <footer>
+        <footer className="bg-gray-100">
             <div className="flex flex-col justify-center items-center md:items-start md:flex-row md:justify-between gap-4 p-4">
                 <div className="flex-1 w-full flex justify-center md:justify-start items-center md:items-start">
                     <ul className="flex flex-col justify-center md:justify-start items-center md:items-start gap-4 h-full w-full">
