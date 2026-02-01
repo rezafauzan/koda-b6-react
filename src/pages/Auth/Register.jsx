@@ -19,7 +19,7 @@ const Register = () => {
     const modal = useRef()
 
     function modalRemove() {
-        modal.current.remove()
+        setAlert([])
     }
 
     useEffect(
@@ -41,6 +41,7 @@ const Register = () => {
     function submit({ fullname = "", email = "", phone = "", address = "", password = "", confirmPassword = "" }) {
         const registeredUsers = users
         const emailExist = registeredUsers.filter(user => user.email === email)
+        console.log(registeredUsers)
         if (emailExist.length > 0) {
             setAlert(['fail', 'Email sudah terdaftar silahkan login'])
         } else {
@@ -55,6 +56,7 @@ const Register = () => {
                 }
             )
             setUsers(registeredUsers)
+            window.localStorage.setItem("users", users)
             setAlert(['success', 'Registrasi berhasil silahkan login'])
         }
     }
