@@ -13,22 +13,22 @@ const OtherProducts = () => {
             </div>
             <div className="flex flex-col lg:flex-row p-4 gap-4 w-full justify-center items-center">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center lg:justify-between gap-4 px-16 lg:px-4">
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
+                    <ProductCard flashsale={true} discount={10/100}/>
+                    <ProductCard/>
+                    <ProductCard flashsale={true} discount={10/100}/>
+                    <ProductCard flashsale={true} discount={10/100}/>
+                    <ProductCard flashsale={true} discount={10/100}/>
+                    <ProductCard/>
+                    <ProductCard flashsale={true} discount={10/100}/>
+                    <ProductCard flashsale={true} discount={10/100}/>
+                    <ProductCard flashsale={true} discount={10/100}/>
+                    <ProductCard/>
+                    <ProductCard/>
+                    <ProductCard flashsale={true} discount={10/100}/>
+                    <ProductCard/>
+                    <ProductCard flashsale={true} discount={10/100}/>
+                    <ProductCard flashsale={true} discount={10/100}/>
+                    <ProductCard/>
                     <div className="flex col-span-1 md:col-span-2 lg:col-span-4 justify-evenly items-center w-full">
                         <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-(--color-primary) hover:bg-(--color-primary-active) rounded-full">1</span>
                         <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-slate-400 hover:bg-slate-300 rounded-full text-slate-700">2</span>
@@ -124,7 +124,7 @@ const ProductDetail = () => {
                             </label>
                         </div>
                         <div className="flex flex-col md:flex-row gap-4">
-                            <a href="detail-product.html?id=0" className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</a>
+                            <a href="/payment" className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</a>
                             <button className="px-4 py-2 border rounded flex-1 flex justify-center items-center cursor-pointer text-(--color-primary) border-(--color-primary) hover:text-(--color-primary-active) hover:border-(--color-primary-active)">
                                 <BsCart3 /> Add to cart
                             </button>
