@@ -1,6 +1,4 @@
 import { BsArrowRight, BsFillChatLeftTextFill } from "react-icons/bs";
-import { BiCalendar } from "react-icons/bi";
-import { CgCloseO } from "react-icons/cg";
 import Input from "/src/components/Input.jsx";
 import { Link } from "react-router-dom";
 
@@ -19,26 +17,26 @@ const Payment = () => {
                                     <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
                                         <div className="flex flex-3 gap-4 justify-center items-center bg-gray-100 rounded">
                                             <label htmlFor="onProgress" className="group flex-1 flex justify-center items-center rounded">
-                                                <input type="radio" name="order" id="onProgress" className="hidden" />
+                                                <input type="radio" labelName="order" id="onProgress" className="hidden" />
                                                 <div className="w-full group-has-[input:checked]:bg-gray-400 flex flex-col p-4 justify-center items-center rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                                     <span>On Progress</span>
                                                 </div>
                                             </label>
                                             <label htmlFor="sendingGoods" className="group flex-1 flex justify-center items-cente roundedr">
-                                                <input type="radio" name="order" id="sendingGoods" className="hidden" />
+                                                <input type="radio" labelName="order" id="sendingGoods" className="hidden" />
                                                 <div className="w-full group-has-[input:checked]:bg-gray-400 flex flex-col p-4 justify-center items-center rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                                     <span>Sending Goods</span>
                                                 </div>
                                             </label>
                                             <label htmlFor="finishOrder" className="group flex-1 flex justify-center items-center rounded">
-                                                <input type="radio" name="order" id="finishOrder" className="hidden" />
+                                                <input type="radio" labelName="order" id="finishOrder" className="hidden" />
                                                 <div className="w-full group-has-[input:checked]:bg-gray-400 flex flex-col p-4 justify-center items-center rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                                     <span>Finish Order</span>
                                                 </div>
                                             </label>
                                         </div>
                                         <div className="flex flex-1 gap-4 justify-center items-center">
-                                            <Input type="date" name="orderByDate" label={false} className="w-full" />
+                                            <Input type="date" labelName="orderByDate" label={false} className="w-full" />
                                         </div>
                                     </div>
                                 </div>

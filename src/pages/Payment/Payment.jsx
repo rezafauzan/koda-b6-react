@@ -136,25 +136,25 @@ const Payment = () => {
                         <h2 className="text-xl font-bold">Payment Info & Delivery</h2>
                     </div>
                     <form className="flex flex-col gap-4 p-4 flex-1 ">
-                        <Input type="email" name="Email" icon={mail_icon} placeholder="Enter email address" />
-                        <Input type="text" name="Fullname" icon={profile_icon} placeholder="Enter your fullname" />
-                        <Input type="email" name="Address" icon={location_icon} placeholder="Enter your address" />
+                        <Input type="email" labelName="Email" icon={mail_icon} placeholder="Enter email address" />
+                        <Input type="text" labelName="Fullname" icon={profile_icon} placeholder="Enter your fullname" />
+                        <Input type="email" labelName="Address" icon={location_icon} placeholder="Enter your address" />
                         <span className="text-lg font-bold">Choose Size</span>
                         <div className="flex gap-4 justify-center items-center">
                             <label htmlFor="dineIn" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" name="delivery" id="dineIn" className="hidden" />
+                                <input type="radio" labelName="delivery" id="dineIn" className="hidden" />
                                 <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                     <span>Dine In</span>
                                 </div>
                             </label>
                             <label htmlFor="doorDelivery" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" name="delivery" id="doorDelivery" className="hidden" />
+                                <input type="radio" labelName="delivery" id="doorDelivery" className="hidden" />
                                 <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                     <span>Door Delivery</span>
                                 </div>
                             </label>
                             <label htmlFor="pickUp" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" name="delivery" id="pickUp" className="hidden" />
+                                <input type="radio" labelName="delivery" id="pickUp" className="hidden" />
                                 <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                     <span>Pick Up</span>
                                 </div>
