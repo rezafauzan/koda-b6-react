@@ -1,8 +1,8 @@
+import { BsArrowRight, BsFillChatLeftTextFill } from "react-icons/bs";
+import { BiCalendar } from "react-icons/bi";
 import { CgCloseO } from "react-icons/cg";
 import Input from "/src/components/Input.jsx";
-import profile_icon from "/src/assets/img/Profile.svg"
-import mail_icon from "/src/assets/img/mail.svg"
-import location_icon from "/src/assets/img/Location.svg"
+import { Link } from "react-router-dom";
 
 const Payment = () => {
     return (
@@ -10,78 +10,144 @@ const Payment = () => {
             <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="flex flex-col gap-4 col-span-1 md:col-span-2">
                     <div className="flex flex-col col-span-1 md:col-span-2 lg:flex-row gap-4 p-4">
-                        <h1 className="text-4xl font-bold">Payment Details</h1>
+                        <h1 className="text-4xl font-bold">History Order</h1>
                     </div>
                     <div className="flex flex-col lg:flex-row gap-4 p-4 flex-1 ">
-                        <div className="flex flex-col lg:flex-row gap-4 p-4 flex-1">
+                        <div className="flex flex-col lg:flex-row gap-4 p-4 flex-2">
                             <div className="flex-1 flex flex-col gap-4 w-full">
-                                <div className="flex gap-4 items-center justify-between h-10">
-                                    <h2 className="text-xl font-bold">Your Order</h2>
-                                    <button className="bg-(--color-primary) p-2 w-40 rounded">+ add menu</button>
+                                <div className="flex flex-col gap-4">
+                                    <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
+                                        <div className="flex flex-3 gap-4 justify-center items-center bg-gray-100 rounded">
+                                            <label htmlFor="onProgress" className="group flex-1 flex justify-center items-center rounded">
+                                                <input type="radio" name="order" id="onProgress" className="hidden" />
+                                                <div className="w-full group-has-[input:checked]:bg-gray-400 flex flex-col p-4 justify-center items-center rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                    <span>On Progress</span>
+                                                </div>
+                                            </label>
+                                            <label htmlFor="sendingGoods" className="group flex-1 flex justify-center items-cente roundedr">
+                                                <input type="radio" name="order" id="sendingGoods" className="hidden" />
+                                                <div className="w-full group-has-[input:checked]:bg-gray-400 flex flex-col p-4 justify-center items-center rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                    <span>Sending Goods</span>
+                                                </div>
+                                            </label>
+                                            <label htmlFor="finishOrder" className="group flex-1 flex justify-center items-center rounded">
+                                                <input type="radio" name="order" id="finishOrder" className="hidden" />
+                                                <div className="w-full group-has-[input:checked]:bg-gray-400 flex flex-col p-4 justify-center items-center rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                    <span>Finish Order</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div className="flex flex-1 gap-4 justify-center items-center">
+                                            <Input type="date" name="orderByDate" label={false} className="w-full" />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="flex flex-col gap-4 items-center justify-center">
+                                <div className="flex flex-col gap-4">
                                     <div className="flex-1 flex flex-col gap-4">
-                                        <div className="w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
-                                            {/* {(flashsale ? : '')} */}
+                                        <div className="w-full h-fit md:h-45 flex flex-col md:flex-row justify-center md:justify-start items-center md:items-start text-center md:text-start rounded overflow-hidden bg-gray-100 p-4">
                                             <div className="overflow-hidden flex-1 h-full">
                                                 <img src="https://placehold.co/1024x1024" alt="Product_Name" className="h-full" />
                                             </div>
-                                            <div className="h-fit flex flex-col gap-4 left-4 right-4 bottom-0 p-4 rounded flex-3">
-                                                <div className="w-fit h-4 p-4 text-white bg-red-700 top-4 left-4 flex flex-col justify-center items-center rounded-full"><span>Flash Sale</span></div>
-                                                <h3 className="text-xl font-bold">Hazzelnut Latte</h3>
-                                                <span className="text-black/70">2pcs | Regular | Ice | Dine In</span>
-                                                {/* <span className="text-xl bold text-(--color-primary)">{(flashsale ? <span className="text-red-700 line-through text-xs">Rp.22000,-</span> : "")} Rp.{22000 - (22000 * discount)},-</span> */}
-                                                <span className="text-xl bold text-(--color-primary)">{(true ? <span className="text-red-700 line-through text-xs">Rp.22000,-</span> : "")} Rp.{22000 - (22000 * 10 / 100)},-</span>
-                                                <button className="absolute flex justify-center items-center top-0 right-4 md:top-[50%] md:translate-y-[-50%] md:right-4 md:bottom-[50%] h-10 w-10 cursor-pointer"><CgCloseO className="h-10 w-10 text-red-700" /></button>
+                                            <div className="h-fit flex flex-col md:flex-row gap-4 p-4 rounded flex-3">
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>No. Order</h4>
+                                                    <span className="font-bold">{"#" + "01234-56789"}</span>
+                                                    <Link to={"/order/01234-56789"} className="text-(--color-primary) underline">Views Order Detail</Link>
+                                                </div>
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>Date</h4>
+                                                    <span className="font-bold">2 February 2026</span>
+                                                </div>
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>Total</h4>
+                                                    <span className="font-bold">{"Rp." + 40000 + ",-"}</span>
+                                                </div>
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>Status</h4>
+                                                    <span className="w-48 md:w-40 flex justify-center items-center font-bold bg-amber-400 text-amber-700 px-4 rounded-full">On Progress</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="flex-1 flex flex-col gap-4">
-                                        <div className="w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
-                                            {/* {(flashsale ? : '')} */}
+                                        <div className="w-full h-fit md:h-45 flex flex-col md:flex-row justify-center md:justify-start items-center md:items-start text-center md:text-start rounded overflow-hidden bg-gray-100 p-4">
                                             <div className="overflow-hidden flex-1 h-full">
                                                 <img src="https://placehold.co/1024x1024" alt="Product_Name" className="h-full" />
                                             </div>
-                                            <div className="h-fit flex flex-col gap-4 left-4 right-4 bottom-0 p-4 rounded flex-3">
-                                                <div className="w-fit h-4 p-4 text-white bg-red-700 top-4 left-4 flex flex-col justify-center items-center rounded-full"><span>Flash Sale</span></div>
-                                                <h3 className="text-xl font-bold">Hazzelnut Latte</h3>
-                                                <span className="text-black/70">2pcs | Regular | Ice | Dine In</span>
-                                                {/* <span className="text-xl bold text-(--color-primary)">{(flashsale ? <span className="text-red-700 line-through text-xs">Rp.22000,-</span> : "")} Rp.{22000 - (22000 * discount)},-</span> */}
-                                                <span className="text-xl bold text-(--color-primary)">{(true ? <span className="text-red-700 line-through text-xs">Rp.22000,-</span> : "")} Rp.{22000 - (22000 * 10 / 100)},-</span>
-                                                <button className="absolute flex justify-center items-center top-0 right-4 md:top-[50%] md:translate-y-[-50%] md:right-4 md:bottom-[50%] h-10 w-10 cursor-pointer"><CgCloseO className="h-10 w-10 text-red-700" /></button>
+                                            <div className="h-fit flex flex-col md:flex-row gap-4 p-4 rounded flex-3">
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>No. Order</h4>
+                                                    <span className="font-bold">{"#" + "01234-56789"}</span>
+                                                    <Link to={"/order/01234-56789"} className="text-(--color-primary) underline">Views Order Detail</Link>
+                                                </div>
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>Date</h4>
+                                                    <span className="font-bold">2 February 2026</span>
+                                                </div>
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>Total</h4>
+                                                    <span className="font-bold">{"Rp." + 40000 + ",-"}</span>
+                                                </div>
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>Status</h4>
+                                                    <span className="w-48 md:w-40 flex justify-center items-center font-bold bg-amber-400 text-amber-700 px-4 rounded-full">On Progress</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="flex-1 flex flex-col gap-4">
-                                        <div className="w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
-                                            {/* {(flashsale ? : '')} */}
+                                        <div className="w-full h-fit md:h-45 flex flex-col md:flex-row justify-center md:justify-start items-center md:items-start text-center md:text-start rounded overflow-hidden bg-gray-100 p-4">
                                             <div className="overflow-hidden flex-1 h-full">
                                                 <img src="https://placehold.co/1024x1024" alt="Product_Name" className="h-full" />
                                             </div>
-                                            <div className="h-fit flex flex-col gap-4 left-4 right-4 bottom-0 p-4 rounded flex-3">
-                                                <div className="w-fit h-4 p-4 text-white bg-red-700 top-4 left-4 flex flex-col justify-center items-center rounded-full"><span>Flash Sale</span></div>
-                                                <h3 className="text-xl font-bold">Hazzelnut Latte</h3>
-                                                <span className="text-black/70">2pcs | Regular | Ice | Dine In</span>
-                                                {/* <span className="text-xl bold text-(--color-primary)">{(flashsale ? <span className="text-red-700 line-through text-xs">Rp.22000,-</span> : "")} Rp.{22000 - (22000 * discount)},-</span> */}
-                                                <span className="text-xl bold text-(--color-primary)">{(true ? <span className="text-red-700 line-through text-xs">Rp.22000,-</span> : "")} Rp.{22000 - (22000 * 10 / 100)},-</span>
-                                                <button className="absolute flex justify-center items-center top-0 right-4 md:top-[50%] md:translate-y-[-50%] md:right-4 md:bottom-[50%] h-10 w-10 cursor-pointer"><CgCloseO className="h-10 w-10 text-red-700" /></button>
+                                            <div className="h-fit flex flex-col md:flex-row gap-4 p-4 rounded flex-3">
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>No. Order</h4>
+                                                    <span className="font-bold">{"#" + "01234-56789"}</span>
+                                                    <Link to={"/order/01234-56789"} className="text-(--color-primary) underline">Views Order Detail</Link>
+                                                </div>
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>Date</h4>
+                                                    <span className="font-bold">2 February 2026</span>
+                                                </div>
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>Total</h4>
+                                                    <span className="font-bold">{"Rp." + 40000 + ",-"}</span>
+                                                </div>
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>Status</h4>
+                                                    <span className="w-48 md:w-40 flex justify-center items-center font-bold bg-orange-200 text-orange-400 px-4 rounded-full">Sending Goods</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="flex-1 flex flex-col gap-4">
-                                        <div className="w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
-                                            {/* {(flashsale ? : '')} */}
+                                        <div className="w-full h-fit md:h-45 flex flex-col md:flex-row justify-center md:justify-start items-center md:items-start text-center md:text-start rounded overflow-hidden bg-gray-100 p-4">
                                             <div className="overflow-hidden flex-1 h-full">
                                                 <img src="https://placehold.co/1024x1024" alt="Product_Name" className="h-full" />
                                             </div>
-                                            <div className="h-fit flex flex-col gap-4 left-4 right-4 bottom-0 p-4 rounded flex-3">
-                                                <div className="w-fit h-4 p-4 text-white bg-red-700 top-4 left-4 flex flex-col justify-center items-center rounded-full"><span>Flash Sale</span></div>
-                                                <h3 className="text-xl font-bold">Hazzelnut Latte</h3>
-                                                <span className="text-black/70">2pcs | Regular | Ice | Dine In</span>
-                                                {/* <span className="text-xl bold text-(--color-primary)">{(flashsale ? <span className="text-red-700 line-through text-xs">Rp.22000,-</span> : "")} Rp.{22000 - (22000 * discount)},-</span> */}
-                                                <span className="text-xl bold text-(--color-primary)">{(true ? <span className="text-red-700 line-through text-xs">Rp.22000,-</span> : "")} Rp.{22000 - (22000 * 10 / 100)},-</span>
-                                                <button className="absolute flex justify-center items-center top-0 right-4 md:top-[50%] md:translate-y-[-50%] md:right-4 md:bottom-[50%] h-10 w-10 cursor-pointer"><CgCloseO className="h-10 w-10 text-red-700" /></button>
+                                            <div className="h-fit flex flex-col md:flex-row gap-4 p-4 rounded flex-3">
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>No. Order</h4>
+                                                    <span className="font-bold">{"#" + "01234-56789"}</span>
+                                                    <Link to={"/order/01234-56789"} className="text-(--color-primary) underline">Views Order Detail</Link>
+                                                </div>
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>Date</h4>
+                                                    <span className="font-bold">2 February 2026</span>
+                                                </div>
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>Total</h4>
+                                                    <span className="font-bold">{"Rp." + 40000 + ",-"}</span>
+                                                </div>
+                                                <div className="flex flex-col gap-4">
+                                                    <h4>Status</h4>
+                                                    <span className="w-48 md:w-40 flex justify-center items-center font-bold bg-green-400 text-green-700 px-4 rounded-full">Finished Order</span>
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div className="flex justify-evenly items-center">
+                                            <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-(--color-primary) hover:bg-(--color-primary-active) rounded-full">1</span>
+                                            <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-slate-400 hover:bg-slate-300 rounded-full text-slate-700">2</span>
+                                            <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-slate-400 hover:bg-slate-300 rounded-full text-slate-700">3</span>
+                                            <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-slate-400 hover:bg-slate-300 rounded-full text-slate-700">4</span>
+                                            <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-slate-400 hover:bg-slate-300 rounded-full text-slate-700">5</span>
+                                            <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-slate-400 hover:bg-slate-300 rounded-full text-slate-700">6</span>
+                                            <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-(--color-primary) hover:bg-(--color-primary-active) rounded-full"><BsArrowRight className="text-white" /></span>
                                         </div>
                                     </div>
                                 </div>
@@ -89,77 +155,21 @@ const Payment = () => {
                         </div>
                         <div className="flex flex-col lg:flex-row gap-4 p-4 flex-1">
                             <div className="flex-1 flex flex-col gap-4 w-full">
-                                <div className="flex gap-4 items-center h-10">
-                                    <h2 className="text-xl font-bold">Total</h2>
-                                </div>
                                 <div className="flex flex-col p-4 bg-gray-100 rounded">
                                     <div className="flex-1 flex flex-col gap-4">
-                                        <div className="flex justify-between items-center">
-                                            <span>Order</span>
-                                            <span>{"Rp." + (40000) + ",-"}</span>
-                                        </div>
-                                        <div className="flex justify-between items-center">
-                                            <span>Delivery</span>
-                                            <span>{"Rp." + (0) + ",-"}</span>
-                                        </div>
-                                        <div className="flex justify-between items-center">
-                                            <span>Tax</span>
-                                            <span>{"Rp." + (40000 * 10 / 100) + ",-"}</span>
-                                        </div>
-                                        <hr />
-                                        <div className="flex justify-between items-center">
-                                            <span>Sub Total</span>
-                                            <span>{"Rp." + (40000 - (40000 * 10 / 100)) + ",-"}</span>
-                                        </div>
-                                        <button type="button" className="flex justify-center items-center h-10 bg-(--color-primary) rounded">Checkout</button>
                                         <div className="flex flex-col gap-4">
-                                            <span>We Accept</span>
-                                            <div className="flex gap-4">
-                                                <div className="flex-1"><img src="https://placehold.co/100x40" alt="payment_method1" /></div>
-                                                <div className="flex-1"><img src="https://placehold.co/100x40" alt="payment_method1" /></div>
-                                                <div className="flex-1"><img src="https://placehold.co/100x40" alt="payment_method1" /></div>
-                                                <div className="flex-1"><img src="https://placehold.co/100x40" alt="payment_method1" /></div>
-                                                <div className="flex-1"><img src="https://placehold.co/100x40" alt="payment_method1" /></div>
-                                                <div className="flex-1"><img src="https://placehold.co/100x40" alt="payment_method1" /></div>
+                                            <div className="bg-black rounded-full w-10 h-10 flex justify-center items-center">
+                                                <BsFillChatLeftTextFill className="text-(--color-primary) w-4 h-4" />
                                             </div>
-                                            <span className="text-black/70">*Get Discount if you pay with Bank Central Asia</span>
+                                            <h2 className="text-xl font-bold">Send Us Message</h2>
+                                            <p>if your unable to find answer or find your product quickly please describe your problem and tell us. we will give you solution</p>
+                                            <button type="button" className="flex justify-center items-center h-10 bg-(--color-primary) rounded">Send Message</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="flex flex-col gap-4 col-span-1">
-                    <div className="flex flex-col col-span-1 md:col-span-2 lg:flex-row gap-4 p-4">
-                        <h2 className="text-xl font-bold">Payment Info & Delivery</h2>
-                    </div>
-                    <form className="flex flex-col gap-4 p-4 flex-1 ">
-                        <Input type="email" name="Email" icon={mail_icon} placeholder="Enter email address" />
-                        <Input type="text" name="Fullname" icon={profile_icon} placeholder="Enter your fullname" />
-                        <Input type="email" name="Address" icon={location_icon} placeholder="Enter your address" />
-                        <span className="text-lg font-bold">Choose Size</span>
-                        <div className="flex gap-4 justify-center items-center">
-                            <label htmlFor="dineIn" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" name="delivery" id="dineIn" className="hidden" />
-                                <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
-                                    <span>Dine In</span>
-                                </div>
-                            </label>
-                            <label htmlFor="doorDelivery" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" name="delivery" id="doorDelivery" className="hidden" />
-                                <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
-                                    <span>Door Delivery</span>
-                                </div>
-                            </label>
-                            <label htmlFor="pickUp" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" name="delivery" id="pickUp" className="hidden" />
-                                <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
-                                    <span>Pick Up</span>
-                                </div>
-                            </label>
-                        </div>
-                    </form>
                 </div>
             </div>
         </section>
