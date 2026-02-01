@@ -7,3 +7,7 @@
     --color-secondary-shade: #E8E8E84D;
     --color-coupon: #88B788;
 }
+
+.scrollbar-hide{
+    scrollbar-width: none;
+}

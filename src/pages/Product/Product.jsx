@@ -28,7 +28,7 @@ const TodayPromo = () => {
                     <button className="rounded-full w-10 h-10 bg-(--color-primary) flex justify-center items-center cursor-pointer"><BsArrowRight className="text-black" /></button>
                 </div>
             </div>
-            <div className="flex p-4 gap-4 items-center overflow-x-auto">
+            <div className="flex p-4 gap-4 items-center overflow-x-auto scrollbar-hide">
                 <div className="coupon-card w-100 h-40 shrink-0 bg-emerald-700 px-4 rounded-xl flex justify-center items-center gap-4">
                     <div className="max-w-40 h-40">
                         <img src="/assets/img/mother-day-coupon-image.png" alt="mother_day_coupon_image" className="h-full object-contain" />
