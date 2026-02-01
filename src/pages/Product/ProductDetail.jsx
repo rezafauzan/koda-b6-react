@@ -68,10 +68,10 @@ const ProductDetail = () => {
                             <span className="text-xl bold text-(--color-primary)">Rp.22000,-</span>
                         </div>
                         <div className="flex gap-4">
-                            <img src="/src/assets/img/star.svg" alt="star_icon" />
-                            <img src="/src/assets/img/star.svg" alt="star_icon" />
-                            <img src="/src/assets/img/star.svg" alt="star_icon" />
-                            <img src="/src/assets/img/star.svg" alt="star_icon" />
+                            <img src="/assets/img/star.svg" alt="star_icon" />
+                            <img src="/assets/img/star.svg" alt="star_icon" />
+                            <img src="/assets/img/star.svg" alt="star_icon" />
+                            <img src="/assets/img/star.svg" alt="star_icon" />
                             <span>4.0</span>
                         </div>
                         <div className="flex items-center gap-4">

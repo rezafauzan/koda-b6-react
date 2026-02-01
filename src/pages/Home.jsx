@@ -20,7 +20,7 @@ const Hero = () => {
                         <p className="">We provide high quality beans, good taste, and healthy meals made by love just for you.
                             Start your day with us for a bigger smile!</p>
                         <a href="product.html" className="bg-(--color-primary) p-4 rounded w-fit text-black">Get Started!</a>
-                        <div className="flex w-full justify-between gap-4">
+                        <div className="flex flex-col w-full justify-between gap-4">
                             <div className="flex-1 flex flex-col gap-4 border-r border-r-white"><span className="text-4xl text-(--color-primary)">90+</span>Staff</div>
                             <div className="flex-1 flex flex-col gap-4 border-r border-r-white"><span className="text-4xl text-(--color-primary)">40+</span>Stores</div>
                             <div className="flex-1 flex flex-col gap-4"><span className="text-4xl text-(--color-primary)">800+</span>Customer</div>
@@ -96,7 +96,7 @@ const Testimoni = () => {
         <section>
             <div className="md:h-128 px-16 py-16 md:py-0 flex flex-col md:flex-row gap-10 bg-[linear-gradient(168.18deg,#777C82_-114.74%,#0B0909_91.35%)]">
                 <div className="flex-1 overflow-hidden flex flex-col justify-center">
-                    <img src="/src/assets/img/testimoni1.png" alt="Tester_Name" className="object-fit" />
+                    <img src="/assets/img/testimoni1.png" alt="Tester_Name" className="object-fit" />
                 </div>
                 <div className="h-128 flex-1 flex flex-col justify-center gap-8 md:gap-4 text-white">
                     <span>Testimonial</span>
@@ -104,11 +104,11 @@ const Testimoni = () => {
                     <span className="text-(--color-primary)">Software Developer</span>
                     <q id="tester-review">Kopinya oke, tapi menurut saya porsinya bisa ditambah sedikit.</q>
                     <div className="flex items-center gap-4">
-                        <img src="/src/assets/img/star.svg" alt="star_icon" />
-                        <img src="/src/assets/img/star.svg" alt="star_icon" />
-                        <img src="/src/assets/img/star.svg" alt="star_icon" />
-                        <img src="/src/assets/img/star.svg" alt="star_icon" />
-                        <img src="/src/assets/img/star.svg" alt="star_icon" />
+                        <img src="/assets/img/star.svg" alt="star_icon" />
+                        <img src="/assets/img/star.svg" alt="star_icon" />
+                        <img src="/assets/img/star.svg" alt="star_icon" />
+                        <img src="/assets/img/star.svg" alt="star_icon" />
+                        <img src="/assets/img/star.svg" alt="star_icon" />
                         <span>5.0</span>
                     </div>
                     <div className="flex justify-between md:justify-start gap-4">
