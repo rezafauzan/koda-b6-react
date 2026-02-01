@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import ProductContext from './components/context/ProductContext'
 import dataFetcher from './lib/dataFetcher'
 import ProductDetail from './pages/Product/ProductDetail'
+import Payment from './pages/Product/Payment'
 
 const App = () => {
     const [data, setData] = useState([])
@@ -49,6 +50,10 @@ const App = () => {
                 {
                     path: ':productId',
                     element: <ProductDetail />
+                },
+                {
+                    path: 'payment',
+                    element: <Payment />
                 }
             ]
         },

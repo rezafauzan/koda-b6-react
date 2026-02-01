@@ -13,7 +13,7 @@ import { useRef } from "react";
 const Hero = () => {
     return (
         <section>
-            <div className="flex flex-col-reverse md:flex-row min-h-128 max-h-192 h-fit">
+            <div className="flex flex-col-reverse md:flex-row h-512 md:h-screen md:max-h-192">
                 <div className="copytext-container flex-1 flex items-center justify-center bg-[linear-gradient(168.18deg,#777C82_-114.74%,#0B0909_91.35%)]">
                     <div className="copytext w-[80%] px-6 py-10 flex flex-col gap-4 text-white">
                         <h2 className="copytext-headline text-5xl">Start Your Day with Coffee and Good Meals</h2>
@@ -37,7 +37,7 @@ const Hero = () => {
 const About = () => {
     return (
         <section className="mb-7">
-            <div className="flex flex-col-reverse md:flex-row min-h-128 max-h-192 h-screen">
+            <div className="flex flex-col-reverse md:flex-row h-512 md:h-screen md:max-h-192">
                 <div className="copytext-container flex-1 flex items-center justify-center">
                     <div className="copytext w-[80%] px-6 py-10 flex flex-col gap-4">
                         <h2 className="copytext-headline text-5xl border-l-4 pl-4 border-l-(--color-primary)">We Provide <span className="text-(--color-accent)">Good Coffee</span> And <span className="text-(--color-accent)">Healthy Meals</span></h2>
@@ -50,7 +50,7 @@ const About = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="hero-image flex-1 h-128 md:h-auto bg-[url('/src/assets/img/feature.jpg')] bg-cover bg-no-repeat">
+                <div className="hero-image flex-1 h-128 md:h-auto bg-[url('/src/assets/img/feature.jpg')] bg-cover bg-center bg-no-repeat">
                 </div>
             </div>
         </section>
@@ -84,7 +84,7 @@ const Map = () => {
                     <div className="bg-(--color-primary) h-1 w-10 rounded-full"></div>
                     <p>You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
                 </div>
-                <div className="min-h-128 w-full bg-[url(/src/assets/img/Global.svg)] bg-no-repeat bg-cover">
+                <div className="h-76 md:h-128 w-full bg-[url(/src/assets/img/Global.svg)] bg-no-repeat bg-contain lg:bg-cover">
                 </div>
             </div>
         </section>
@@ -94,11 +94,11 @@ const Map = () => {
 const Testimoni = () => {
     return (
         <section>
-            <div className="h-128 px-16 flex gap-10 bg-[linear-gradient(168.18deg,#777C82_-114.74%,#0B0909_91.35%)]">
+            <div className="md:h-128 px-16 py-16 md:py-0 flex flex-col md:flex-row gap-10 bg-[linear-gradient(168.18deg,#777C82_-114.74%,#0B0909_91.35%)]">
                 <div className="flex-1 overflow-hidden flex flex-col justify-center">
                     <img src="/src/assets/img/testimoni1.png" alt="Tester_Name" className="object-fit" />
                 </div>
-                <div className="h-128 flex-1 flex flex-col justify-center gap-4 text-white">
+                <div className="h-128 flex-1 flex flex-col justify-center gap-8 md:gap-4 text-white">
                     <span>Testimonial</span>
                     <span className="font-bold text-4xl border-l-4 border-l-(--color-primary) pl-4">Siti Nurhaliza</span>
                     <span className="text-(--color-primary)">Software Developer</span>
@@ -111,7 +111,7 @@ const Testimoni = () => {
                         <img src="/src/assets/img/star.svg" alt="star_icon" />
                         <span>5.0</span>
                     </div>
-                    <div className="flex gap-4">
+                    <div className="flex justify-between md:justify-start gap-4">
                         <button className="rounded-full w-10 h-10 bg-white flex justify-center items-center cursor-pointer"><BsArrowLeft className="text-black" /></button>
                         <button className="rounded-full w-10 h-10 bg-(--color-primary) flex justify-center items-center cursor-pointer"><BsArrowRight className="text-black" /></button>
                     </div>
@@ -133,7 +133,7 @@ const FloatingChat = () => {
         chatbox.current.classList.toggle('hidden')
     }
     return (
-        <div className="w-100 flex flex-col justify-center gap-2 fixed bottom-4 right-4">
+        <div className="w-70  md:w-100 flex flex-col justify-center gap-2 fixed bottom-4 right-4">
             <div ref={chatbox} className=" bg-white rounded-b border-t-10 border-t-(--color-primary) rounded-xl hidden">
                 <div className="flex items-center gap-4 border-b border-b-black/10 p-4">
                     <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center">
@@ -144,7 +144,7 @@ const FloatingChat = () => {
                         <span className="text-sm text-(--color-primary)">Lorem, ipsum.</span>
                     </div>
                 </div>
-                <div className="flex flex-col h-80 overflow-y-auto">
+                <div className="flex flex-col h-70 md:h-80 overflow-y-auto">
                     <div className="flex flex-row-reverse justify-self-end items-center gap-4 p-2">
                         <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center"><AiOutlineUser /></div>
                         <span className="flex justify-center text-sm bg-slate-100 px-2 py-2 rounded-full">Halo ada yang bisa ?</span>
