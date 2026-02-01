@@ -12,14 +12,18 @@ import ProductDetail from './pages/Product/ProductDetail'
 import PaymentLayout from './pages/Payment/PaymentLayout'
 import Payment from './pages/Payment/Payment'
 import OrderHistory from './pages/Payment/OrderHistory'
+import UserContext from './components/context/UserContext'
 
 const App = () => {
     const [data, setData] = useState([])
+    const [user, setUser] = useState({})
     useEffect(
         () => {
             dataFetcher("https://raw.githubusercontent.com/rezafauzan/koda-b6-react/refs/heads/feat/product-detail/public/assets/data/product.json").then(
-                products=>{setData(products)}
+                products => { setData(products) }
             )
+            const usersLocalStorage = JSON.parse(localStorage.getItem("user")) || []
+            setUser(usersLocalStorage)
         }
         , []
     )
@@ -30,7 +34,7 @@ const App = () => {
         },
         {
             path: '/login',
-            element: <Login />
+            element: <Login setUser={setUser} />
         },
 
         {
@@ -71,9 +75,11 @@ const App = () => {
         },
     ])
     return (
-        <ProductContext value={data}>
-            <RouterProvider router={router} />
-        </ProductContext>
+        <UserContext value={user}>
+            <ProductContext value={data}>
+                <RouterProvider router={router} />
+            </ProductContext>
+        </UserContext>
     )
 }
 

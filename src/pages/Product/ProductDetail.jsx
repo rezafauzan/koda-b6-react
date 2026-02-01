@@ -90,19 +90,19 @@ const ProductDetail = () => {
                         <span className="text-lg font-bold">Choose Size</span>
                         <div className="flex gap-4 justify-center items-center">
                             <label htmlFor="reguler" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" name="size" id="reguler" className="hidden" />
+                                <input type="radio" labelName="size" id="reguler" className="hidden" />
                                 <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                 <span>Reguler</span>
                                 </div>
                             </label>
                             <label htmlFor="medium" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" name="size" id="medium" className="hidden" />
+                                <input type="radio" labelName="size" id="medium" className="hidden" />
                                 <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                 <span>Medium</span>
                                 </div>
                             </label>
                             <label htmlFor="large" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" name="size" id="large" className="hidden" />
+                                <input type="radio" labelName="size" id="large" className="hidden" />
                                 <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                 <span>Large</span>
                                 </div>
@@ -111,13 +111,13 @@ const ProductDetail = () => {
                         <span className="text-lg font-bold">Hot/Ice</span>
                         <div className="flex gap-4 justify-center items-center">
                             <label htmlFor="hot" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" name="hotice" id="hot" className="hidden" />
+                                <input type="radio" labelName="hotice" id="hot" className="hidden" />
                                 <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                 <span>Hot</span>
                                 </div>
                             </label>
                             <label htmlFor="ice" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" name="hotice" id="ice" className="hidden" />
+                                <input type="radio" labelName="hotice" id="ice" className="hidden" />
                                 <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                 <span>Ice</span>
                                 </div>
