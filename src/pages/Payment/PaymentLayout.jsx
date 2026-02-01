@@ -2,7 +2,7 @@ import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
 import { Outlet } from "react-router-dom"
 
-const ProductLayout = () => {
+const PaymentLayout = () => {
     return (
         <div className="container max-w-360 mx-auto flex flex-col">
             <Navbar theme={"dark"} />
@@ -12,4 +12,4 @@ const ProductLayout = () => {
     )
 }
 
-export default ProductLayout
+export default PaymentLayout

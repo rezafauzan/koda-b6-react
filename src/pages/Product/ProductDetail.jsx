@@ -124,7 +124,7 @@ const ProductDetail = () => {
                             </label>
                         </div>
                         <div className="flex flex-col md:flex-row gap-4">
-                            <a href="detail-product.html?id=0" className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</a>
+                            <a href="/payment" className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</a>
                             <button className="px-4 py-2 border rounded flex-1 flex justify-center items-center cursor-pointer text-(--color-primary) border-(--color-primary) hover:text-(--color-primary-active) hover:border-(--color-primary-active)">
                                 <BsCart3 /> Add to cart
                             </button>
