@@ -9,7 +9,9 @@ import { useEffect, useState } from 'react'
 import ProductContext from './components/context/ProductContext'
 import dataFetcher from './lib/dataFetcher'
 import ProductDetail from './pages/Product/ProductDetail'
-import Payment from './pages/Product/Payment'
+import PaymentLayout from './pages/Payment/PaymentLayout'
+import Payment from './pages/Payment/Payment'
+import OrderHistory from './pages/Payment/OrderHistory'
 
 const App = () => {
     const [data, setData] = useState([])
@@ -51,9 +53,19 @@ const App = () => {
                     path: ':productId',
                     element: <ProductDetail />
                 },
+            ]
+        },
+        {
+            path: '/payment',
+            element: <PaymentLayout />,
+            children: [
                 {
-                    path: 'payment',
+                    path: '',
                     element: <Payment />
+                },
+                {
+                    path: 'order-history',
+                    element: <OrderHistory />
                 }
             ]
         },
