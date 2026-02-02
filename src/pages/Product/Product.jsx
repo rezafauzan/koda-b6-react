@@ -209,7 +209,9 @@ const ProductSection = () => {
                     </form>
                 </aside>
                 <div className="flex-7 grid grid-cols-1 lg:grid-cols-2 justify-center items-center lg:items-start lg:justify-between gap-4 lg:px-4">
-                    {products.map((product, index) => <ProductCard key={"product-"+index} product={product} flashsale={true} />)}
+                    {
+                        (products.length > 0 ? products.map((product, index) => <ProductCard key={"product-"+index} product={product} flashsale={true} />) : <span className="text-xl text-green-400">Loading...</span>)
+                    }
                     <div className="flex col-span-1 lg:col-span-2 justify-evenly items-center">
                         <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-(--color-primary) hover:bg-(--color-primary-active) rounded-full">1</span>
                         <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-slate-400 hover:bg-slate-300 rounded-full text-slate-700">2</span>
