@@ -124,13 +124,30 @@ const ProductSection = () => {
         }, [productsData]
     )
 
-    function filterProducts({ search = "", category = [], sortBy = [] }) {
+    function filterProducts({ search = "", favoriteProduct= false, categories = [], sortBy = [] }) {
         if (search.length > 0) {
             setProducts(products.filter(product => product.name.toLowerCase().includes(search.toLowerCase())))
-        } else {
+        }
+        if(favoriteProduct){
+            setProducts(products.filter(product=>product.favoriteProduct === Boolean(favoriteProduct)))
+        }
+        // if(categories.length > 0){
+        //     console.log(
+        //         products.filter(product=> product.category === categories[0])
+        //     )
+        //     // categories.map(
+        //     //     category=>{
+        //     //     }
+        //     // )
+        //     setProducts()
+        // }
+        if(sortBy.length > 0){
+            setProducts(products.filter(product=> product.name.includes(search)))
+        }
+
+        if(search.length > 0 && categories.length > 0 && sortBy.length > 0){
             setProducts(productsData)
         }
-        console.log(products)
     }
     return (
         <section>
@@ -153,23 +170,23 @@ const ProductSection = () => {
                         <div id="category-filter">
                             <span className="text-lg font-bold">Category</span>
                             <div className="flex items-center gap-4">
-                                <input type="checkbox" {...register("category")} id="favorite-product" value="favorite-product" className="w-4 h-4 accent-(--color-primary)" />
+                                <input type="checkbox" {...register("favoriteProduct")} id="favorite-product" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="favorite-product">Favorite Product</label>
                             </div>
                             <div className="flex items-center gap-4">
-                                <input type="checkbox" {...register("category")} id="coffee" value="coffee" className="w-4 h-4 accent-(--color-primary)" />
+                                <input type="checkbox" {...register("categories")} id="coffee" value="coffee" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="coffee">Coffee</label>
                             </div>
                             <div className="flex items-center gap-4">
-                                <input type="checkbox" {...register("category")} id="non-coffee" value="non-coffee" className="w-4 h-4 accent-(--color-primary)" />
+                                <input type="checkbox" {...register("categories")} id="non-coffee" value="non-coffee" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="non-coffee">Non Coffee</label>
                             </div>
                             <div className="flex items-center gap-4">
-                                <input type="checkbox" {...register("category")} id="foods" value="foods" className="w-4 h-4 accent-(--color-primary)" />
+                                <input type="checkbox" {...register("categories")} id="foods" value="foods" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="foods">Foods</label>
                             </div>
                             <div className="flex items-center gap-4">
-                                <input type="checkbox" {...register("category")} id="add-on" value="add-on" className="w-4 h-4 accent-(--color-primary)" />
+                                <input type="checkbox" {...register("categories")} id="add-on" value="add-on" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="add-on">Add On</label>
                             </div>
                         </div>
