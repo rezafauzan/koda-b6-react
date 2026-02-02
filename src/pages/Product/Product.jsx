@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import ProductCard from "../../components/ProductCard"
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs"
 import ProductContext from "../../components/context/ProductContext"
@@ -7,10 +7,10 @@ import { useForm } from "react-hook-form"
 const Hero = () => {
     return (
         <section>
-            <div className="flex flex-col-reverse md:flex-row h-70 relative bg-[url('/src/assets/img/product-hero.png')] bg-cover bg-no-repeat">
+            <div className="flex flex-col-reverse md:flex-row h-100 lg:h-70 relative bg-[url('/src/assets/img/product-hero.png')] bg-cover bg-no-repeat">
                 <div className="copytext-container absolute flex-1 flex items-center justify-center top-4 left-4 right-4 bottom-4">
-                    <div className="copytext w-[80%] px-6 py-10 flex flex-col gap-4 text-white">
-                        <h2 className="copytext-headline text-5xl">We Provide Good Coffee and Healthy Meals</h2>
+                    <div className="copytext w-[80%] lg:px-6 lg:py-10 flex flex-col gap-4 text-white">
+                        <h2 className="copytext-headline text-xl lg:text-5xl">We Provide Good Coffee and Healthy Meals</h2>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@ const Hero = () => {
 const TodayPromo = () => {
     return (
         <section>
-            <div className="flex justify-between gap-4 p-10">
+            <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-4 p-10">
                 <h2 className="text-4xl">Today<span className="text-(--color-accent)">Promo</span></h2>
                 <div className="carousel-navigator flex gap-4">
                     <button className="rounded-full w-10 h-10 bg-slate-300 flex justify-center items-center cursor-pointer"><BsArrowLeft className="text-black" /></button>
@@ -113,21 +113,27 @@ const TodayPromo = () => {
 }
 
 const ProductSection = () => {
+    const [products, setProducts] = useState([])
     const { register, handleSubmit, formState } = useForm()
-    const productData = useContext(ProductContext)
+    const productsData = useContext(ProductContext)
     const minPrice = useRef()
     const maxPrice = useRef()
+    useEffect(
+        () => {
+            setProducts(productsData)
+        }, [productsData]
+    )
 
-    const filterProducts = data => {
-        
+    function filterProducts({search = "", category = [], sortBy = []}) {
+
     }
     return (
         <section>
             <div className="flex justify-between gap-4 px-10">
                 <h2 className="text-4xl">Our<span className="text-(--color-accent)">Product</span></h2>
             </div>
-            <div className="flex flex-col lg:flex-row p-4 gap-4">
-                <aside className="flex-4 h-140 lg:overflow-y-auto flex flex-col items-center gap-4 bg-[#0B0909] text-white p-4 mx-16 lg:mx-4 rounded lg:sticky lg:top-1">
+            <div className="flex flex-col items-center lg:items-start lg:flex-row p-4 gap-4">
+                <aside className="flex-4 h-140 lg:overflow-y-auto flex flex-col items-center gap-4 bg-[#0B0909] text-white p-4 lg:mx-4 rounded lg:sticky lg:top-1">
                     <form className="flex flex-col w-full gap-4" onSubmit={handleSubmit(filterProducts)}>
                         <div className="flex justify-between items-center">
                             <h3 className="text-xl">Filter</h3>
@@ -166,15 +172,15 @@ const ProductSection = () => {
                         <div id="sort-by-filter">
                             <span className="text-lg font-bold">Sort By</span>
                             <div className="flex items-center gap-4">
-                                <input type="checkbox" {...register("sort-by")} id="buy-one-get-one" value="buy-one-get-one" className="w-4 h-4 accent-(--color-primary)" />
+                                <input type="checkbox" {...register("sortBy")} id="buy-one-get-one" value="buy-one-get-one" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="buy-one-get-one">Buy 1 get 1</label>
                             </div>
                             <div className="flex items-center gap-4">
-                                <input type="checkbox" {...register("sort-by")} id="flash-sale" value="flash-sale" className="w-4 h-4 accent-(--color-primary)" />
+                                <input type="checkbox" {...register("sortBy")} id="flash-sale" value="flash-sale" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="flash-sale">Flash Sale</label>
                             </div>
                             <div className="flex items-center gap-4">
-                                <input type="checkbox" {...register("sort-by")} id="birthday-package" value="birthday-package" className="w-4 h-4 accent-(--color-primary)" />
+                                <input type="checkbox" {...register("sortBy")} id="birthday-package" value="birthday-package" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="birthday-package">Birthday Package</label>
                             </div>
                             <div className="flex items-center gap-4">
@@ -188,12 +194,12 @@ const ProductSection = () => {
                             <div className="flex flex-col md:flex-row w-full">
                                 <div className="flex flex-col gap-4">
                                     <label htmlFor="price-range-min">Minimal Price</label>
-                                    <input type="range" {...register("priceRangeMin", {onChange: (e) => {minPrice.current.textContent =`Rp.${parseInt(e.target.value).toLocaleString("id-ID")},-`}})} id="price-range-min" min="0" max="100000" step="1000" className="w-full accent-(--color-primary)" />
+                                    <input type="range" {...register("priceRangeMin", { onChange: (e) => { minPrice.current.textContent = `Rp.${parseInt(e.target.value).toLocaleString("id-ID")},-` } })} id="price-range-min" min="0" max="100000" step="1000" className="w-full accent-(--color-primary)" />
                                     <span ref={minPrice}></span>
                                 </div>
                                 <div className="flex flex-col items-center gap-4">
                                     <label htmlFor="price-range-max">Maximal Price</label>
-                                    <input type="range" {...register("priceRangeMax", {onChange: (e) => {maxPrice.current.textContent =`Rp.${parseInt(e.target.value).toLocaleString("id-ID")},-`}})} id="price-range-max" min="0" max="100000" step="1000" className="w-full accent-(--color-primary)" />
+                                    <input type="range" {...register("priceRangeMax", { onChange: (e) => { maxPrice.current.textContent = `Rp.${parseInt(e.target.value).toLocaleString("id-ID")},-` } })} id="price-range-max" min="0" max="100000" step="1000" className="w-full accent-(--color-primary)" />
                                     <span ref={maxPrice}></span>
                                 </div>
                             </div>
@@ -202,23 +208,8 @@ const ProductSection = () => {
                         <button type="submit" className="w-full h-10 bg-(--color-primary) rounded mt-4">Apply Filter</button>
                     </form>
                 </aside>
-                <div className="flex-7 grid grid-cols-1 lg:grid-cols-2 justify-center lg:justify-between gap-4 px-16 lg:px-4">
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
-                    <ProductCard flashsale={true} />
+                <div className="flex-7 grid grid-cols-1 lg:grid-cols-2 justify-center items-center lg:items-start lg:justify-between gap-4 lg:px-4">
+                    {products.map((product, index) => <ProductCard key={"product-"+index} product={product} flashsale={true} />)}
                     <div className="flex col-span-1 lg:col-span-2 justify-evenly items-center">
                         <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-(--color-primary) hover:bg-(--color-primary-active) rounded-full">1</span>
                         <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-slate-400 hover:bg-slate-300 rounded-full text-slate-700">2</span>
