@@ -123,7 +123,7 @@ const ProductSection = () => {
             setProducts(productsData)
         }, [productsData]
     )
-
+    
     function filterProducts({ search = "", favoriteProduct= false, categories = [], sortBy = [] }) {
         if (search.length > 0) {
             setProducts(products.filter(product => product.name.toLowerCase().includes(search.toLowerCase())))
@@ -131,23 +131,16 @@ const ProductSection = () => {
         if(favoriteProduct){
             setProducts(products.filter(product=>product.favoriteProduct === Boolean(favoriteProduct)))
         }
-        // if(categories.length > 0){
-        //     console.log(
-        //         products.filter(product=> product.category === categories[0])
-        //     )
-        //     // categories.map(
-        //     //     category=>{
-        //     //     }
-        //     // )
-        //     setProducts()
-        // }
-        if(sortBy.length > 0){
-            setProducts(products.filter(product=> product.name.includes(search)))
+        if(categories.length > 0){
+            setProducts(products.filter(product => categories.includes(product.category)))
         }
-
         if(search.length > 0 && categories.length > 0 && sortBy.length > 0){
             setProducts(productsData)
         }
+        // Need More Debug
+    }
+    function resetFilter(){
+        setProducts(productsData)
     }
     return (
         <section>
@@ -159,7 +152,7 @@ const ProductSection = () => {
                     <form className="flex flex-col w-full gap-4" onSubmit={handleSubmit(filterProducts)}>
                         <div className="flex justify-between items-center">
                             <h3 className="text-xl">Filter</h3>
-                            <button type="reset" className="text-xl">Reset Filter</button>
+                            <button type="reset" className="text-xl" onClick={resetFilter}>Reset Filter</button>
                         </div>
 
                         <label className="flex flex-col gap-4">
@@ -182,11 +175,11 @@ const ProductSection = () => {
                                 <label className="text-white/70" htmlFor="non-coffee">Non Coffee</label>
                             </div>
                             <div className="flex items-center gap-4">
-                                <input type="checkbox" {...register("categories")} id="foods" value="foods" className="w-4 h-4 accent-(--color-primary)" />
+                                <input type="checkbox" {...register("categories")} id="foods" value="food" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="foods">Foods</label>
                             </div>
                             <div className="flex items-center gap-4">
-                                <input type="checkbox" {...register("categories")} id="add-on" value="add-on" className="w-4 h-4 accent-(--color-primary)" />
+                                <input type="checkbox" {...register("categories")} id="add-on" value="addon" className="w-4 h-4 accent-(--color-primary)" />
                                 <label className="text-white/70" htmlFor="add-on">Add On</label>
                             </div>
                         </div>
