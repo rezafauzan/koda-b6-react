@@ -11,6 +11,7 @@ import { MdOutlineGirl } from "react-icons/md";
 import { useContext, useEffect, useRef, useState } from "react";
 import ProductContext from "../components/context/ProductContext";
 import dataFetcher from "/src/lib/dataFetcher.jsx"
+import { Link } from "react-router-dom";
 
 const Hero = () => {
     return (
@@ -21,7 +22,7 @@ const Hero = () => {
                         <h2 className="copytext-headline text-5xl">Start Your Day with Coffee and Good Meals</h2>
                         <p className="">We provide high quality beans, good taste, and healthy meals made by love just for you.
                             Start your day with us for a bigger smile!</p>
-                        <a href="product.html" className="bg-(--color-primary) p-4 rounded w-fit text-black">Get Started!</a>
+                        <Link to="/product" className="bg-(--color-primary) p-4 rounded w-fit text-black">Get Started!</Link>
                         <div className="flex w-full justify-between gap-4">
                             <div className="flex-1 flex flex-col gap-4 border-r border-r-white"><span className="text-4xl text-(--color-primary)">90+</span>Staff</div>
                             <div className="flex-1 flex flex-col gap-4 border-r border-r-white"><span className="text-4xl text-(--color-primary)">40+</span>Stores</div>
