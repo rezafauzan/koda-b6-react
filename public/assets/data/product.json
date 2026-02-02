@@ -5,7 +5,7 @@
         "favoriteProduct": true,
         "name": "Hazzelnut Latte",
         "images": [
-            "image27.png",
+            "/assets/img/image27.png",
             "https://placehold.co/1024x1024.png",
             "https://placehold.co/1024x1024.png",
             "https://placehold.co/1024x1024.png"
@@ -23,7 +23,7 @@
         "favoriteProduct": true,
         "name": "Kopi Liong",
         "images": [
-            "image22.png",
+            "/assets/img/image22.png",
             "https://placehold.co/1024x1024.png",
             "https://placehold.co/1024x1024.png",
             "https://placehold.co/1024x1024.png"
@@ -41,7 +41,7 @@
         "favoriteProduct": true,
         "name": "Kopi kirr",
         "images": [
-            "image30.png",
+            "/assets/img/image30.png",
             "https://placehold.co/1024x1024.png",
             "https://placehold.co/1024x1024.png",
             "https://placehold.co/1024x1024.png"
@@ -59,7 +59,7 @@
         "favoriteProduct": true,
         "name": "Kopiru Rariru",
         "images": [
-            "product2.png",
+            "/assets/img/product2.png",
             "https://placehold.co/1024x1024.png",
             "https://placehold.co/1024x1024.png",
             "https://placehold.co/1024x1024.png"
