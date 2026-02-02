@@ -8,7 +8,9 @@ import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import ProductCard from "../components/ProductCard"
 import { MdOutlineGirl } from "react-icons/md";
-import { useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import ProductContext from "../components/context/ProductContext";
+import dataFetcher from "/src/lib/dataFetcher.jsx"
 
 const Hero = () => {
     return (
@@ -20,7 +22,7 @@ const Hero = () => {
                         <p className="">We provide high quality beans, good taste, and healthy meals made by love just for you.
                             Start your day with us for a bigger smile!</p>
                         <a href="product.html" className="bg-(--color-primary) p-4 rounded w-fit text-black">Get Started!</a>
-                        <div className="flex flex-col w-full justify-between gap-4">
+                        <div className="flex w-full justify-between gap-4">
                             <div className="flex-1 flex flex-col gap-4 border-r border-r-white"><span className="text-4xl text-(--color-primary)">90+</span>Staff</div>
                             <div className="flex-1 flex flex-col gap-4 border-r border-r-white"><span className="text-4xl text-(--color-primary)">40+</span>Stores</div>
                             <div className="flex-1 flex flex-col gap-4"><span className="text-4xl text-(--color-primary)">800+</span>Customer</div>
@@ -58,6 +60,7 @@ const About = () => {
 }
 
 const Product = () => {
+    const products = useContext(ProductContext) || []
     return (
         <section>
             <div className="flex flex-col justify-center items-center gap-4">
@@ -66,10 +69,17 @@ const Product = () => {
                 <p>Let's choose and have a bit taste of poeple's favorite. It might be yours too!</p>
             </div>
             <div className="flex flex-col xl:flex-row p-4 lg:p-16 gap-4 justify-center items-center">
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                {
+                    (
+                        products.length > 0 ?
+                            products.slice(0,4).map(
+                                (product, index) =>
+                                    <ProductCard key={"product-" + index} product={product} flashsale={true} />
+                            )
+                            :
+                            <span className="text-xl text-green-400">Loading...</span>
+                    )
+                }
             </div>
         </section>
     )
@@ -129,7 +139,7 @@ const Testimoni = () => {
 
 const FloatingChat = () => {
     const chatbox = useRef()
-    function chatboxToggler(){
+    function chatboxToggler() {
         chatbox.current.classList.toggle('hidden')
     }
     return (
@@ -257,12 +267,22 @@ const FloatingChat = () => {
 }
 
 const Home = () => {
+    const [data, setData] = useState([])
+    useEffect(
+        () => {
+            dataFetcher("https://raw.githubusercontent.com/rezafauzan/koda-b6-react/refs/heads/feat/product-populating/public/assets/data/product.json").then(
+                products => { setData(products) }
+            )
+        }, []
+    )
     return (
         <div className="container max-w-360 mx-auto flex flex-col">
             <Navbar absolute={true} />
             <Hero />
             <About />
-            <Product />
+            <ProductContext value={data}>
+                <Product />
+            </ProductContext>
             <Map />
             <Testimoni />
             <Footer />
