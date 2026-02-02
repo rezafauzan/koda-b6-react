@@ -124,8 +124,12 @@ const ProductSection = () => {
         }, [productsData]
     )
 
-    function filterProducts({search = "", category = [], sortBy = []}) {
-
+    function filterProducts({ search = "", category = [], sortBy = [] }) {
+        if (search.length > 0) {
+            setProducts(products.filter(product => product.name.includes(search)))
+        } else {
+            setProducts(productsData)
+        }
     }
     return (
         <section>
@@ -210,7 +214,7 @@ const ProductSection = () => {
                 </aside>
                 <div className="flex-7 grid grid-cols-1 lg:grid-cols-2 justify-center items-center lg:items-start lg:justify-between gap-4 lg:px-4">
                     {
-                        (products.length > 0 ? products.map((product, index) => <ProductCard key={"product-"+index} product={product} flashsale={true} />) : <span className="text-xl text-green-400">Loading...</span>)
+                        (products.length > 0 ? products.map((product, index) => <ProductCard key={"product-" + index} product={product} flashsale={true} />) : <span className="text-xl text-green-400">Loading...</span>)
                     }
                     <div className="flex col-span-1 lg:col-span-2 justify-evenly items-center">
                         <span className="cursor-pointer flex justify-center items-center w-10 h-10 bg-(--color-primary) hover:bg-(--color-primary-active) rounded-full">1</span>
