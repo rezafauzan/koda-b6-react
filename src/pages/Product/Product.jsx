@@ -126,10 +126,11 @@ const ProductSection = () => {
 
     function filterProducts({ search = "", category = [], sortBy = [] }) {
         if (search.length > 0) {
-            setProducts(products.filter(product => product.name.includes(search)))
+            setProducts(products.filter(product => product.name.toLowerCase().includes(search.toLowerCase())))
         } else {
             setProducts(productsData)
         }
+        console.log(products)
     }
     return (
         <section>
