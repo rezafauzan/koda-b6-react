@@ -53,6 +53,7 @@ const Register = () => {
         } else {
             registeredUsers.push(
                 {
+                    avatar: "https://i.pravatar.cc/400?img=54",
                     fullname: fullname.trim(),
                     email: email.trim(),
                     phone: phone.trim(),

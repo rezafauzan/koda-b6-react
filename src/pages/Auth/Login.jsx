@@ -26,7 +26,7 @@ const Login = ({ setUser }) => {
         const userFound = users.find(user => user.email === email.trim())
         if (userFound.email != null) {
             if (password === userFound.password) {
-                window.localStorage.setItem("user", JSON.stringify({ email: userFound.email, role: userFound.role }))
+                window.localStorage.setItem("user", JSON.stringify({ fullname: userFound.fullname, avatar: userFound.avatar, email: userFound.email, role: userFound.role }))
                 setUser(JSON.parse(window.localStorage.getItem("user")))
                 setAlert(['success', "Login berhasil !"])
                 navigator("/")
