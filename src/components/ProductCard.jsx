@@ -17,7 +17,7 @@ const ProductCard = ({ product = {}, showRating = false }) => {
                     {(discount > 0.0 ? `Rp.${price- (price * discount)},-` : `Rp.${price},-`)}
                 </span>
                 <div className="flex flex-col md:flex-row gap-4">
-                    <Link href={"/product/" + id} className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</Link>
+                    <Link to={`/product/${id}`} className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</Link>
                     <button className="px-4 py-2 border border-(--color-primary) rounded flex-1 flex justify-center items-center cursor-pointer">
                         <BsCart3 />
                     </button>
