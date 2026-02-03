@@ -1,13 +1,18 @@
 import { BsCart3 } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
 import brand_white from "../assets/img/brand-white.svg";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "/src/components/context/UserContext"
 
 const navbar = ({ absolute, theme }) => {
     const user = useContext(UserContext)
     const location = useLocation();
+    const navigator = useNavigate()
+    function logout(){
+        window.localStorage.removeItem("user")
+        navigator("/login")
+    }
     return (
         <header className="relative">
             <nav className={(absolute ? "absolute top-0 left-0 right-0 " : "") + "flex items-center justify-between h-16 p-8 md:px-16" + (theme === "dark" ? " bg-black" : " bg-black/40")}>
@@ -24,9 +29,9 @@ const navbar = ({ absolute, theme }) => {
                         {
                             user.role != null ?
                                 <div className="flex justify-between items-center gap-4 cursor-pointer">
-                                    <div className="rounded-full w-10 h-10 overflow-hidden">
+                                    <button className="rounded-full w-10 h-10 overflow-hidden" onClick={logout}>
                                         <img src={user.avatar} alt={user.fullname} />
-                                    </div>
+                                    </button>
                                     <span className="hidden md:block">{(user.fullname).slice(0,4)}</span>
                                 </div>
                                 :
