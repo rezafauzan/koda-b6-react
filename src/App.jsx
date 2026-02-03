@@ -16,9 +16,6 @@ const App = () => {
     const [user, setUser] = useState({})
     useEffect(
         () => {
-            dataFetcher("https://raw.githubusercontent.com/rezafauzan/koda-b6-react/refs/heads/feat/product-detail/public/assets/data/product.json").then(
-                products => { setData(products) }
-            )
             const usersLocalStorage = JSON.parse(localStorage.getItem("user")) || {}
             setUser(usersLocalStorage)
         }
