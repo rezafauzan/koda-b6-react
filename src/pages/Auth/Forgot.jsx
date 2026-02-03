@@ -38,7 +38,7 @@ const ForgotPassword = () => {
                 navigator("/")
             }
         },
-        []
+        [user]
     )
     return (
         <section>

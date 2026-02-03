@@ -34,7 +34,7 @@ const Register = () => {
                 navigator("/")
             }
         },
-        []
+        [user]
     )
     const validator = yup.object({
         fullname: yup.string("Nama tidak valid").required("Nama harus diisi").min(4, "Nama minimal 4 karakter"),

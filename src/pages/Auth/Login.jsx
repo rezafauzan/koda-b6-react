@@ -46,7 +46,7 @@ const Login = ({ setUser }) => {
                 navigator("/")
             }
         },
-        []
+        [user]
     )
 
     return (
