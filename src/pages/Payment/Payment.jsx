@@ -22,9 +22,9 @@ const Payment = () => {
                                 </div>
                                 <div className="flex flex-col gap-4 items-center justify-center">
                                     <div className="flex-1 flex flex-col gap-4">
-                                        <div className="w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
+                                        <div className="h-196 lg:h-52 w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
                                             {/* {(flashsale ? : '')} */}
-                                            <div className="overflow-hidden flex-1 h-full">
+                                            <div className="overflow-hidden flex-1 h-full flex flex-col justify-center items-center gap-4">
                                                 <img src="https://placehold.co/1024x1024" alt="Product_Name" className="h-full" />
                                             </div>
                                             <div className="h-fit flex flex-col gap-4 left-4 right-4 bottom-0 p-4 rounded flex-3">
@@ -38,9 +38,9 @@ const Payment = () => {
                                         </div>
                                     </div>
                                     <div className="flex-1 flex flex-col gap-4">
-                                        <div className="w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
+                                        <div className="h-196 lg:h-52 w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
                                             {/* {(flashsale ? : '')} */}
-                                            <div className="overflow-hidden flex-1 h-full">
+                                            <div className="overflow-hidden flex-1 h-full flex flex-col justify-center items-center gap-4">
                                                 <img src="https://placehold.co/1024x1024" alt="Product_Name" className="h-full" />
                                             </div>
                                             <div className="h-fit flex flex-col gap-4 left-4 right-4 bottom-0 p-4 rounded flex-3">
@@ -54,9 +54,9 @@ const Payment = () => {
                                         </div>
                                     </div>
                                     <div className="flex-1 flex flex-col gap-4">
-                                        <div className="w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
+                                        <div className="h-196 lg:h-52 w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
                                             {/* {(flashsale ? : '')} */}
-                                            <div className="overflow-hidden flex-1 h-full">
+                                            <div className="overflow-hidden flex-1 h-full flex flex-col justify-center items-center gap-4">
                                                 <img src="https://placehold.co/1024x1024" alt="Product_Name" className="h-full" />
                                             </div>
                                             <div className="h-fit flex flex-col gap-4 left-4 right-4 bottom-0 p-4 rounded flex-3">
@@ -70,9 +70,9 @@ const Payment = () => {
                                         </div>
                                     </div>
                                     <div className="flex-1 flex flex-col gap-4">
-                                        <div className="w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
+                                        <div className="h-196 lg:h-52 w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
                                             {/* {(flashsale ? : '')} */}
-                                            <div className="overflow-hidden flex-1 h-full">
+                                            <div className="overflow-hidden flex-1 h-full flex flex-col justify-center items-center gap-4">
                                                 <img src="https://placehold.co/1024x1024" alt="Product_Name" className="h-full" />
                                             </div>
                                             <div className="h-fit flex flex-col gap-4 left-4 right-4 bottom-0 p-4 rounded flex-3">
@@ -142,21 +142,21 @@ const Payment = () => {
                         <span className="text-lg font-bold">Choose Size</span>
                         <div className="flex gap-4 justify-center items-center">
                             <label htmlFor="dineIn" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" labelName="delivery" id="dineIn" className="hidden" />
+                                <input type="radio" name="delivery" id="dineIn" className="hidden" />
                                 <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
-                                    <span>Dine In</span>
+                                    <span className="text-[8px] lg:text-lg">Dine In</span>
                                 </div>
                             </label>
                             <label htmlFor="doorDelivery" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" labelName="delivery" id="doorDelivery" className="hidden" />
+                                <input type="radio" name="delivery" id="doorDelivery" className="hidden" />
                                 <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
-                                    <span>Door Delivery</span>
+                                    <span className="text-[8px] lg:text-lg">Door Delivery</span>
                                 </div>
                             </label>
                             <label htmlFor="pickUp" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" labelName="delivery" id="pickUp" className="hidden" />
+                                <input type="radio" name="delivery" id="pickUp" className="hidden" />
                                 <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
-                                    <span>Pick Up</span>
+                                    <span className="text-[8px] lg:text-lg">Pick Up</span>
                                 </div>
                             </label>
                         </div>

@@ -1,10 +1,11 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { BsArrowRight, BsHandThumbsUp } from "react-icons/bs";
 import { BsCart3 } from "react-icons/bs"
 import ProductCard from "/src/components/ProductCard";
 import { useParams } from "react-router-dom";
 import ProductContext from "/src/components/context/ProductContext";
 import { useForm } from "react-hook-form";
+import UserContext from "/src/components/context/UserContext"
 
 const OtherProducts = () => {
     const products = useContext(ProductContext)
@@ -34,35 +35,67 @@ const OtherProducts = () => {
 }
 
 const ProductDetail = () => {
+    const user = useContext(UserContext)
     const products = useContext(ProductContext)
+    const [cartData, setCartData] = useState([])
     const { register, handleSubmit, setValue } = useForm()
     const { productId } = useParams()
     const [quantity, setQuantity] = useState(1)
-    const product = products.find(product => product.id === parseInt(productId))
+    const [product, setProduct] = useState(null)
+    
+    useEffect(
+        () => {
+            const cartLocalStorage = JSON.parse(localStorage.getItem("cart")) || []
+            setCartData(cartLocalStorage)
+            setProduct(products.find(product => product.id === parseInt(productId)))
+        },
+        [products, productId]
+    )
 
     function buy(data) {
         console.log(data)
     }
 
+    function addToCart() {
+        // const productInCart = cart.find(cartItem => cartItem.productId === productId)
+        // if (productInCart.length > 0) {
+        //     productInCart.quantity = productInCart.quantity + quantity
+        // } else {
+        //     cart
+        //     const product = {
+        //         productId: productId,
+        //         quantity: quantity
+        //     }
+        // }
+        const product = {
+            productId: parseInt(productId),
+            quantity: quantity
+        }
+        const cart = cartData
+        cart.push(product)
+        setCartData(cart)
+        window.localStorage.setItem("cart", JSON.stringify(cartData))
+    }
+
     function recommend(event) {
         // event.target.inner
     }
-    
+
     function more() {
-        if(quantity < product.stock){
-            const latestQuantity = quantity+1
+        if (quantity < product.stock) {
+            const latestQuantity = quantity + 1
             setQuantity(latestQuantity)
             setValue("quantity", latestQuantity)
         }
     }
 
     function reduce(event) {
-        if(quantity > 1){
-            const latestQuantity = quantity-1
+        if (quantity > 1) {
+            const latestQuantity = quantity - 1
             setQuantity(latestQuantity)
             setValue("quantity", latestQuantity)
         }
-        if(quantity === 0){
+        if (quantity === 0) {
             setQuantity(latestQuantity)
             setValue("quantity", latestQuantity)
         }
@@ -97,7 +130,7 @@ const ProductDetail = () => {
                                 :
                                 <span>Loading...</span>
                         )}
-                        <h3 className="text-xl font-bold">Hazzelnut Latte</h3>
+                        <h3 className="text-xl font-bold">{(product != null ? product.name : "Loading...")}</h3>
                         {(
                             product != null
                                 ?
@@ -161,66 +194,69 @@ const ProductDetail = () => {
                                 :
                                 <span>Loading...</span>
                         )}
-                        <p>You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
+                        <p>{(product != null ? product.desc : "Loading...")}</p>
                         {
                             (
                                 product != null
                                     ?
                                     product.stock > 0
                                         ?
-                                        <form onSubmit={handleSubmit(buy)} className="flex flex-col gap-4">
-                                            <div className="flex items-center p-4">
-                                                <button type="button" className="w-18 h-10 px-4 py-2 border border-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer" onClick={more}>+</button>
-                                                <input {...register("quantity")} type="number" id="quantity" value={quantity} min={1} max={parseInt(product.stock)} readOnly className="text-center w-18 h-10" />
-                                                <button type="button" className="w-18 h-10 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer" onClick={reduce}>-</button>
-                                            </div>
-                                            <span className="text-lg font-bold">Choose Size</span>
-                                            <div className="flex gap-4 justify-center items-center">
-                                                <label htmlFor="reguler" className="group flex-1 flex justify-center items-center">
-                                                    <input type="radio" {...register("size")} id="reguler"  value="reguler" className="hidden" />
-                                                    <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
-                                                        <span>Reguler</span>
-                                                    </div>
-                                                </label>
-                                                <label htmlFor="medium" className="group flex-1 flex justify-center items-center">
-                                                    <input type="radio" {...register("size")} id="medium"  value="medium" className="hidden" checked/>
-                                                    <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
-                                                        <span>Medium</span>
-                                                    </div>
-                                                </label>
-                                                <label htmlFor="large" className="group flex-1 flex justify-center items-center">
-                                                    <input type="radio" {...register("size")} id="large"  value="large" className="hidden" />
-                                                    <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
-                                                        <span>Large</span>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <span className="text-lg font-bold">Hot/Ice</span>
-                                            <div className="flex gap-4 justify-center items-center">
-                                                <label htmlFor="hot" className="group flex-1 flex justify-center items-center">
-                                                    <input type="radio" {...register("hotice")} id="hot"  value="hot" className="hidden" />
-                                                    <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
-                                                        <span>Hot</span>
-                                                    </div>
-                                                </label>
-                                                <label htmlFor="ice" className="group flex-1 flex justify-center items-center">
-                                                    <input type="radio" {...register("hotice")} id="ice"  value="ice" className="hidden" checked/>
-                                                    <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
-                                                        <span>Ice</span>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <div className="flex flex-col md:flex-row gap-4">
-                                                <button type="submit" className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</button>
-                                                <button className="px-4 py-2 border rounded flex-1 flex justify-center items-center cursor-pointer text-(--color-primary) border-(--color-primary) hover:text-(--color-primary-active) hover:border-(--color-primary-active)">
-                                                    <BsCart3 /> Add to cart
-                                                </button>
-                                            </div>
-                                        </form>
+                                        user.role != null ?
+                                            <form onSubmit={handleSubmit(buy)} className="flex flex-col gap-4">
+                                                <div className="flex items-center p-4">
+                                                    <button type="button" className="w-18 h-10 px-4 py-2 border border-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer" onClick={more}>+</button>
+                                                    <input {...register("quantity")} type="number" id="quantity" value={quantity} min={1} max={parseInt(product.stock)} readOnly className="text-center w-18 h-10" />
+                                                    <button type="button" className="w-18 h-10 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer" onClick={reduce}>-</button>
+                                                </div>
+                                                <span className="text-lg font-bold">Choose Size</span>
+                                                <div className="flex gap-4 justify-center items-center">
+                                                    <label htmlFor="reguler" className="group flex-1 flex justify-center items-center">
+                                                        <input type="radio" {...register("size")} id="reguler" value="reguler" className="hidden" />
+                                                        <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                            <span>Reguler</span>
+                                                        </div>
+                                                    </label>
+                                                    <label htmlFor="medium" className="group flex-1 flex justify-center items-center">
+                                                        <input type="radio" {...register("size")} id="medium" value="medium" className="hidden" checked />
+                                                        <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                            <span>Medium</span>
+                                                        </div>
+                                                    </label>
+                                                    <label htmlFor="large" className="group flex-1 flex justify-center items-center">
+                                                        <input type="radio" {...register("size")} id="large" value="large" className="hidden" />
+                                                        <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                            <span>Large</span>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <span className="text-lg font-bold">Hot/Ice</span>
+                                                <div className="flex gap-4 justify-center items-center">
+                                                    <label htmlFor="hot" className="group flex-1 flex justify-center items-center">
+                                                        <input type="radio" {...register("hotice")} id="hot" value="hot" className="hidden" />
+                                                        <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                            <span>Hot</span>
+                                                        </div>
+                                                    </label>
+                                                    <label htmlFor="ice" className="group flex-1 flex justify-center items-center">
+                                                        <input type="radio" {...register("hotice")} id="ice" value="ice" className="hidden" checked />
+                                                        <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                            <span>Ice</span>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div className="flex flex-col md:flex-row gap-4">
+                                                    <button type="submit" className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</button>
+                                                    <button type="button" className="px-4 py-2 border rounded flex-1 flex justify-center items-center cursor-pointer text-(--color-primary) border-(--color-primary) hover:text-(--color-primary-active) hover:border-(--color-primary-active)" onClick={addToCart}>
+                                                        <BsCart3 /> Add to cart
+                                                    </button>
+                                                </div>
+                                            </form>
+                                            :
+                                            ""
                                         :
                                         ""
                                     :
-                                    <input type="text" id="quantity" value={"Loading..."} disabled className="text-end w-18" />
+                                    <span>Loading...</span>
                             )
                         }
                     </div>
