@@ -8,7 +8,10 @@ import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import ProductCard from "../components/ProductCard"
 import { MdOutlineGirl } from "react-icons/md";
-import { useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import ProductContext from "../components/context/ProductContext";
+import dataFetcher from "/src/lib/dataFetcher.jsx"
+import { Link } from "react-router-dom";
 
 const Hero = () => {
     return (
@@ -19,7 +22,7 @@ const Hero = () => {
                         <h2 className="copytext-headline text-5xl">Start Your Day with Coffee and Good Meals</h2>
                         <p className="">We provide high quality beans, good taste, and healthy meals made by love just for you.
                             Start your day with us for a bigger smile!</p>
-                        <a href="product.html" className="bg-(--color-primary) p-4 rounded w-fit text-black">Get Started!</a>
+                        <Link to="/product" className="bg-(--color-primary) p-4 rounded w-fit text-black">Get Started!</Link>
                         <div className="flex w-full justify-between gap-4">
                             <div className="flex-1 flex flex-col gap-4 border-r border-r-white"><span className="text-4xl text-(--color-primary)">90+</span>Staff</div>
                             <div className="flex-1 flex flex-col gap-4 border-r border-r-white"><span className="text-4xl text-(--color-primary)">40+</span>Stores</div>
@@ -58,6 +61,7 @@ const About = () => {
 }
 
 const Product = () => {
+    const products = useContext(ProductContext) || []
     return (
         <section>
             <div className="flex flex-col justify-center items-center gap-4">
@@ -66,10 +70,17 @@ const Product = () => {
                 <p>Let's choose and have a bit taste of poeple's favorite. It might be yours too!</p>
             </div>
             <div className="flex flex-col xl:flex-row p-4 lg:p-16 gap-4 justify-center items-center">
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                {
+                    (
+                        products.length > 0 ?
+                            products.slice(0,4).map(
+                                (product, index) =>
+                                    <ProductCard key={"product-" + index} product={product} flashsale={true} />
+                            )
+                            :
+                            <span className="text-xl text-green-400">Loading...</span>
+                    )
+                }
             </div>
         </section>
     )
@@ -96,7 +107,7 @@ const Testimoni = () => {
         <section>
             <div className="md:h-128 px-16 py-16 md:py-0 flex flex-col md:flex-row gap-10 bg-[linear-gradient(168.18deg,#777C82_-114.74%,#0B0909_91.35%)]">
                 <div className="flex-1 overflow-hidden flex flex-col justify-center">
-                    <img src="/src/assets/img/testimoni1.png" alt="Tester_Name" className="object-fit" />
+                    <img src="/assets/img/testimoni1.png" alt="Tester_Name" className="object-fit" />
                 </div>
                 <div className="h-128 flex-1 flex flex-col justify-center gap-8 md:gap-4 text-white">
                     <span>Testimonial</span>
@@ -104,11 +115,11 @@ const Testimoni = () => {
                     <span className="text-(--color-primary)">Software Developer</span>
                     <q id="tester-review">Kopinya oke, tapi menurut saya porsinya bisa ditambah sedikit.</q>
                     <div className="flex items-center gap-4">
-                        <img src="/src/assets/img/star.svg" alt="star_icon" />
-                        <img src="/src/assets/img/star.svg" alt="star_icon" />
-                        <img src="/src/assets/img/star.svg" alt="star_icon" />
-                        <img src="/src/assets/img/star.svg" alt="star_icon" />
-                        <img src="/src/assets/img/star.svg" alt="star_icon" />
+                        <img src="/assets/img/star.svg" alt="star_icon" />
+                        <img src="/assets/img/star.svg" alt="star_icon" />
+                        <img src="/assets/img/star.svg" alt="star_icon" />
+                        <img src="/assets/img/star.svg" alt="star_icon" />
+                        <img src="/assets/img/star.svg" alt="star_icon" />
                         <span>5.0</span>
                     </div>
                     <div className="flex justify-between md:justify-start gap-4">
@@ -129,7 +140,7 @@ const Testimoni = () => {
 
 const FloatingChat = () => {
     const chatbox = useRef()
-    function chatboxToggler(){
+    function chatboxToggler() {
         chatbox.current.classList.toggle('hidden')
     }
     return (
@@ -257,12 +268,22 @@ const FloatingChat = () => {
 }
 
 const Home = () => {
+    const [data, setData] = useState([])
+    useEffect(
+        () => {
+            dataFetcher("https://raw.githubusercontent.com/rezafauzan/koda-b6-react/refs/heads/feat/product-populating/public/assets/data/product.json").then(
+                products => { setData(products) }
+            )
+        }, []
+    )
     return (
         <div className="container max-w-360 mx-auto flex flex-col">
             <Navbar absolute={true} />
             <Hero />
             <About />
-            <Product />
+            <ProductContext value={data}>
+                <Product />
+            </ProductContext>
             <Map />
             <Testimoni />
             <Footer />

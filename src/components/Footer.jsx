@@ -9,7 +9,7 @@ const Footer = () => {
                 <div className="flex-1 w-full flex justify-center md:justify-start items-center md:items-start">
                     <ul className="flex flex-col justify-center md:justify-start items-center md:items-start gap-4 h-full w-full">
                         <li>
-                            <img src="/src/assets/img/brand.svg" alt="Brand_Icon" />
+                            <img src="/assets/img/brand.svg" alt="Brand_Icon" />
                         </li>
                         <li className="text-black/70">Coffee Shop is a store that sells some good meals, and especially coffee. We provide high
                             quality beans</li>

@@ -34,7 +34,7 @@ const Register = () => {
                 navigator("/")
             }
         },
-        []
+        [user]
     )
     const validator = yup.object({
         fullname: yup.string("Nama tidak valid").required("Nama harus diisi").min(4, "Nama minimal 4 karakter"),
@@ -53,6 +53,7 @@ const Register = () => {
         } else {
             registeredUsers.push(
                 {
+                    avatar: "https://i.pravatar.cc/400?img=54",
                     fullname: fullname.trim(),
                     email: email.trim(),
                     phone: phone.trim(),
