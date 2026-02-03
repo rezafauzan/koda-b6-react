@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { BsArrowRight, BsHandThumbsUp } from "react-icons/bs";
 import { BsCart3 } from "react-icons/bs"
 import ProductCard from "/src/components/ProductCard";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ProductContext from "/src/components/context/ProductContext";
 import { useForm } from "react-hook-form";
 import UserContext from "/src/components/context/UserContext"
@@ -42,7 +42,8 @@ const ProductDetail = () => {
     const { productId } = useParams()
     const [quantity, setQuantity] = useState(1)
     const [product, setProduct] = useState(null)
-    
+    const navigator = useNavigate()
+
     useEffect(
         () => {
             const cartLocalStorage = JSON.parse(localStorage.getItem("cart")) || []
@@ -52,11 +53,14 @@ const ProductDetail = () => {
         [products, productId]
     )
 
-    function buy(data) {
-        console.log(data)
+    function buy(formData) {
+        const buyData = formData
+        buyData.productId = productId
+        buyData.productPrice = product.price
+        navigator("/payment", { state: buyData })
     }
 
-    function addToCart() {
+    function addToCart(formData) {
         // const productInCart = cart.find(cartItem => cartItem.productId === productId)
         // if (productInCart.length > 0) {
         //     productInCart.quantity = productInCart.quantity + quantity
@@ -68,8 +72,9 @@ const ProductDetail = () => {
         //     }
         // }
         const product = {
-            productId: parseInt(productId),
-            quantity: quantity
+            ...formData,
+            productId: productId,
+            productPrice: product.price
         }
         const cart = cartData
         cart.push(product)
@@ -246,7 +251,7 @@ const ProductDetail = () => {
                                                 </div>
                                                 <div className="flex flex-col md:flex-row gap-4">
                                                     <button type="submit" className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</button>
-                                                    <button type="button" className="px-4 py-2 border rounded flex-1 flex justify-center items-center cursor-pointer text-(--color-primary) border-(--color-primary) hover:text-(--color-primary-active) hover:border-(--color-primary-active)" onClick={addToCart}>
+                                                    <button type="button" className="px-4 py-2 border rounded flex-1 flex justify-center items-center cursor-pointer text-(--color-primary) border-(--color-primary) hover:text-(--color-primary-active) hover:border-(--color-primary-active)" onClick={handleSubmit(data=>{addToCart(data)})}>
                                                         <BsCart3 /> Add to cart
                                                     </button>
                                                 </div>
