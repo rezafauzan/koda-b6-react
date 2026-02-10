@@ -1,3 +1,4 @@
+import { AiFillStar } from "react-icons/ai";
 import { BiSend } from "react-icons/bi";
 import { GoFlame } from "react-icons/go";
 import { AiOutlineUser } from "react-icons/ai";
@@ -73,7 +74,7 @@ const Product = () => {
                 {
                     (
                         products.length > 0 ?
-                            products.slice(0,4).map(
+                            products.slice(0, 4).map(
                                 (product, index) =>
                                     <ProductCard key={"product-" + index} product={product} flashsale={true} />
                             )
@@ -103,28 +104,90 @@ const Map = () => {
 }
 
 const Testimoni = () => {
+    const testimoni = [
+        {
+            "name": "Rizky Ananda",
+            "proffesion": "Software Developer",
+            "picture": "pexels-djordje-petrovic-590080-2102416.jpg",
+            "review": "Tempatnya nyaman buat kerja lama, Wi-Fi stabil dan colokan banyak. Kopinya juga enak.",
+            "rating": 5
+        },
+        {
+            "name": "Ayu Lestari",
+            "proffesion": "Mahasiswa",
+            "picture": "pexels-m-rifki-kurniawan-633404448-19403094.jpg",
+            "review": "Suka suasananya yang tenang, cocok buat ngerjain tugas. Harganya masih masuk akal.",
+            "rating": 4
+        },
+        {
+            "name": "Andi Pratama",
+            "proffesion": "Freelancer",
+            "picture": "pexels-punttim-52608.jpg",
+            "review": "Kopi enak dan konsisten rasanya, cuma kadang agak rame di jam sibuk.",
+            "rating": 4
+        },
+        {
+            "name": "Siti Nurhaliza",
+            "proffesion": "Content Creator",
+            "picture": "pexels-firman-fatthul-154779494-27906780.jpg",
+            "review": "Interior bagus buat foto dan bikin konten. Pelayanannya ramah.",
+            "rating": 5
+        },
+        {
+            "name": "Budi Santoso",
+            "proffesion": "Karyawan Swasta",
+            "picture": "pexels-jimmy-nilsson-masth-193596566-13474086.jpg",
+            "review": "Kopinya oke, tapi menurut saya porsinya bisa ditambah sedikit.",
+            "rating": 2
+        }
+    ]
+
+    const [activeTestimoniIndex, setActiveTestimoniIndex] = useState(0)
+    const activeTestimoni =  testimoni[activeTestimoniIndex]
+
+    function nextTestimoni() {
+        if (activeTestimoniIndex < testimoni.length -1) {
+            const index = activeTestimoniIndex + 1
+            setActiveTestimoniIndex(index)
+        }else{
+            const index = 0
+            setActiveTestimoniIndex(index)
+        }
+    }
+    
+    function prevTestimoni() {
+        if (activeTestimoniIndex > 0) {
+            const index = activeTestimoniIndex - 1
+            setActiveTestimoniIndex(index)
+        }else{
+            const index = testimoni.length - 1
+            setActiveTestimoniIndex(index)
+        }
+    }
+
+
     return (
         <section>
-            <div className="md:h-128 px-16 py-16 md:py-0 flex flex-col md:flex-row gap-10 bg-[linear-gradient(168.18deg,#777C82_-114.74%,#0B0909_91.35%)]">
+            <div className="h-128 md:min-h-fit md:h-screen md:max-h-512 md:px-16 md:py-16 py-0 flex flex-col md:flex-row gap-10 bg-[linear-gradient(168.18deg,#777C82_-114.74%,#0B0909_91.35%)]">
                 <div className="flex-1 overflow-hidden flex flex-col justify-center">
-                    <img src="/assets/img/testimoni1.png" alt="Tester_Name" className="object-fit" />
+                    <img src={"/assets/img/" + activeTestimoni.picture} alt={activeTestimoni.name} className="object-fit" />
                 </div>
-                <div className="h-128 flex-1 flex flex-col justify-center gap-8 md:gap-4 text-white">
+                <div className="flex-1 flex flex-col justify-center gap-8 md:gap-4 text-white">
                     <span>Testimonial</span>
-                    <span className="font-bold text-4xl border-l-4 border-l-(--color-primary) pl-4">Siti Nurhaliza</span>
-                    <span className="text-(--color-primary)">Software Developer</span>
-                    <q id="tester-review">Kopinya oke, tapi menurut saya porsinya bisa ditambah sedikit.</q>
+                    <span className="font-bold text-4xl border-l-4 border-l-(--color-primary) pl-4">{activeTestimoni.name}</span>
+                    <span className="text-(--color-primary)">{activeTestimoni.proffesion}</span>
+                    <q id="tester-review">{activeTestimoni.review}</q>
                     <div className="flex items-center gap-4">
-                        <img src="/assets/img/star.svg" alt="star_icon" />
-                        <img src="/assets/img/star.svg" alt="star_icon" />
-                        <img src="/assets/img/star.svg" alt="star_icon" />
-                        <img src="/assets/img/star.svg" alt="star_icon" />
-                        <img src="/assets/img/star.svg" alt="star_icon" />
-                        <span>5.0</span>
+                        <div className="w-[40%] flex justify-evenly items-center gap-4">
+                            {
+                                Array.from({ length: activeTestimoni.rating }).map((rating, index) => <AiFillStar key={"star-"+index} className="text-(--color-primary)" />)
+                            }
+                        </div>
+                        <span>{activeTestimoni.rating}.0</span>
                     </div>
                     <div className="flex justify-between md:justify-start gap-4">
-                        <button className="rounded-full w-10 h-10 bg-white flex justify-center items-center cursor-pointer"><BsArrowLeft className="text-black" /></button>
-                        <button className="rounded-full w-10 h-10 bg-(--color-primary) flex justify-center items-center cursor-pointer"><BsArrowRight className="text-black" /></button>
+                        <button className="rounded-full w-10 h-10 bg-white flex justify-center items-center cursor-pointer" onClick={prevTestimoni}><BsArrowLeft className="text-black" /></button>
+                        <button className="rounded-full w-10 h-10 bg-(--color-primary) flex justify-center items-center cursor-pointer" onClick={nextTestimoni}><BsArrowRight className="text-black" /></button>
                     </div>
                     <div id="testimoni-indicator" className="testimoni-indicator">
                         <span className="active"></span>
