@@ -24,7 +24,7 @@ const Hero = () => {
                         <p className="">We provide high quality beans, good taste, and healthy meals made by love just for you.
                             Start your day with us for a bigger smile!</p>
                         <Link to="/product" className="bg-(--color-primary) p-4 rounded w-fit text-black">Get Started!</Link>
-                        <div className="flex w-full justify-between gap-4">
+                        <div className="flex flex-col md:flex-row w-full justify-between gap-4">
                             <div className="flex-1 flex flex-col gap-4 border-r border-r-white"><span className="text-4xl text-(--color-primary)">90+</span>Staff</div>
                             <div className="flex-1 flex flex-col gap-4 border-r border-r-white"><span className="text-4xl text-(--color-primary)">40+</span>Stores</div>
                             <div className="flex-1 flex flex-col gap-4"><span className="text-4xl text-(--color-primary)">800+</span>Customer</div>
@@ -168,7 +168,7 @@ const Testimoni = () => {
 
     return (
         <section>
-            <div className="h-128 md:min-h-fit md:h-screen md:max-h-512 md:px-16 md:py-16 py-0 flex flex-col md:flex-row gap-10 bg-[linear-gradient(168.18deg,#777C82_-114.74%,#0B0909_91.35%)]">
+            <div className="md:min-h-fit md:h-screen md:max-h-512 md:px-16 md:py-16 p-10 flex flex-col md:flex-row gap-10 bg-[linear-gradient(168.18deg,#777C82_-114.74%,#0B0909_91.35%)]">
                 <div className="flex-1 overflow-hidden flex flex-col justify-center">
                     <img src={"/assets/img/" + activeTestimoni.picture} alt={activeTestimoni.name} className="object-fit" />
                 </div>
