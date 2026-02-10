@@ -35,7 +35,7 @@ const OtherProducts = () => {
 }
 
 const ProductDetail = () => {
-    const user = useContext(UserContext)
+    const { user, setUser, setAlert } = useContext(UserContext)
     const products = useContext(ProductContext)
     const [cartData, setCartData] = useState([])
     const { register, handleSubmit, setValue } = useForm()
@@ -251,7 +251,7 @@ const ProductDetail = () => {
                                                 </div>
                                                 <div className="flex flex-col md:flex-row gap-4">
                                                     <button type="submit" className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</button>
-                                                    <button type="button" className="px-4 py-2 border rounded flex-1 flex justify-center items-center cursor-pointer text-(--color-primary) border-(--color-primary) hover:text-(--color-primary-active) hover:border-(--color-primary-active)" onClick={handleSubmit(data=>{addToCart(data)})}>
+                                                    <button type="button" className="px-4 py-2 border rounded flex-1 flex justify-center items-center cursor-pointer text-(--color-primary) border-(--color-primary) hover:text-(--color-primary-active) hover:border-(--color-primary-active)" onClick={handleSubmit(data => { addToCart(data) })}>
                                                         <BsCart3 /> Add to cart
                                                     </button>
                                                 </div>
