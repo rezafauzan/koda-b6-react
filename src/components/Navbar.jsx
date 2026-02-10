@@ -6,11 +6,12 @@ import { useContext } from "react";
 import UserContext from "/src/components/context/UserContext"
 
 const navbar = ({ absolute, theme }) => {
-    const user = useContext(UserContext)
+    const [user, setUser] = useContext(UserContext)
     const location = useLocation();
     const navigator = useNavigate()
     function logout(){
         window.localStorage.removeItem("user")
+        setUser({})
         navigator("/login")
     }
     return (

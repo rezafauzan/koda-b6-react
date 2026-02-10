@@ -69,7 +69,7 @@ const App = () => {
         },
     ])
     return (
-        <UserContext value={user}>
+        <UserContext value={[user, setUser]}>
                 <RouterProvider router={router} />
         </UserContext>
     )
