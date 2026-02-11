@@ -143,34 +143,38 @@ const Testimoni = () => {
     ]
 
     const [activeTestimoniIndex, setActiveTestimoniIndex] = useState(0)
-    const activeTestimoni =  testimoni[activeTestimoniIndex]
+    const activeTestimoni = testimoni[activeTestimoniIndex]
 
     function nextTestimoni() {
-        if (activeTestimoniIndex < testimoni.length -1) {
+        if (activeTestimoniIndex < testimoni.length - 1) {
             const index = activeTestimoniIndex + 1
             setActiveTestimoniIndex(index)
-        }else{
+        } else {
             const index = 0
             setActiveTestimoniIndex(index)
         }
     }
-    
+
     function prevTestimoni() {
         if (activeTestimoniIndex > 0) {
             const index = activeTestimoniIndex - 1
             setActiveTestimoniIndex(index)
-        }else{
+        } else {
             const index = testimoni.length - 1
             setActiveTestimoniIndex(index)
         }
     }
 
     const nextButton = useRef()
-    
-    setInterval(
-        ()=>{
-            nextButton.current.click()
-        }, 4000 
+    useEffect(
+        () => {
+            setInterval(
+                () => {
+                    nextButton.current.click()
+                }, 4000
+            )
+        }
+        , []
     )
 
     return (
@@ -187,7 +191,7 @@ const Testimoni = () => {
                     <div className="flex items-center md:gap-4 gap-10">
                         <div className="lg:w-[40%] flex justify-evenly items-center gap-4">
                             {
-                                Array.from({ length: activeTestimoni.rating }).map((rating, index) => <AiFillStar key={"star-"+index} className="text-(--color-primary)" />)
+                                Array.from({ length: activeTestimoni.rating }).map((rating, index) => <AiFillStar key={"star-" + index} className="text-(--color-primary)" />)
                             }
                         </div>
                         <span>{activeTestimoni.rating}.0</span>
