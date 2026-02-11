@@ -352,7 +352,9 @@ const Home = () => {
     )
     return (
         <div className="container max-w-360 mx-auto flex flex-col">
-            <Navbar absolute={true} />
+            <ProductContext value={data}>
+                <Navbar absolute={true} />
+            </ProductContext>
             <Hero />
             <About />
             <ProductContext value={data}>
