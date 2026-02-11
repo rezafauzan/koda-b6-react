@@ -71,13 +71,13 @@ const ProductDetail = () => {
         //         quantity: quantity
         //     }
         // }
-        const product = {
+        const productCart = {
             ...formData,
             productId: productId,
             productPrice: product.price
         }
         const cart = cartData
-        cart.push(product)
+        cart.push(productCart)
         setCartData(cart)
         window.localStorage.setItem("cart", JSON.stringify(cartData))
     }
