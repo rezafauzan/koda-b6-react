@@ -165,20 +165,27 @@ const Testimoni = () => {
         }
     }
 
+    const nextButton = useRef()
+    
+    setInterval(
+        ()=>{
+            nextButton.current.click()
+        }, 4000 
+    )
 
     return (
         <section>
-            <div className="md:min-h-fit md:h-screen md:max-h-512 md:px-16 md:py-16 p-10 flex flex-col md:flex-row gap-10 bg-[linear-gradient(168.18deg,#777C82_-114.74%,#0B0909_91.35%)]">
+            <div className="md:min-h-fit md:h-screen md:max-h-128 md:px-16 md:py-16 p-10 flex flex-col md:flex-row gap-10 bg-[linear-gradient(168.18deg,#777C82_-114.74%,#0B0909_91.35%)]">
                 <div className="flex-1 overflow-hidden flex flex-col justify-center">
                     <img src={"/assets/img/" + activeTestimoni.picture} alt={activeTestimoni.name} className="object-fit" />
                 </div>
-                <div className="flex-1 flex flex-col justify-center gap-8 md:gap-4 text-white">
+                <div className="flex-1 flex flex-col justify-center gap-8 md:gap-4 text-white md:min-h-fit md:h-screen md:max-h-128">
                     <span>Testimonial</span>
                     <span className="font-bold text-4xl border-l-4 border-l-(--color-primary) pl-4">{activeTestimoni.name}</span>
                     <span className="text-(--color-primary)">{activeTestimoni.proffesion}</span>
-                    <q id="tester-review">{activeTestimoni.review}</q>
-                    <div className="flex items-center gap-4">
-                        <div className="w-[40%] flex justify-evenly items-center gap-4">
+                    <q className="h-28 md:h-10">{activeTestimoni.review}</q>
+                    <div className="flex items-center md:gap-4 gap-10">
+                        <div className="lg:w-[40%] flex justify-evenly items-center gap-4">
                             {
                                 Array.from({ length: activeTestimoni.rating }).map((rating, index) => <AiFillStar key={"star-"+index} className="text-(--color-primary)" />)
                             }
@@ -186,7 +193,7 @@ const Testimoni = () => {
                         <span>{activeTestimoni.rating}.0</span>
                     </div>
                     <div className="flex justify-between md:justify-start gap-4">
-                        <button className="rounded-full w-10 h-10 bg-white flex justify-center items-center cursor-pointer" onClick={prevTestimoni}><BsArrowLeft className="text-black" /></button>
+                        <button ref={nextButton} className="rounded-full w-10 h-10 bg-white flex justify-center items-center cursor-pointer" onClick={prevTestimoni}><BsArrowLeft className="text-black" /></button>
                         <button className="rounded-full w-10 h-10 bg-(--color-primary) flex justify-center items-center cursor-pointer" onClick={nextTestimoni}><BsArrowRight className="text-black" /></button>
                     </div>
                     <div id="testimoni-indicator" className="testimoni-indicator">
