@@ -113,9 +113,9 @@ const Testimoni = () => {
             "rating": 5
         },
         {
-            "name": "Ayu Lestari",
+            "name": "Ayu Gak Lestari",
             "proffesion": "Mahasiswa",
-            "picture": "pexels-m-rifki-kurniawan-633404448-19403094.jpg",
+            "picture": "pexels-262756269-36076123.jpg",
             "review": "Suka suasananya yang tenang, cocok buat ngerjain tugas. Harganya masih masuk akal.",
             "rating": 4
         },
@@ -129,7 +129,7 @@ const Testimoni = () => {
         {
             "name": "Siti Nurhaliza",
             "proffesion": "Content Creator",
-            "picture": "pexels-firman-fatthul-154779494-27906780.jpg",
+            "picture": "pexels-esma-nur-buyukguclu-112544374-35748413.jpg",
             "review": "Interior bagus buat foto dan bikin konten. Pelayanannya ramah.",
             "rating": 5
         },
