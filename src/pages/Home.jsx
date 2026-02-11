@@ -187,7 +187,7 @@ const Testimoni = () => {
                     <span>Testimonial</span>
                     <span className="font-bold text-4xl border-l-4 border-l-(--color-primary) pl-4">{activeTestimoni.name}</span>
                     <span className="text-(--color-primary)">{activeTestimoni.proffesion}</span>
-                    <q className="h-28 md:h-10">{activeTestimoni.review}</q>
+                    <q className="h-28">{activeTestimoni.review}</q>
                     <div className="flex items-center md:gap-4 gap-10">
                         <div className="lg:w-[40%] flex justify-evenly items-center gap-4">
                             {
@@ -196,15 +196,15 @@ const Testimoni = () => {
                         </div>
                         <span>{activeTestimoni.rating}.0</span>
                     </div>
-                    <div className="flex justify-between md:justify-start gap-4">
-                        <button ref={nextButton} className="rounded-full w-10 h-10 bg-white flex justify-center items-center cursor-pointer" onClick={prevTestimoni}><BsArrowLeft className="text-black" /></button>
-                        <button className="rounded-full w-10 h-10 bg-(--color-primary) flex justify-center items-center cursor-pointer" onClick={nextTestimoni}><BsArrowRight className="text-black" /></button>
+                    <div className="flex justify-between md:justify-start gap-4 mb-4">
+                        <button className="rounded-full w-10 h-10 bg-white flex justify-center items-center cursor-pointer" onClick={prevTestimoni}><BsArrowLeft className="text-black" /></button>
+                        <button ref={nextButton} className="rounded-full w-10 h-10 bg-(--color-primary) flex justify-center items-center cursor-pointer" onClick={nextTestimoni}><BsArrowRight className="text-black" /></button>
                     </div>
-                    <div id="testimoni-indicator" className="testimoni-indicator">
-                        <span className="active"></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    <div className="flex gap-1 justify-evenly">
+                        <span className={"w-8 h-1 rounded-full" + (activeTestimoniIndex === 0 ? " bg-(--color-primary)" : " bg-white/40")}></span>
+                        <span className={"w-8 h-1 rounded-full" + (activeTestimoniIndex === 1 ? " bg-(--color-primary)" : " bg-white/40")}></span>
+                        <span className={"w-8 h-1 rounded-full" + (activeTestimoniIndex === 2 ? " bg-(--color-primary)" : " bg-white/40")}></span>
+                        <span className={"w-8 h-1 rounded-full" + (activeTestimoniIndex === 3 ? " bg-(--color-primary)" : " bg-white/40")}></span>
                     </div>
                 </div>
             </div>
