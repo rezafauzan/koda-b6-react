@@ -41,7 +41,7 @@ const navbar = ({ absolute, theme }) => {
                 <ul className="flex items-center gap-4 flex-1">
                     <li className="hover:text-white"><Link to="/"><img src={brand_white} alt="Coffee Shop" /></Link></li>
                     <li className={"hover:text-white hidden md:block" + (location.pathname === '/' ? " text-white border-b border-(--color-primary)" : " text-white/40")}><Link to="/">Home</Link></li>
-                    <li className={"hover:text-white hidden md:block" + (location.pathname === '/product' ? " text-white border-b border-(--color-primary)" : " text-white/40")}><Link to="/product">Product</Link></li>
+                    <li className={"hover:text-white hidden md:block" + (location.pathname.includes('/product') || location.pathname.includes('/payment')  ? " text-white border-b border-(--color-primary)" : " text-white/40")}><Link to="/product">Product</Link></li>
                 </ul>
                 <ul className="flex justify-end items-center gap-4 flex-1">
                     <li className="text-white">
