@@ -22,6 +22,7 @@ const navbar = ({ absolute, theme }) => {
     const [cartbox, setCartbox] = useState(false);
     const { cartData } = useContext(CartContext)
     const navigator = useNavigate()
+    let total = 0
 
     function toggleDropdown(setter, getter) {
         setter(!getter)
@@ -70,14 +71,23 @@ const navbar = ({ absolute, theme }) => {
                                                 cartData.map(
                                                     item => {
                                                         const product = products.find(product => product.id === parseInt(item.productId))
+                                                        total = cartData.reduce(
+                                                            (total, item) => total + parseInt(item.productPrice * item.quantity), 0
+                                                        )
                                                         if (product != null) {
                                                             return (
                                                                 <Link to={"/product/" + product.id} className="w-full bg-gray-100 text-black hover:bg-gray-400">
-                                                                    <div className="flex flex-col lg:flex-row w-full lg:h-18 items-center gap-4 p-4">
-                                                                        <img src={product.images[0]} alt={product.name} className="h-full flex-1 object-cover" />
-                                                                        <span className="flex-1">{product.name}</span>
-                                                                        <span className="flex-1">{item.quantity}pcs</span>
-                                                                        <span className="flex-1">{"Rp." + (product.price * item.quantity).toLocaleString("id-ID") + ",-"}</span>
+                                                                    <div className="flex flex-col lg:flex-row w-full lg:h-18 items-center gap-4 p-2">
+                                                                        <img src={product.images[0]} alt={product.name} className="w-10" />
+                                                                        <div className="flex flex-col gap-4">
+                                                                            <span className="flex-1 text-xs">{product.name}</span>
+                                                                            <div className="flex gap-4">
+                                                                                <span className="flex-1 text-xs">{item.quantity}pcs</span>
+                                                                                <span className="flex-1 text-xs">{item.size}</span>
+                                                                                <span className="flex-1 text-xs">{item.hotice}</span>
+                                                                                <span className="flex-1 text-xs">{"Rp." + (product.price * item.quantity).toLocaleString("id-ID") + ",-"}</span>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </Link>
                                                             )
@@ -91,6 +101,7 @@ const navbar = ({ absolute, theme }) => {
                                     )
                                 }
                             </div>
+                            <span className="flex-1 text-black font-bold border-t border-t-black/40 w-full p-4 text-center">{"Total: Rp." + (total).toLocaleString("id-ID") + ",-"}</span>
                             <Link to="/payment" className="cursor-pointer p-4 w-full h-10  bg-(--color-primary) flex justify-center items-center gap-4 rounded"><MdPayments />Payment</Link>
                         </div>
                     </li>
