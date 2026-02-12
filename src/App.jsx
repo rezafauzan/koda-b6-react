@@ -29,7 +29,7 @@ const App = () => {
         () => {
             const usersLocalStorage = JSON.parse(localStorage.getItem("user")) || {}
             setUser(usersLocalStorage)
-            const cartLocalStorage = JSON.parse(localStorage.getItem("cart")) || []
+            const cartLocalStorage = JSON.parse(localStorage.getItem("cart")) || null
             setCartData(cartLocalStorage)
         }
         , []

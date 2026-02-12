@@ -96,7 +96,7 @@ const navbar = ({ absolute, theme }) => {
                                                     }
                                                 )
                                                 :
-                                                <span className="text-black">Loading...</span>
+                                                <span className="text-black p-4 bg-gray-400 rounded w-full text-center">Keranjang masih kosong !</span>
                                             :
                                             <span className="text-black">Loading...</span>
                                     )

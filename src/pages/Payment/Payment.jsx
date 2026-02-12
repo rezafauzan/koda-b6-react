@@ -60,7 +60,7 @@ const Payment = () => {
             data.push(order)
             setHistoryOrder(data)
             setCart([])
-            setCartData(null)
+            window.localStorage.removeItem("cart")
             navigator("/payment/order-history")
         }
 
@@ -94,7 +94,7 @@ const Payment = () => {
                                     <Link to="/product" className="cursor-pointer bg-(--color-primary) p-2 w-40 rounded flex justify-center items-center">+ add menu</Link>
                                 </div>
                                 <div className="flex flex-col gap-4 items-center h-128 p-4 overflow-y-auto">
-                                    <div className="flex flex-col gap-4 p-4">
+                                    <div className="flex flex-col gap-4 p-4 w-full">
                                         {
                                             (
                                                 products != null ?
@@ -125,7 +125,7 @@ const Payment = () => {
                                                             }
                                                         )
                                                         :
-                                                        <span className="text-black">Loading...</span>
+                                                        <span className="text-black p-4 bg-gray-400 rounded w-full h-full text-center">Keranjang masih kosong !</span>
                                                     :
                                                     <span className="text-black">Loading...</span>
                                             )
@@ -158,7 +158,15 @@ const Payment = () => {
                                             <span>Sub Total</span>
                                             <span>{"Rp." + (total + (total * 10 / 100) + deliveryFee).toLocaleString("id-ID") + ",-"}</span>
                                         </div>
-                                        <button className="cursor-pointer flex justify-center items-center h-10 bg-(--color-primary) rounded" onClick={pay}>Checkout</button>
+                                        {
+                                            (
+                                                cartData != null
+                                                    ?
+                                                    <button className="cursor-pointer flex justify-center items-center h-10 bg-(--color-primary) rounded" onClick={pay}>Checkout</button>
+                                                    :
+                                                    ""
+                                            )
+                                        }
                                         <div className="flex flex-col gap-4">
                                             <span>We Accept</span>
                                             <div className="flex gap-4">
@@ -210,7 +218,15 @@ const Payment = () => {
                             </label>
                         </div>
                         {formState.errors.delivery && (<span className="bg-red-400 p-4 rounded border border-red-700 text-red-700">{formState.errors.delivery.message}</span>)}
-                        <button className="bg-(--color-primary) hover:bg-(--color-primary-active) hover:text-white text-black p-4 rounded cursor-pointer">Submit</button>
+                        {
+                            (
+                                cartData != null
+                                    ?
+                                    <button className="bg-(--color-primary) hover:bg-(--color-primary-active) hover:text-white text-black p-4 rounded cursor-pointer">Submit</button>
+                                    :
+                                    ""
+                            )
+                        }
                     </form>
                 </div>
             </div>
