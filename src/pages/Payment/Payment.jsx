@@ -45,7 +45,6 @@ const Payment = () => {
 
     function pay() {
         let data = historyOrder || []
-        console.log(historyOrder[0])
         if (!paymentData) {
             paymentDetailForm.current?.scrollIntoView({ behavior: "smooth" })
         } else {
@@ -186,7 +185,7 @@ const Payment = () => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-4 col-span-1">
-                    <div className="flex flex-col col-span-1 md:col-span-2 lg:flex-row gap-4 p-4">
+                    <div className="flex flex-col col-span-1 lg:col-span-2 lg:flex-row gap-4 p-4">
                         <h2 className="text-xl font-bold">Payment Info & Delivery</h2>
                     </div>
                     <form ref={paymentDetailForm} className="flex flex-col gap-4 p-4 flex-1" onSubmit={handleSubmit(toPayment)}>
