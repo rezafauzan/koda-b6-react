@@ -1,3 +1,4 @@
+import { AiFillStar } from "react-icons/ai";
 import { useContext, useEffect, useRef, useState } from "react";
 import { BsArrowRight, BsHandThumbsUp } from "react-icons/bs";
 import { BsCart3 } from "react-icons/bs"
@@ -110,7 +111,7 @@ const ProductDetail = () => {
                                 product != null
                                     ?
                                     product.images.map(
-                                        (image, index) => <img className={"w-full" + (galleryActiveIndex === index ? " col-start-1 col-end-4 row-start-1 row-end-2" : "")} key={"product-image-" + index} src={image} alt={product.name} onMouseEnter={()=>{setGalleryActiveIndex(index)}} />
+                                        (image, index) => <img className={"w-full cursor-pointer " + (galleryActiveIndex === index ? " col-start-1 col-end-4 row-start-1 row-end-2" : "")} key={"product-image-" + index} src={image} alt={product.name} onClick={() => { setGalleryActiveIndex(index) }} />
                                     )
                                     :
                                     <img className="w-full" key={"product-image-"} src={"/404.loading"} alt={"Loading..."} />)}
@@ -165,13 +166,11 @@ const ProductDetail = () => {
                                 ?
                                 product.rating > 0
                                     ?
-                                    <div className="flex gap-4">
-                                        {/* (
-                                        for(let i = 0; i < product.rating; i++){
-                                            <img src="/assets/img/star.svg" alt="star_icon" />
+                                    <div className="w-100 flex items-center gap-4">
+                                        {
+                                            Array.from({ length: product.rating - 1 }).map(() => <AiFillStar className="text-(--color-primary)" />)
                                         }
-                                        ) */}
-                                        <img src="/assets/img/star.svg" alt="star_icon" />
+                                        <AiFillStar className="text-(--color-primary)" />
                                         <span>{product.rating}.0</span>
                                     </div>
                                     :
