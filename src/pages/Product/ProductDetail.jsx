@@ -38,10 +38,11 @@ const OtherProducts = () => {
 const ProductDetail = () => {
     const { user, setAlert } = useContext(UserContext)
     const products = useContext(ProductContext)
-    const {cartData, setCartData} = useContext(CartContext)
+    const { cartData, setCartData } = useContext(CartContext)
     const { register, handleSubmit, setValue } = useForm()
     const { productId } = useParams()
     const [quantity, setQuantity] = useState(1)
+    const [galleryActiveIndex, setGalleryActiveIndex] = useState(0)
     const [product, setProduct] = useState(null)
     const navigator = useNavigate()
 
@@ -51,7 +52,7 @@ const ProductDetail = () => {
             setCartData(cartLocalStorage)
             setQuantity(1)
             setProduct(products.find(product => product.id === parseInt(productId)))
-            window.scrollTo({top:0, behavior:"smooth"})
+            window.scrollTo({ top: 0, behavior: "smooth" })
         },
         [products, productId]
     )
@@ -104,7 +105,15 @@ const ProductDetail = () => {
             <section>
                 <div className="flex flex-col lg:flex-row gap-4 p-4">
                     <div className="flex-2 grid grid-cols-3 gap-4">
-                        {(product != null ? product.images.map((image, index) => (index === 0 ? <img key={"product-image-" + index} src={image} alt={product.name} className="col-span-3 w-full" /> : <img className="w-full" key={"product-image-" + index} src={image} alt={product.name} />)) : <img className="w-full" key={"product-image-"} src={"/404.loading"} alt={"Loading..."} />)}
+                        {
+                            (
+                                product != null
+                                    ?
+                                    product.images.map(
+                                        (image, index) => <img className={"w-full" + (galleryActiveIndex === index ? " col-start-1 col-end-4 row-start-1 row-end-2" : "")} key={"product-image-" + index} src={image} alt={product.name} onMouseEnter={()=>{setGalleryActiveIndex(index)}} />
+                                    )
+                                    :
+                                    <img className="w-full" key={"product-image-"} src={"/404.loading"} alt={"Loading..."} />)}
                     </div>
                     <div className="flex-4 flex flex-col gap-4">
                         {(
