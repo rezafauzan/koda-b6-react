@@ -61,16 +61,6 @@ const ProductDetail = () => {
     }
 
     function addToCart(formData) {
-        // const productInCart = cart.find(cartItem => cartItem.productId === productId)
-        // if (productInCart.length > 0) {
-        //     productInCart.quantity = productInCart.quantity + quantity
-        // } else {
-        //     cart
-        //     const product = {
-        //         productId: productId,
-        //         quantity: quantity
-        //     }
-        // }
         const productCart = {
             ...formData,
             productId: productId,

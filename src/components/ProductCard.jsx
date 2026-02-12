@@ -1,8 +1,29 @@
+import { useEffect, useState } from "react";
 import { BsCart3 } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product = {}, showRating = false }) => {
     const { id, name, desc, images, price, discount, rating, review, stock } = product
+    const [cartData, setCartData] = useState(null)
+    useEffect(
+        () => {
+            const cartLocalStorage = JSON.parse(localStorage.getItem("cart")) || []
+            setCartData(cartLocalStorage)
+        },
+    )
+    function addToCart(formData) {
+        const productCart = {
+            "quantity": "1",
+            "size": "reguler",
+            "hotice": "ice",
+            "productId": id,
+            "productPrice": (discount > 0.0 ? price - (price * discount) : price)
+        }
+        const cart = cartData
+        cart.push(productCart)
+        setCartData(cart)
+        window.localStorage.setItem("cart", JSON.stringify(cartData))
+    }
     return (
         <div className="h-160 md:h-120 min-w-fit w-40 md:min-w-75 md:w-full flex flex-col rounded overflow-hidden relative">
             {(
@@ -48,7 +69,7 @@ const ProductCard = ({ product = {}, showRating = false }) => {
                         :
                         <div className="flex flex-col md:flex-row gap-4">
                             <Link to={`/product/${id}`} className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</Link>
-                            <button className="px-4 py-2 border border-(--color-primary) rounded flex-1 flex justify-center items-center cursor-pointer">
+                            <button className="px-4 py-2 border border-(--color-primary) rounded flex-1 flex justify-center items-center cursor-pointer" onClick={addToCart}>
                                 <BsCart3 />
                             </button>
                         </div>
