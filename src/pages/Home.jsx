@@ -54,7 +54,7 @@ const About = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="hero-image flex-1 h-128 md:h-auto bg-[url('/src/assets/img/feature.jpg')] bg-cover bg-center bg-no-repeat">
+                <div className="hero-image flex-1 h-128 md:h-auto bg-[url('/src/assets/img/feature.jpg')] bg-center bg-no-repeat">
                 </div>
             </div>
         </section>
@@ -179,9 +179,9 @@ const Testimoni = () => {
 
     return (
         <section>
-            <div className="md:min-h-fit md:h-screen md:max-h-128 md:px-16 md:py-16 p-10 flex flex-col md:flex-row gap-10 bg-[linear-gradient(168.18deg,#777C82_-114.74%,#0B0909_91.35%)]">
-                <div className="flex-1 overflow-hidden flex flex-col justify-center">
-                    <img src={"/assets/img/" + activeTestimoni.picture} alt={activeTestimoni.name} className="object-fit" />
+            <div className="md:min-h-fit md:h-screen md:max-h-128 md:px-16 md:py-16 p-10 flex flex-col justify-center items-center md:flex-row gap-10 bg-[linear-gradient(168.18deg,#777C82_-114.74%,#0B0909_91.35%)]">
+                <div className="flex-1 w-full h-full lg:w-100 lg:h-100 overflow-hidden flex flex-col justify-center">
+                    <img src={"/assets/img/" + activeTestimoni.picture} alt={activeTestimoni.name} className="w-full h-full object-cover" />
                 </div>
                 <div className="flex-1 flex flex-col justify-center gap-8 md:gap-4 text-white md:min-h-fit md:h-screen md:max-h-128">
                     <span>Testimonial</span>
