@@ -85,7 +85,11 @@ const ProductDetail = () => {
         if (quantity < product.stock) {
             const latestQuantity = quantity + 1
             setQuantity(latestQuantity)
-            setValue("quantity", latestQuantity)
+            setValue("quantity", quantity)
+        }
+        if (quantity === product.stock) {
+            setQuantity(1)
+            setValue("quantity", quantity)
         }
     }
 
@@ -93,11 +97,11 @@ const ProductDetail = () => {
         if (quantity > 1) {
             const latestQuantity = quantity - 1
             setQuantity(latestQuantity)
-            setValue("quantity", latestQuantity)
+            setValue("quantity", quantity)
         }
         if (quantity === 1) {
             setQuantity(product.stock)
-            setValue("quantity", product.stock)
+            setValue("quantity", quantity)
         }
     }
 
