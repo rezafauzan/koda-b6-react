@@ -14,11 +14,11 @@ import moment from "moment";
 import useLocalStorage from "../../hooks/useLocalStorage"
 
 const Payment = () => {
-    const { cartData } = useContext(CartContext)
+    const { cartData, setCartData } = useContext(CartContext)
     const [products, setProducts] = useState(null)
     const [deliveryFee, setDeliveryFee] = useState(0)
     const [historyOrder, setHistoryOrder] = useLocalStorage("history-order")
-    // const [cart, setCart] = useLocalStorage("cart")
+    const [cart, setCart] = useLocalStorage("cart")
     const [paymentData, setPaymentData] = useState(null)
     const productsData = useContext(ProductContext)
     const paymentDetailForm = useRef()
@@ -39,6 +39,7 @@ const Payment = () => {
     useEffect(
         () => {
             setProducts(productsData)
+            setCart(cartData)
         }, [productsData]
     )
 
@@ -58,6 +59,8 @@ const Payment = () => {
             }
             data.push(order)
             setHistoryOrder(data)
+            setCart([])
+            setCartData(null)
             navigator("/payment/order-history")
         }
 
