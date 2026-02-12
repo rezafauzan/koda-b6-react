@@ -48,9 +48,9 @@ const Payment = () => {
                                                                 console.log(products)
                                                                 if (product != null) {
                                                                     return (
-                                                                        <div className="h-196 lg:h-52 w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
-                                                                            <div className="overflow-hidden flex-1 h-full flex flex-col justify-center items-center gap-4">
-                                                                                <img src={product.images[0]} alt={product.name} className="h-full" />
+                                                                        <div className="h-90 lg:h-52 w-full lg:w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
+                                                                            <div className="overflow-hidden flex-2 flex flex-col justify-center items-center gap-4 h-90 lg:h-full">
+                                                                                <img src={product.images[0]} alt={product.name} className="w-full h-full object-contain" />
                                                                             </div>
                                                                             <div className="h-fit flex flex-col gap-4 left-4 right-4 bottom-0 p-4 rounded flex-3">
                                                                                 {(product.discount > 0.0 ? <div className="w-fit h-4 p-4 text-white bg-red-700 top-4 left-4 flex flex-col justify-center items-center rounded-full"><span>Flash Sale</span></div> : "")}
