@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 const Payment = () => {
     const { cartData } = useContext(CartContext)
     const [products, setProducts] = useState(null)
+    const [deliveryFee, setDeliveryFee] = useState(0)
     const productsData = useContext(ProductContext)
     const { register, handleSubmit } = useForm({
         defaultValues: {
@@ -26,6 +27,15 @@ const Payment = () => {
     )
     function toPayment(data) {
         window.scrollTo({ top: 0, behavior: "smooth" })
+        if (data.delivery === "dineIn") {
+            setDeliveryFee(0)
+        }
+        else if (data.delivery === "doorDelivery") {
+            setDeliveryFee(10000)
+        }
+        else {
+            setDeliveryFee(5000)
+        }
     }
     return (
         <section>
@@ -41,8 +51,8 @@ const Payment = () => {
                                     <h2 className="text-xl font-bold">Your Order</h2>
                                     <Link to="/product" className="cursor-pointer bg-(--color-primary) p-2 w-40 rounded flex justify-center items-center">+ add menu</Link>
                                 </div>
-                                <div className="flex flex-col gap-4 items-center justify-center">
-                                    <div className="flex-1 flex flex-col gap-4">
+                                <div className="flex flex-col gap-4 items-center h-128 p-4 overflow-y-auto">
+                                    <div className="flex flex-col gap-4 p-4">
                                         {
                                             (
                                                 products != null ?
@@ -95,7 +105,7 @@ const Payment = () => {
                                         </div>
                                         <div className="flex justify-between items-center">
                                             <span>Delivery</span>
-                                            <span>{"Rp." + (0).toLocaleString("id-ID") + ",-"}</span>
+                                            <span>{"Rp." + (deliveryFee).toLocaleString("id-ID") + ",-"}</span>
                                         </div>
                                         <div className="flex justify-between items-center">
                                             <span>Tax <sup>ppn 10%</sup></span>
@@ -104,7 +114,7 @@ const Payment = () => {
                                         <hr />
                                         <div className="flex justify-between items-center">
                                             <span>Sub Total</span>
-                                            <span>{"Rp." + (total + (total * 10 / 100)).toLocaleString("id-ID") + ",-"}</span>
+                                            <span>{"Rp." + (total + (total * 10 / 100) + deliveryFee).toLocaleString("id-ID") + ",-"}</span>
                                         </div>
                                         <button type="submit" className="cursor-pointer flex justify-center items-center h-10 bg-(--color-primary) rounded">Checkout</button>
                                         <div className="flex flex-col gap-4">
@@ -136,19 +146,19 @@ const Payment = () => {
                         <span className="text-lg font-bold">Choose Size</span>
                         <div className="flex gap-4 justify-center items-center">
                             <label htmlFor="dineIn" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" {...register("delivery")} id="dineIn" value={"dineIn"} className="hidden" required />
+                                <input type="radio" {...register("delivery")} id="dineIn" value={"dineIn"} className="hidden" required/>
                                 <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white  flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                     <span className="text-[8px] lg:text-lg">Dine In</span>
                                 </div>
                             </label>
                             <label htmlFor="doorDelivery" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" {...register("delivery")} id="doorDelivery" value={"doorDelivery"} className="hidden" required />
+                                <input type="radio" {...register("delivery")} id="doorDelivery" value={"doorDelivery"} className="hidden" required/>
                                 <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white  flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                     <span className="text-[8px] lg:text-lg">Door Delivery</span>
                                 </div>
                             </label>
                             <label htmlFor="pickUp" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" {...register("delivery")} id="pickUp" value={"pickUp"} className="hidden" required />
+                                <input type="radio" {...register("delivery")} id="pickUp" value={"pickUp"} className="hidden" required/>
                                 <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white  flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                     <span className="text-[8px] lg:text-lg">Pick Up</span>
                                 </div>
