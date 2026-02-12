@@ -7,17 +7,26 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import ProductContext from "../../components/context/ProductContext";
 import CartContext from "../../components/context/CartContext";
+import { useForm } from "react-hook-form";
 
 const Payment = () => {
     const { cartData } = useContext(CartContext)
     const [products, setProducts] = useState(null)
     const productsData = useContext(ProductContext)
+    const { register, handleSubmit } = useForm({
+        defaultValues: {
+            delivery: "dineIn"
+        }
+    })
     let total = 0
     useEffect(
         () => {
             setProducts(productsData)
         }, [productsData]
     )
+    function toPayment(data) {
+        window.scrollTo({ top: 0, behavior: "smooth" })
+    }
     return (
         <section>
             <div className="grid grid-cols-1 md:grid-cols-2">
@@ -45,7 +54,6 @@ const Payment = () => {
                                                                 total = cartData.reduce(
                                                                     (total, item) => total + parseInt(item.productPrice * item.quantity), 0
                                                                 )
-                                                                console.log(products)
                                                                 if (product != null) {
                                                                     return (
                                                                         <div className="h-90 lg:h-52 w-full lg:w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
@@ -121,31 +129,32 @@ const Payment = () => {
                     <div className="flex flex-col col-span-1 md:col-span-2 lg:flex-row gap-4 p-4">
                         <h2 className="text-xl font-bold">Payment Info & Delivery</h2>
                     </div>
-                    <form className="flex flex-col gap-4 p-4 flex-1 ">
-                        <Input type="email" labelName="Email" icon={mail_icon} placeholder="Enter email address" />
-                        <Input type="text" labelName="Fullname" icon={profile_icon} placeholder="Enter your fullname" />
-                        <Input type="email" labelName="Address" icon={location_icon} placeholder="Enter your address" />
+                    <form className="flex flex-col gap-4 p-4 flex-1" onSubmit={handleSubmit(toPayment)}>
+                        <Input type="email" {...register("email")} labelName="Email" icon={mail_icon} placeholder="Enter email address" />
+                        <Input type="text" {...register("fullname")} labelName="Fullname" icon={profile_icon} placeholder="Enter your fullname" />
+                        <Input type="email" {...register("address")} labelName="Address" icon={location_icon} placeholder="Enter your address" />
                         <span className="text-lg font-bold">Choose Size</span>
                         <div className="flex gap-4 justify-center items-center">
                             <label htmlFor="dineIn" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" name="delivery" id="dineIn" className="hidden" />
-                                <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                <input type="radio" {...register("delivery")} id="dineIn" value={"dineIn"} className="hidden" required />
+                                <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white  flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                     <span className="text-[8px] lg:text-lg">Dine In</span>
                                 </div>
                             </label>
                             <label htmlFor="doorDelivery" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" name="delivery" id="doorDelivery" className="hidden" />
-                                <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                <input type="radio" {...register("delivery")} id="doorDelivery" value={"doorDelivery"} className="hidden" required />
+                                <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white  flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                     <span className="text-[8px] lg:text-lg">Door Delivery</span>
                                 </div>
                             </label>
                             <label htmlFor="pickUp" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" name="delivery" id="pickUp" className="hidden" />
-                                <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                <input type="radio" {...register("delivery")} id="pickUp" value={"pickUp"} className="hidden" required />
+                                <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white  flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                     <span className="text-[8px] lg:text-lg">Pick Up</span>
                                 </div>
                             </label>
                         </div>
+                        <button className="bg-(--color-primary) hover:bg-(--color-primary-active) hover:text-white text-black p-4 rounded cursor-pointer">Submit</button>
                     </form>
                 </div>
             </div>

@@ -20,7 +20,6 @@ const Login = () => {
 
     function login({ email, password }) {
         const userFound = users.find(user => user.email === email)
-        console.log(userFound)
         if (userFound) {
             if (password === userFound.password) {
                 window.localStorage.setItem("user", JSON.stringify({ fullname: userFound.fullname, avatar: userFound.avatar, email: userFound.email, role: userFound.role }))
