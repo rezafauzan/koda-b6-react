@@ -7,7 +7,6 @@ import brand_white from "../assets/img/brand-white.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import UserContext from "/src/components/context/UserContext"
-import useLocalStorage from "/src/hooks/useLocalStorage"
 import { useForm } from "react-hook-form";
 import ProductContext from "/src/components/context/ProductContext"
 import CartContext from "./context/CartContext";
@@ -63,7 +62,7 @@ const navbar = ({ absolute, theme }) => {
                         <button className="cursor-pointer" onClick={() => { toggleDropdown(setCartbox, cartbox) }}>
                             <BsCart3 className="text-white w-7 h-7" />
                         </button>
-                        <div className={"absolute bg-white w-40 md:w-100 lg:h-100 -bottom-104 -right-4 flex-col items-center gap-4 rounded p-4" + (cartbox ? " flex" : " hidden")}>
+                        <div className={"absolute bg-white border border-black/10 shadow w-40 md:w-100 lg:h-100 -bottom-104 -right-4 flex-col items-center gap-4 rounded p-4" + (cartbox ? " flex" : " hidden")}>
                             <div className="w-full h-90 p-4 flex flex-col items-center gap-4 rounded overflow-y-auto">
                                 {
                                     (
@@ -119,7 +118,7 @@ const navbar = ({ absolute, theme }) => {
                                         <span className="hidden md:block">{(user.fullname).slice(0, 4)}</span>
                                     </div>
 
-                                    <div className={"absolute bg-white w-40 h-40 -bottom-40 right-0 flex-col justify-center items-center gap-4 p-4 rounded" + (userDropdown ? " flex" : " hidden")}>
+                                    <div className={"absolute bg-white border border-black/10 shadow w-40 h-40 -bottom-40 right-0 flex-col justify-center items-center gap-4 p-4 rounded" + (userDropdown ? " flex" : " hidden")}>
                                         <button className="w-full hover:text-black text-black/40 cursor-pointer" onClick={logout}>
                                             <span className="flex items-center gap-4"><FiLogOut />Logout</span>
                                         </button>
