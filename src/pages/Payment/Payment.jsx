@@ -83,20 +83,20 @@ const Payment = () => {
                                     <div className="flex-1 flex flex-col gap-4">
                                         <div className="flex justify-between items-center">
                                             <span>Order</span>
-                                            <span>{"Rp." + (40000) + ",-"}</span>
+                                            <span>{"Rp." + total.toLocaleString("id-ID") + ",-"}</span>
                                         </div>
                                         <div className="flex justify-between items-center">
                                             <span>Delivery</span>
-                                            <span>{"Rp." + (0) + ",-"}</span>
+                                            <span>{"Rp." + (0).toLocaleString("id-ID") + ",-"}</span>
                                         </div>
                                         <div className="flex justify-between items-center">
-                                            <span>Tax</span>
-                                            <span>{"Rp." + (40000 * 10 / 100) + ",-"}</span>
+                                            <span>Tax <sup>ppn 10%</sup></span>
+                                            <span>{"Rp." + (total * 10 / 100).toLocaleString("id-ID") + ",-"}</span>
                                         </div>
                                         <hr />
                                         <div className="flex justify-between items-center">
                                             <span>Sub Total</span>
-                                            <span>{"Rp." + (40000 - (40000 * 10 / 100)) + ",-"}</span>
+                                            <span>{"Rp." + (total + (total * 10 / 100)).toLocaleString("id-ID") + ",-"}</span>
                                         </div>
                                         <button type="submit" className="cursor-pointer flex justify-center items-center h-10 bg-(--color-primary) rounded">Checkout</button>
                                         <div className="flex flex-col gap-4">
