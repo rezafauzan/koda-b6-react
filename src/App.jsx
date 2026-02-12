@@ -33,7 +33,6 @@ const App = () => {
         }
         , []
     )
-
     const router = createBrowserRouter([
         {
             path: '/',

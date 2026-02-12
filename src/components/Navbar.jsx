@@ -10,6 +10,7 @@ import UserContext from "/src/components/context/UserContext"
 import useLocalStorage from "/src/hooks/useLocalStorage"
 import { useForm } from "react-hook-form";
 import ProductContext from "/src/components/context/ProductContext"
+import CartContext from "./context/CartContext";
 
 const navbar = ({ absolute, theme }) => {
     const { user, setUser, setAlert } = useContext(UserContext)
@@ -19,7 +20,7 @@ const navbar = ({ absolute, theme }) => {
     const [userDropdown, setUserDropdown] = useState(false);
     const [searchbox, setSearchbox] = useState(false);
     const [cartbox, setCartbox] = useState(false);
-    const [cart] = useLocalStorage("cart");
+    const { cartData } = useContext(CartContext)
     const navigator = useNavigate()
 
     function toggleDropdown(setter, getter) {
@@ -63,27 +64,30 @@ const navbar = ({ absolute, theme }) => {
                             <div className="w-full h-90 p-4 flex flex-col items-center gap-4 rounded overflow-y-auto">
                                 {
                                     (
-                                        products != null && cart != null
-                                            ?
-                                            cart.map(
-                                                item => {
-                                                    const product = products.find(product => product.id === parseInt(item.productId))
-                                                    if (product != null) {
-                                                        return (
-                                                            <Link to={"/product/" + product.id} className="w-full bg-gray-100 text-black hover:bg-gray-400">
-                                                                <div className="flex flex-col lg:flex-row w-full lg:h-18 items-center gap-4 p-4">
-                                                                    <img src={product.images[0]} alt={product.name} className="h-full flex-1 object-cover" />
-                                                                    <span className="flex-1">{product.name}</span>
-                                                                    <span className="flex-1">{item.quantity}pcs</span>
-                                                                    <span className="flex-1">{"Rp." + (product.price * item.quantity).toLocaleString("id-ID") + ",-"}</span>
-                                                                </div>
-                                                            </Link>
-                                                        )
+                                        products != null ?
+                                            cartData != null
+                                                ?
+                                                cartData.map(
+                                                    item => {
+                                                        const product = products.find(product => product.id === parseInt(item.productId))
+                                                        if (product != null) {
+                                                            return (
+                                                                <Link to={"/product/" + product.id} className="w-full bg-gray-100 text-black hover:bg-gray-400">
+                                                                    <div className="flex flex-col lg:flex-row w-full lg:h-18 items-center gap-4 p-4">
+                                                                        <img src={product.images[0]} alt={product.name} className="h-full flex-1 object-cover" />
+                                                                        <span className="flex-1">{product.name}</span>
+                                                                        <span className="flex-1">{item.quantity}pcs</span>
+                                                                        <span className="flex-1">{"Rp." + (product.price * item.quantity).toLocaleString("id-ID") + ",-"}</span>
+                                                                    </div>
+                                                                </Link>
+                                                            )
+                                                        }
                                                     }
-                                                }
-                                            )
+                                                )
+                                                :
+                                                <span className="text-black">Loading...</span>
                                             :
-                                            "Loading..."
+                                            <span className="text-black">Loading...</span>
                                     )
                                 }
                             </div>
