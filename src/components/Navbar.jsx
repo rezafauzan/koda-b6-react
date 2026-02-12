@@ -11,9 +11,11 @@ import useLocalStorage from "/src/hooks/useLocalStorage"
 import { useForm } from "react-hook-form";
 import ProductContext from "/src/components/context/ProductContext"
 import CartContext from "./context/CartContext";
+import AlertContext from "./context/AlertContext";
 
 const navbar = ({ absolute, theme }) => {
-    const { user, setUser, setAlert } = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
+    const { setAlert } = useContext(AlertContext)
     const products = useContext(ProductContext) || null
     const { register, handleSubmit } = useForm()
     const location = useLocation();

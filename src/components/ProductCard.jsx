@@ -2,12 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { BsCart3 } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import CartContext from "./context/CartContext";
-import UserContext from "/src/components/context/UserContext"
+import AlertContext from "./context/AlertContext";
 
 const ProductCard = ({ product = {}, showRating = false }) => {
-    const { setAlert } = useContext(UserContext)
+    const { setAlert } = useContext(AlertContext)
     const { id, name, desc, images, price, discount, rating, review, stock } = product
-    const {cartData, setCartData} = useContext(CartContext)
+    const { cartData, setCartData } = useContext(CartContext)
 
     function addToCart(formData) {
         const productCart = {
@@ -19,7 +19,7 @@ const ProductCard = ({ product = {}, showRating = false }) => {
         }
         const cart = cartData
         cart.push(productCart)
-        setCartData(cart)        
+        setCartData(cart)
         window.localStorage.setItem("cart", JSON.stringify(cartData))
         setAlert(["success", `1pcs ${name} medium ice berhasil ditambahkan ke keranjang!`])
     }

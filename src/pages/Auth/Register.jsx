@@ -14,10 +14,12 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { useContext, useEffect, useRef, useState } from "react"
 import UserContext from "/src/components/context/UserContext";
 import { useNavigate } from "react-router-dom";
+import AlertContext from "../../components/context/AlertContext";
 
 const Register = () => {
     const [users, setUsers] = useState([])
-    const {user, setUser, setAlert} = useContext(UserContext)
+    const { user } = useContext(UserContext)
+    const { setAlert } = useContext(AlertContext)
     const navigator = useNavigate()
 
     useEffect(

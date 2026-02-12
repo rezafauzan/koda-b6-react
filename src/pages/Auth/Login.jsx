@@ -9,9 +9,11 @@ import { useContext, useEffect, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 import { AiOutlineCloseCircle } from "react-icons/ai"
 import UserContext from "/src/components/context/UserContext"
+import AlertContext from "../../components/context/AlertContext"
 
 const Login = () => {
-    const {user, setUser, setAlert} = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
+    const { setAlert } = useContext(AlertContext)
     const [users, setUsers] = useState([])
     const { register, handleSubmit } = useForm()
     const navigator = useNavigate()

@@ -5,10 +5,12 @@ import UserContext from "/src/components/context/UserContext"
 import Input from "/src/components/Input"
 import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
+import AlertContext from "../../components/context/AlertContext"
 
 const ForgotPassword = () => {
     const [users, setUsers] = useState([])
-    const { user, setAlert } = useContext(UserContext)
+    const { user } = useContext(UserContext)
+    const { setAlert } = useContext(AlertContext)
     const { register, handleSubmit } = useForm()
     const navigator = useNavigate()
 

@@ -8,6 +8,7 @@ import ProductContext from "/src/components/context/ProductContext";
 import { useForm } from "react-hook-form";
 import UserContext from "/src/components/context/UserContext"
 import CartContext from "../../components/context/CartContext";
+import AlertContext from "../../components/context/AlertContext";
 
 const OtherProducts = () => {
     const products = useContext(ProductContext)
@@ -37,12 +38,13 @@ const OtherProducts = () => {
 }
 
 const ProductDetail = () => {
-    const { user, setAlert } = useContext(UserContext)
+    const { user } = useContext(UserContext)
+    const { setAlert } = useContext(AlertContext)
     const products = useContext(ProductContext)
     const { cartData, setCartData } = useContext(CartContext)
     const { register, handleSubmit, setValue } = useForm(
         {
-            defaultValues:{
+            defaultValues: {
                 size: "medium",
                 hotice: "ice"
             }
@@ -235,7 +237,7 @@ const ProductDetail = () => {
                                                         </div>
                                                     </label>
                                                     <label htmlFor="medium" className="group flex-1 flex justify-center items-center">
-                                                        <input type="radio" {...register("size")} id="medium" value="medium" className="hidden"/>
+                                                        <input type="radio" {...register("size")} id="medium" value="medium" className="hidden" />
                                                         <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) hover:bg-(--color-primary) hover:text-white cursor-pointer ">
                                                             <span>Medium</span>
                                                         </div>
@@ -256,7 +258,7 @@ const ProductDetail = () => {
                                                         </div>
                                                     </label>
                                                     <label htmlFor="ice" className="group flex-1 flex justify-center items-center">
-                                                        <input type="radio" {...register("hotice")} id="ice" value="ice" className="hidden"/>
+                                                        <input type="radio" {...register("hotice")} id="ice" value="ice" className="hidden" />
                                                         <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) hover:bg-(--color-primary) hover:text-white cursor-pointer ">
                                                             <span>Ice</span>
                                                         </div>
