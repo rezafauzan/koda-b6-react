@@ -40,7 +40,14 @@ const ProductDetail = () => {
     const { user, setAlert } = useContext(UserContext)
     const products = useContext(ProductContext)
     const { cartData, setCartData } = useContext(CartContext)
-    const { register, handleSubmit, setValue } = useForm()
+    const { register, handleSubmit, setValue } = useForm(
+        {
+            defaultValues:{
+                size: "medium",
+                hotice: "ice"
+            }
+        }
+    )
     const { productId } = useParams()
     const [quantity, setQuantity] = useState(1)
     const [galleryActiveIndex, setGalleryActiveIndex] = useState(0)
@@ -222,19 +229,19 @@ const ProductDetail = () => {
                                                 <div className="flex gap-4 justify-center items-center">
                                                     <label htmlFor="reguler" className="group flex-1 flex justify-center items-center">
                                                         <input type="radio" {...register("size")} id="reguler" value="reguler" className="hidden" />
-                                                        <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                        <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) hover:bg-(--color-primary) hover:text-white cursor-pointer ">
                                                             <span>Reguler</span>
                                                         </div>
                                                     </label>
                                                     <label htmlFor="medium" className="group flex-1 flex justify-center items-center">
-                                                        <input type="radio" {...register("size")} id="medium" value="medium" className="hidden" checked />
-                                                        <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                        <input type="radio" {...register("size")} id="medium" value="medium" className="hidden"/>
+                                                        <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) hover:bg-(--color-primary) hover:text-white cursor-pointer ">
                                                             <span>Medium</span>
                                                         </div>
                                                     </label>
                                                     <label htmlFor="large" className="group flex-1 flex justify-center items-center">
                                                         <input type="radio" {...register("size")} id="large" value="large" className="hidden" />
-                                                        <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                        <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) hover:bg-(--color-primary) hover:text-white cursor-pointer ">
                                                             <span>Large</span>
                                                         </div>
                                                     </label>
@@ -243,20 +250,20 @@ const ProductDetail = () => {
                                                 <div className="flex gap-4 justify-center items-center">
                                                     <label htmlFor="hot" className="group flex-1 flex justify-center items-center">
                                                         <input type="radio" {...register("hotice")} id="hot" value="hot" className="hidden" />
-                                                        <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                        <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) hover:bg-(--color-primary) hover:text-white cursor-pointer ">
                                                             <span>Hot</span>
                                                         </div>
                                                     </label>
                                                     <label htmlFor="ice" className="group flex-1 flex justify-center items-center">
-                                                        <input type="radio" {...register("hotice")} id="ice" value="ice" className="hidden" checked />
-                                                        <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                        <input type="radio" {...register("hotice")} id="ice" value="ice" className="hidden"/>
+                                                        <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) hover:bg-(--color-primary) hover:text-white cursor-pointer ">
                                                             <span>Ice</span>
                                                         </div>
                                                     </label>
                                                 </div>
                                                 <div className="flex flex-col md:flex-row gap-4">
                                                     <button type="submit" className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</button>
-                                                    <button type="button" className="px-4 py-2 border rounded flex-1 flex justify-center items-center cursor-pointer text-(--color-primary) border-(--color-primary) hover:text-(--color-primary-active) hover:border-(--color-primary-active)" onClick={handleSubmit(data => { addToCart(data) })}>
+                                                    <button type="button" className="px-4 py-2 border rounded flex-1 flex justify-center items-center cursor-pointer text-(--color-primary) border-(--color-primary) hover:border-(--color-primary-active) hover:bg-(--color-primary) hover:text-white" onClick={handleSubmit(data => { addToCart(data) })}>
                                                         <BsCart3 /> Add to cart
                                                     </button>
                                                 </div>
