@@ -9,7 +9,7 @@ const ProductCard = ({ product = {}, showRating = false }) => {
     const { id, name, desc, images, price, discount, rating, review, stock } = product
     const { cartData, setCartData } = useContext(CartContext)
 
-    function addToCart(formData) {
+    function addToCart() {
         const productCart = {
             "quantity": "1",
             "size": "reguler",
@@ -17,11 +17,19 @@ const ProductCard = ({ product = {}, showRating = false }) => {
             "productId": id,
             "productPrice": (discount > 0.0 ? price - (price * discount) : price)
         }
-        const cart = cartData
-        cart.push(productCart)
-        setCartData(cart)
-        window.localStorage.setItem("cart", JSON.stringify(cartData))
-        setAlert(["success", `1pcs ${name} medium ice berhasil ditambahkan ke keranjang!`])
+        if(cartData != null){
+            const cart = cartData
+            cart.push(productCart)
+            setCartData(cart)
+            window.localStorage.setItem("cart", JSON.stringify(cartData))
+            setAlert(["success", `1pcs ${name} medium ice berhasil ditambahkan ke keranjang!`])
+        }else{
+            const cart = []
+            cart.push(productCart)
+            setCartData(cart)
+            window.localStorage.setItem("cart", JSON.stringify(cartData))
+            setAlert(["success", `1pcs ${name} medium ice berhasil ditambahkan ke keranjang!`])
+        }
     }
     return (
         <div className="h-160 md:h-120 min-w-fit w-40 md:min-w-10 md:w-full flex flex-col rounded overflow-hidden relative">

@@ -80,11 +80,20 @@ const ProductDetail = () => {
             productId: productId,
             productPrice: product.price
         }
-        const cart = cartData
-        cart.push(productCart)
-        setCartData(cart)
-        window.localStorage.setItem("cart", JSON.stringify(cartData))
-        setAlert(["success", `${formData.quantity}pcs ${product.name} ${formData.size} ${formData.hotice} berhasil ditambahkan ke keranjang!`])
+        console.log(formData)
+        if (cartData != null) {
+            const cart = cartData
+            cart.push(productCart)
+            setCartData(cart)
+            window.localStorage.setItem("cart", JSON.stringify(cartData))
+            setAlert(["success", `${formData.quantity}pcs ${product.name} ${formData.size} ${formData.hotice} berhasil ditambahkan ke keranjang!`])
+        } else {
+            const cart = []
+            cart.push(productCart)
+            setCartData(cart)
+            window.localStorage.setItem("cart", JSON.stringify(cartData))
+            setAlert(["success", `${formData.quantity}pcs ${product.name} ${formData.size} ${formData.hotice} berhasil ditambahkan ke keranjang!`])
+        }
     }
 
     function recommend(event) {
@@ -92,28 +101,31 @@ const ProductDetail = () => {
     }
 
     function more() {
+        let latestQuantity
+
         if (quantity < product.stock) {
-            const latestQuantity = quantity + 1
-            setQuantity(latestQuantity)
-            setValue("quantity", quantity)
+            latestQuantity = quantity + 1
+        } else {
+            latestQuantity = 1
         }
-        if (quantity === product.stock) {
-            setQuantity(1)
-            setValue("quantity", quantity)
-        }
+
+        setQuantity(latestQuantity)
+        setValue("quantity", latestQuantity)
     }
 
-    function reduce(event) {
+    function reduce() {
+        let latestQuantity
+
         if (quantity > 1) {
-            const latestQuantity = quantity - 1
-            setQuantity(latestQuantity)
-            setValue("quantity", quantity)
+            latestQuantity = quantity - 1
+        } else {
+            latestQuantity = product.stock
         }
-        if (quantity === 1) {
-            setQuantity(product.stock)
-            setValue("quantity", quantity)
-        }
+
+        setQuantity(latestQuantity)
+        setValue("quantity", latestQuantity)
     }
+
 
     return (
         <>
