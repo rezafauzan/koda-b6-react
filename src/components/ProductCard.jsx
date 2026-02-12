@@ -21,7 +21,7 @@ const ProductCard = ({ product = {}, showRating = false }) => {
         window.localStorage.setItem("cart", JSON.stringify(cartData))
     }
     return (
-        <div className="h-160 md:h-120 min-w-fit w-40 md:min-w-75 md:w-full flex flex-col rounded overflow-hidden relative">
+        <div className="h-160 md:h-120 min-w-fit w-40 md:min-w-10 md:w-full flex flex-col rounded overflow-hidden relative">
             {(
                 stock < 1 ?
                     <div className="w-fit h-4 p-4 text-white bg-red-700 absolute top-4 left-4 flex flex-col justify-center items-center rounded-full">
@@ -60,7 +60,7 @@ const ProductCard = ({ product = {}, showRating = false }) => {
                 {(
                     stock < 1 ?
                         <div className="flex flex-col md:flex-row gap-4">
-                            <Link to={`/product/${id}`} className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">See Detail</Link>
+                            <Link to={`/product/${id}`} className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) text-xs md:text-lg rounded flex justify-center items-center cursor-pointer">See Detail</Link>
                         </div>
                         :
                         <div className="flex flex-col md:flex-row gap-4">
