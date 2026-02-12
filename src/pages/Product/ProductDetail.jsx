@@ -49,6 +49,7 @@ const ProductDetail = () => {
         () => {
             const cartLocalStorage = JSON.parse(localStorage.getItem("cart")) || []
             setCartData(cartLocalStorage)
+            setQuantity(1)
             setProduct(products.find(product => product.id === parseInt(productId)))
             window.scrollTo({top:0, behavior:"smooth"})
         },
