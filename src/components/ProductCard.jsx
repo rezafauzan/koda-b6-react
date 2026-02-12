@@ -1,16 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsCart3 } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import CartContext from "./context/CartContext";
 
 const ProductCard = ({ product = {}, showRating = false }) => {
     const { id, name, desc, images, price, discount, rating, review, stock } = product
-    const [cartData, setCartData] = useState(null)
-    useEffect(
-        () => {
-            const cartLocalStorage = JSON.parse(localStorage.getItem("cart")) || []
-            setCartData(cartLocalStorage)
-        },
-    )
+    const {cartData, setCartData} = useContext(CartContext)
+
     function addToCart(formData) {
         const productCart = {
             "quantity": "1",
