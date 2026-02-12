@@ -6,16 +6,17 @@ import { useNavigate, useParams } from "react-router-dom";
 import ProductContext from "/src/components/context/ProductContext";
 import { useForm } from "react-hook-form";
 import UserContext from "/src/components/context/UserContext"
+import CartContext from "../../components/context/CartContext";
 
 const OtherProducts = () => {
     const products = useContext(ProductContext)
     return (
         <section>
             <div className="flex justify-between gap-4 px-10">
-                <h2 className="text-4xl">Recommendation <span className="text-(--color-accent)">For You</span></h2>
+                <h2 className="text-xl md:text-4xl">Recommendation <span className="text-(--color-accent)">For You</span></h2>
             </div>
             <div className="flex flex-col lg:flex-row p-4 gap-4 w-full justify-center items-center">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center lg:justify-between gap-4 px-16 lg:px-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center lg:justify-between gap-4 px-16 lg:px-4">
                     {
                         (products.length > 0 ? (products.map((product, index) => <ProductCard key={"product-" + index} product={product} />)).slice(0, 8) : <span className="text-xl text-green-400">Loading...</span>)
                     }
@@ -35,9 +36,9 @@ const OtherProducts = () => {
 }
 
 const ProductDetail = () => {
-    const { user, setUser, setAlert } = useContext(UserContext)
+    const { user, setAlert } = useContext(UserContext)
     const products = useContext(ProductContext)
-    const [cartData, setCartData] = useState([])
+    const {cartData, setCartData} = useContext(CartContext)
     const { register, handleSubmit, setValue } = useForm()
     const { productId } = useParams()
     const [quantity, setQuantity] = useState(1)
@@ -49,6 +50,7 @@ const ProductDetail = () => {
             const cartLocalStorage = JSON.parse(localStorage.getItem("cart")) || []
             setCartData(cartLocalStorage)
             setProduct(products.find(product => product.id === parseInt(productId)))
+            window.scrollTo({top:0, behavior:"smooth"})
         },
         [products, productId]
     )
