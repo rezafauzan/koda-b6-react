@@ -3,7 +3,7 @@ import Input from "/src/components/Input.jsx";
 import profile_icon from "/src/assets/img/Profile.svg"
 import mail_icon from "/src/assets/img/mail.svg"
 import location_icon from "/src/assets/img/Location.svg"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import ProductContext from "../../components/context/ProductContext";
 import CartContext from "../../components/context/CartContext";
@@ -18,9 +18,11 @@ const Payment = () => {
     const [products, setProducts] = useState(null)
     const [deliveryFee, setDeliveryFee] = useState(0)
     const [historyOrder, setHistoryOrder] = useLocalStorage("history-order")
+    // const [cart, setCart] = useLocalStorage("cart")
     const [paymentData, setPaymentData] = useState(null)
     const productsData = useContext(ProductContext)
     const paymentDetailForm = useRef()
+    const navigator = useNavigate()
     const validator = yup.object({
         fullname: yup.string("Nama tidak valid").required("Nama harus diisi").min(4, "Nama minimal 4 karakter"),
         email: yup.string("Email tidak valid").required("Email harus diisi").min(4, "Email terlalu pendek").email("Email tidak valid"),
@@ -41,33 +43,24 @@ const Payment = () => {
     )
 
     function pay() {
-        if(paymentData){
-            const orderRecord = historyOrder || []
-            if (historyOrder != null) {
-                const order = {
-                    id: historyOrder.length,
-                    cart: cartData,
-                    total: total,
-                    orderDate: moment().format("DD MMMM YYYY"),
-                    status: 0,
-                    orderDetail: data
-                }
-                orderRecord.push(order)
-            } else {
-                const order = {
-                    id: 0,
-                    cart: cartData,
-                    total: total,
-                    orderDate: moment().format("DD MMMM YYYY"),
-                    status: 0,
-                    orderDetail: paymentData
-                }
-                orderRecord.push(order)
+        let data = historyOrder || []
+        console.log(historyOrder[0])
+        if (!paymentData) {
+            paymentDetailForm.current?.scrollIntoView({ behavior: "smooth" })
+        } else {
+            const order = {
+                id: crypto.randomUUID(),
+                cart: cartData,
+                total,
+                orderDate: moment().format("DD MMMM YYYY"),
+                status: 0,
+                orderDetail: paymentData
             }
-            setHistoryOrder(orderRecord)
-        }else{
-            paymentDetailForm.current.scrollIntoView({behavior: "smooth"})
+            data.push(order)
+            setHistoryOrder(data)
+            navigator("/payment/order-history")
         }
+
     }
 
     function toPayment(data) {
