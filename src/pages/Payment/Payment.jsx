@@ -4,7 +4,7 @@ import profile_icon from "/src/assets/img/Profile.svg"
 import mail_icon from "/src/assets/img/mail.svg"
 import location_icon from "/src/assets/img/Location.svg"
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import ProductContext from "../../components/context/ProductContext";
 import CartContext from "../../components/context/CartContext";
 import { useForm } from "react-hook-form";
@@ -20,6 +20,7 @@ const Payment = () => {
     const [historyOrder, setHistoryOrder] = useLocalStorage("history-order")
     const [paymentData, setPaymentData] = useState(null)
     const productsData = useContext(ProductContext)
+    const paymentDetailForm = useRef()
     const validator = yup.object({
         fullname: yup.string("Nama tidak valid").required("Nama harus diisi").min(4, "Nama minimal 4 karakter"),
         email: yup.string("Email tidak valid").required("Email harus diisi").min(4, "Email terlalu pendek").email("Email tidak valid"),
@@ -65,7 +66,7 @@ const Payment = () => {
             }
             setHistoryOrder(orderRecord)
         }else{
-            window.scrollTo({top:document.body.scrollHeight, behavior:"smooth"})
+            paymentDetailForm.current.scrollIntoView({behavior: "smooth"})
         }
     }
 
@@ -184,8 +185,7 @@ const Payment = () => {
                     <div className="flex flex-col col-span-1 md:col-span-2 lg:flex-row gap-4 p-4">
                         <h2 className="text-xl font-bold">Payment Info & Delivery</h2>
                     </div>
-                    <form className="flex flex-col gap-4 p-4 flex-1" onSubmit={handleSubmit(toPayment)}>
-
+                    <form ref={paymentDetailForm} className="flex flex-col gap-4 p-4 flex-1" onSubmit={handleSubmit(toPayment)}>
                         <Input type="text" {...register("fullname")} labelName="Fullname" icon={profile_icon} placeholder="Enter your fullname" />
                         {formState.errors.fullname && (<span className="bg-red-400 p-4 rounded border border-red-700 text-red-700">{formState.errors.fullname.message}</span>)}
                         <Input type="email" {...register("email")} labelName="Email" icon={mail_icon} placeholder="Enter email address" />
