@@ -59,7 +59,7 @@ const Payment = () => {
             }
             data.push(order)
             setHistoryOrder(data)
-            setCart([])
+            setCartData(null)
             window.localStorage.removeItem("cart")
             navigator("/payment/order-history")
         }
