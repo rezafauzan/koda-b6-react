@@ -1,3 +1,4 @@
+import { AiOutlineHistory } from "react-icons/ai"; 
 import { MdPayments } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
 import { AiOutlineUser } from "react-icons/ai";
@@ -120,9 +121,10 @@ const navbar = ({ absolute, theme }) => {
 
                                     <div className={"absolute bg-white border border-black/10 shadow w-40 h-40 -bottom-40 right-0 flex-col justify-center items-center gap-4 p-4 rounded" + (userDropdown ? " flex" : " hidden")}>
                                         <button className="w-full hover:text-black text-black/40 cursor-pointer" onClick={logout}>
-                                            <span className="flex items-center gap-4"><FiLogOut />Logout</span>
+                                            <span className="flex items-center gap-4 text-xs"><FiLogOut className="text-lg" />Logout</span>
                                         </button>
-                                        <Link to="/profile" className="w-full hover:text-black text-black/40 cursor-pointer"><span className="flex items-center gap-4"><AiOutlineUser />Profile</span></Link>
+                                        <Link to="/profile" className="w-full hover:text-black text-black/40 cursor-pointer"><span className="flex items-center gap-4 text-xs"><AiOutlineUser className="text-lg" />Profile</span></Link>
+                                        <Link to="/payment/order-history" className="w-full hover:text-black text-black/40 cursor-pointer"><span className="flex items-center gap-4 text-xs"><AiOutlineHistory className="text-lg"/>Order History</span></Link>
                                     </div>
                                 </div>
                                 :
