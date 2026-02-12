@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form"
 const Hero = () => {
     return (
         <section>
-            <div className="flex flex-col-reverse md:flex-row h-100 lg:h-70 relative bg-[url('/src/assets/img/product-hero.png')] bg-cover bg-no-repeat">
+            <div className="flex flex-col-reverse md:flex-row h-100 lg:h-70 relative -z-10 bg-[url('/src/assets/img/product-hero.png')] bg-cover bg-no-repeat">
                 <div className="copytext-container absolute flex-1 flex items-center justify-center top-4 left-4 right-4 bottom-4">
                     <div className="copytext w-[80%] lg:px-6 lg:py-10 flex flex-col gap-4 text-white">
                         <h2 className="copytext-headline text-xl lg:text-5xl">We Provide Good Coffee and Healthy Meals</h2>
