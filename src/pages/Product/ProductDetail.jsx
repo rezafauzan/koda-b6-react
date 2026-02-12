@@ -81,8 +81,8 @@ const ProductDetail = () => {
         const cart = cartData
         cart.push(productCart)
         setCartData(cart)
-        setAlert(["success", `${formData.quantity}pcs ${product.name} ${formData.size} ${formData.hotice} berhasil ditambahkan ke keranjang!`])
         window.localStorage.setItem("cart", JSON.stringify(cartData))
+        setAlert(["success", `${formData.quantity}pcs ${product.name} ${formData.size} ${formData.hotice} berhasil ditambahkan ke keranjang!`])
     }
 
     function recommend(event) {
