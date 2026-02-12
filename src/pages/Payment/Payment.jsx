@@ -50,7 +50,7 @@ const Payment = () => {
             paymentDetailForm.current?.scrollIntoView({ behavior: "smooth" })
         } else {
             const order = {
-                id: crypto.randomUUID(),
+                id: (data.length === 0 ? 0 : data.length + 1),
                 cart: cartData,
                 total,
                 orderDate: moment().format("DD MMMM YYYY"),
