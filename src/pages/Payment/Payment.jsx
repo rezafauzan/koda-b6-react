@@ -8,16 +8,29 @@ import { useContext, useEffect, useState } from "react";
 import ProductContext from "../../components/context/ProductContext";
 import CartContext from "../../components/context/CartContext";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup"
+import moment from "moment";
+import useLocalStorage from "../../hooks/useLocalStorage"
 
 const Payment = () => {
     const { cartData } = useContext(CartContext)
     const [products, setProducts] = useState(null)
     const [deliveryFee, setDeliveryFee] = useState(0)
+    const [historyOrder, setHistoryOrder] = useLocalStorage("history-order")
+    const [paymentData, setPaymentData] = useState(null)
     const productsData = useContext(ProductContext)
-    const { register, handleSubmit } = useForm({
+    const validator = yup.object({
+        fullname: yup.string("Nama tidak valid").required("Nama harus diisi").min(4, "Nama minimal 4 karakter"),
+        email: yup.string("Email tidak valid").required("Email harus diisi").min(4, "Email terlalu pendek").email("Email tidak valid"),
+        address: yup.string("Alamat tidak valid").required("Alamat harus diisi").min(10, "Alamat terlalu pendek minimal 10 karakter"),
+        delivery: yup.string("Delivery option tidak valid").required("Delivery option harus dipilih")
+    })
+    const { register, handleSubmit, formState } = useForm({
         defaultValues: {
             delivery: "dineIn"
-        }
+        },
+        resolver: yupResolver(validator)
     })
     let total = 0
     useEffect(
@@ -25,6 +38,37 @@ const Payment = () => {
             setProducts(productsData)
         }, [productsData]
     )
+
+    function pay() {
+        if(paymentData){
+            const orderRecord = historyOrder || []
+            if (historyOrder != null) {
+                const order = {
+                    id: historyOrder.length,
+                    cart: cartData,
+                    total: total,
+                    orderDate: moment().format("DD MMMM YYYY"),
+                    status: 0,
+                    orderDetail: data
+                }
+                orderRecord.push(order)
+            } else {
+                const order = {
+                    id: 0,
+                    cart: cartData,
+                    total: total,
+                    orderDate: moment().format("DD MMMM YYYY"),
+                    status: 0,
+                    orderDetail: paymentData
+                }
+                orderRecord.push(order)
+            }
+            setHistoryOrder(orderRecord)
+        }else{
+            window.scrollTo({top:document.body.scrollHeight, behavior:"smooth"})
+        }
+    }
+
     function toPayment(data) {
         window.scrollTo({ top: 0, behavior: "smooth" })
         if (data.delivery === "dineIn") {
@@ -36,6 +80,7 @@ const Payment = () => {
         else {
             setDeliveryFee(5000)
         }
+        setPaymentData(data)
     }
     return (
         <section>
@@ -116,7 +161,7 @@ const Payment = () => {
                                             <span>Sub Total</span>
                                             <span>{"Rp." + (total + (total * 10 / 100) + deliveryFee).toLocaleString("id-ID") + ",-"}</span>
                                         </div>
-                                        <button type="submit" className="cursor-pointer flex justify-center items-center h-10 bg-(--color-primary) rounded">Checkout</button>
+                                        <button className="cursor-pointer flex justify-center items-center h-10 bg-(--color-primary) rounded" onClick={pay}>Checkout</button>
                                         <div className="flex flex-col gap-4">
                                             <span>We Accept</span>
                                             <div className="flex gap-4">
@@ -140,30 +185,35 @@ const Payment = () => {
                         <h2 className="text-xl font-bold">Payment Info & Delivery</h2>
                     </div>
                     <form className="flex flex-col gap-4 p-4 flex-1" onSubmit={handleSubmit(toPayment)}>
-                        <Input type="email" {...register("email")} labelName="Email" icon={mail_icon} placeholder="Enter email address" />
+
                         <Input type="text" {...register("fullname")} labelName="Fullname" icon={profile_icon} placeholder="Enter your fullname" />
-                        <Input type="email" {...register("address")} labelName="Address" icon={location_icon} placeholder="Enter your address" />
+                        {formState.errors.fullname && (<span className="bg-red-400 p-4 rounded border border-red-700 text-red-700">{formState.errors.fullname.message}</span>)}
+                        <Input type="email" {...register("email")} labelName="Email" icon={mail_icon} placeholder="Enter email address" />
+                        {formState.errors.email && (<span className="bg-red-400 p-4 rounded border border-red-700 text-red-700">{formState.errors.email.message}</span>)}
+                        <Input type="text" {...register("address")} labelName="Address" icon={location_icon} placeholder="Enter your address" />
+                        {formState.errors.address && (<span className="bg-red-400 p-4 rounded border border-red-700 text-red-700">{formState.errors.address.message}</span>)}
                         <span className="text-lg font-bold">Choose Size</span>
                         <div className="flex gap-4 justify-center items-center">
                             <label htmlFor="dineIn" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" {...register("delivery")} id="dineIn" value={"dineIn"} className="hidden" required/>
+                                <input type="radio" {...register("delivery")} id="dineIn" value={"dineIn"} className="hidden" required />
                                 <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white  flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                     <span className="text-[8px] lg:text-lg">Dine In</span>
                                 </div>
                             </label>
                             <label htmlFor="doorDelivery" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" {...register("delivery")} id="doorDelivery" value={"doorDelivery"} className="hidden" required/>
+                                <input type="radio" {...register("delivery")} id="doorDelivery" value={"doorDelivery"} className="hidden" required />
                                 <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white  flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                     <span className="text-[8px] lg:text-lg">Door Delivery</span>
                                 </div>
                             </label>
                             <label htmlFor="pickUp" className="group flex-1 flex justify-center items-center">
-                                <input type="radio" {...register("delivery")} id="pickUp" value={"pickUp"} className="hidden" required/>
+                                <input type="radio" {...register("delivery")} id="pickUp" value={"pickUp"} className="hidden" required />
                                 <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white  flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
                                     <span className="text-[8px] lg:text-lg">Pick Up</span>
                                 </div>
                             </label>
                         </div>
+                        {formState.errors.delivery && (<span className="bg-red-400 p-4 rounded border border-red-700 text-red-700">{formState.errors.delivery.message}</span>)}
                         <button className="bg-(--color-primary) hover:bg-(--color-primary-active) hover:text-white text-black p-4 rounded cursor-pointer">Submit</button>
                     </form>
                 </div>

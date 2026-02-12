@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 function useLocalStorage(key) {
-    const [localStorageValue, setLocalStorageValue] = useState(JSON.parse(window.localStorage.getItem(key)))
+    const [localStorageValue, setLocalStorageValue] = useState(JSON.parse(window.localStorage.getItem(key)) || null)
 
     const setValue = (value) => {
         setLocalStorageValue(value)
