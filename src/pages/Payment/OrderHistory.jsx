@@ -2,20 +2,37 @@ import { BsFillChatLeftTextFill } from "react-icons/bs";
 import Input from "/src/components/Input.jsx";
 import { Link } from "react-router-dom";
 import useLocalStorage from "../../hooks/useLocalStorage"
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import ProductContext from "../../components/context/ProductContext"
 import { useForm } from "react-hook-form";
+import moment from "moment";
 
 const Payment = () => {
     const [histories, setHistories] = useLocalStorage("history-order")
     const [historiesOrder, setHistoriesOrder] = useState(histories)
     const productsData = useContext(ProductContext)
-    const {register, handleSubmit} = useForm()
+    const { register, handleSubmit } = useForm(
+        {
+            defaultValues: {
+                status: 0,
+                date: moment().format("YYYY-MM-DD")
+            }
+        }
+    )
+    const formFilter = useRef()
 
-    function filterHistoryOrder({status, date}) {
+    function filterHistoryOrder({ status, date }) {
         setHistoriesOrder(histories)
-        const filteredHistories = histories.filter(history=>history.status === parseInt(status))
-        setHistoriesOrder(filteredHistories)
+        let filteredHistories = null
+        if (status > -1) {
+            filteredHistories = histories.filter(history => history.status === parseInt(status))
+        }
+        if (date.length > 0) {
+            filteredHistories = filteredHistories.filter(history => moment(history.date).format("DD MMMM YYYY").trim() === moment(date.replaceAll("-", " "), "YYYY-MM-DD").format("DD MMMM YYYY").trim())
+        }
+        if (filteredHistories != null) {
+            setHistoriesOrder(filteredHistories)
+        }
     }
 
     return (
@@ -29,22 +46,22 @@ const Payment = () => {
                         <div className="flex flex-col lg:flex-row gap-4 p-4 flex-2">
                             <div className="flex-1 flex flex-col gap-4 w-full">
                                 <div className="flex flex-col gap-4">
-                                    <form className="flex flex-col md:flex-row gap-4 justify-between items-center" onSubmit={handleSubmit(filterHistoryOrder)} onChange={e=>e.currentTarget.requestSubmit()}>
+                                    <form ref={formFilter} className="flex flex-col md:flex-row gap-4 justify-between items-center" onSubmit={handleSubmit(filterHistoryOrder)} onChange={() => { formFilter.current.requestSubmit() }}>
                                         <div className="flex flex-3 gap-4 justify-center items-center bg-gray-100 rounded">
                                             <label htmlFor="onProgress" className="group flex-1 flex justify-center items-center">
-                                                <input type="radio" {...register("status")} id="onProgress" value={0} className="hidden"/>
+                                                <input type="radio" {...register("status")} id="onProgress" value={0} className="hidden" />
                                                 <div className="w-full group-has-[input:checked]:bg-gray-400 group-has-[input:checked]:text-white flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-gray-400 hover:bg-gray-400 hover:text-white cursor-pointer">
                                                     <span>On Progress</span>
                                                 </div>
                                             </label>
                                             <label htmlFor="sendingGoods" className="group flex-1 flex justify-center items-center">
-                                                <input type="radio" {...register("status")} id="sendingGoods" value={1} className="hidden"/>
+                                                <input type="radio" {...register("status")} id="sendingGoods" value={1} className="hidden" />
                                                 <div className="w-full group-has-[input:checked]:bg-gray-400 group-has-[input:checked]:text-white flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-gray-400 hover:bg-gray-400 hover:text-white cursor-pointer">
                                                     <span>Sending Goods</span>
                                                 </div>
                                             </label>
                                             <label htmlFor="finishOrder" className="group flex-1 flex justify-center items-center">
-                                                <input type="radio" {...register("status")} id="finishOrder" value={2} className="hidden"/>
+                                                <input type="radio" {...register("status")} id="finishOrder" value={2} className="hidden" />
                                                 <div className="w-full group-has-[input:checked]:bg-gray-400 group-has-[input:checked]:text-white flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-gray-400 hover:bg-gray-400 hover:text-white cursor-pointer">
                                                     <span>Finish Order</span>
                                                 </div>
