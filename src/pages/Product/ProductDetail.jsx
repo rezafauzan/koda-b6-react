@@ -1,3 +1,4 @@
+import { AiFillStar } from "react-icons/ai";
 import { useContext, useEffect, useRef, useState } from "react";
 import { BsArrowRight, BsHandThumbsUp } from "react-icons/bs";
 import { BsCart3 } from "react-icons/bs"
@@ -6,16 +7,18 @@ import { useNavigate, useParams } from "react-router-dom";
 import ProductContext from "/src/components/context/ProductContext";
 import { useForm } from "react-hook-form";
 import UserContext from "/src/components/context/UserContext"
+import CartContext from "../../components/context/CartContext";
+import AlertContext from "../../components/context/AlertContext";
 
 const OtherProducts = () => {
     const products = useContext(ProductContext)
     return (
         <section>
             <div className="flex justify-between gap-4 px-10">
-                <h2 className="text-4xl">Recommendation <span className="text-(--color-accent)">For You</span></h2>
+                <h2 className="text-xl md:text-4xl">Recommendation <span className="text-(--color-accent)">For You</span></h2>
             </div>
             <div className="flex flex-col lg:flex-row p-4 gap-4 w-full justify-center items-center">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center lg:justify-between gap-4 px-16 lg:px-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center lg:justify-between gap-4 px-16 lg:px-4">
                     {
                         (products.length > 0 ? (products.map((product, index) => <ProductCard key={"product-" + index} product={product} />)).slice(0, 8) : <span className="text-xl text-green-400">Loading...</span>)
                     }
@@ -35,12 +38,21 @@ const OtherProducts = () => {
 }
 
 const ProductDetail = () => {
-    const user = useContext(UserContext)
+    const { user } = useContext(UserContext)
+    const { setAlert } = useContext(AlertContext)
     const products = useContext(ProductContext)
-    const [cartData, setCartData] = useState([])
-    const { register, handleSubmit, setValue } = useForm()
+    const { cartData, setCartData } = useContext(CartContext)
+    const { register, handleSubmit, setValue } = useForm(
+        {
+            defaultValues: {
+                size: "medium",
+                hotice: "ice"
+            }
+        }
+    )
     const { productId } = useParams()
     const [quantity, setQuantity] = useState(1)
+    const [galleryActiveIndex, setGalleryActiveIndex] = useState(0)
     const [product, setProduct] = useState(null)
     const navigator = useNavigate()
 
@@ -48,7 +60,9 @@ const ProductDetail = () => {
         () => {
             const cartLocalStorage = JSON.parse(localStorage.getItem("cart")) || []
             setCartData(cartLocalStorage)
+            setQuantity(1)
             setProduct(products.find(product => product.id === parseInt(productId)))
+            window.scrollTo({ top: 0, behavior: "smooth" })
         },
         [products, productId]
     )
@@ -61,25 +75,25 @@ const ProductDetail = () => {
     }
 
     function addToCart(formData) {
-        // const productInCart = cart.find(cartItem => cartItem.productId === productId)
-        // if (productInCart.length > 0) {
-        //     productInCart.quantity = productInCart.quantity + quantity
-        // } else {
-        //     cart
-        //     const product = {
-        //         productId: productId,
-        //         quantity: quantity
-        //     }
-        // }
-        const product = {
+        const productCart = {
             ...formData,
             productId: productId,
             productPrice: product.price
         }
-        const cart = cartData
-        cart.push(product)
-        setCartData(cart)
-        window.localStorage.setItem("cart", JSON.stringify(cartData))
+        console.log(formData)
+        if (cartData != null) {
+            const cart = cartData
+            cart.push(productCart)
+            setCartData(cart)
+            window.localStorage.setItem("cart", JSON.stringify(cartData))
+            setAlert(["success", `${formData.quantity}pcs ${product.name} ${formData.size} ${formData.hotice} berhasil ditambahkan ke keranjang!`])
+        } else {
+            const cart = []
+            cart.push(productCart)
+            setCartData(cart)
+            window.localStorage.setItem("cart", JSON.stringify(cartData))
+            setAlert(["success", `${formData.quantity}pcs ${product.name} ${formData.size} ${formData.hotice} berhasil ditambahkan ke keranjang!`])
+        }
     }
 
     function recommend(event) {
@@ -87,31 +101,46 @@ const ProductDetail = () => {
     }
 
     function more() {
+        let latestQuantity
+
         if (quantity < product.stock) {
-            const latestQuantity = quantity + 1
-            setQuantity(latestQuantity)
-            setValue("quantity", latestQuantity)
+            latestQuantity = quantity + 1
+        } else {
+            latestQuantity = 1
         }
+
+        setQuantity(latestQuantity)
+        setValue("quantity", latestQuantity)
     }
 
-    function reduce(event) {
+    function reduce() {
+        let latestQuantity
+
         if (quantity > 1) {
-            const latestQuantity = quantity - 1
-            setQuantity(latestQuantity)
-            setValue("quantity", latestQuantity)
+            latestQuantity = quantity - 1
+        } else {
+            latestQuantity = product.stock
         }
-        if (quantity === 0) {
-            setQuantity(latestQuantity)
-            setValue("quantity", latestQuantity)
-        }
+
+        setQuantity(latestQuantity)
+        setValue("quantity", latestQuantity)
     }
+
 
     return (
         <>
             <section>
                 <div className="flex flex-col lg:flex-row gap-4 p-4">
                     <div className="flex-2 grid grid-cols-3 gap-4">
-                        {(product != null ? product.images.map((image, index) => (index === 0 ? <img key={"product-image-" + index} src={image} alt={product.name} className="col-span-3 w-full" /> : <img className="w-full" key={"product-image-" + index} src={image} alt={product.name} />)) : <img className="w-full" key={"product-image-"} src={"/404.loading"} alt={"Loading..."} />)}
+                        {
+                            (
+                                product != null
+                                    ?
+                                    product.images.map(
+                                        (image, index) => <img className={"w-full cursor-pointer " + (galleryActiveIndex === index ? " col-start-1 col-end-4 row-start-1 row-end-2" : "")} key={"product-image-" + index} src={image} alt={product.name} onClick={() => { setGalleryActiveIndex(index) }} />
+                                    )
+                                    :
+                                    <img className="w-full" key={"product-image-"} src={"/404.loading"} alt={"Loading..."} />)}
                     </div>
                     <div className="flex-4 flex flex-col gap-4">
                         {(
@@ -163,13 +192,11 @@ const ProductDetail = () => {
                                 ?
                                 product.rating > 0
                                     ?
-                                    <div className="flex gap-4">
-                                        {/* (
-                                        for(let i = 0; i < product.rating; i++){
-                                            <img src="/assets/img/star.svg" alt="star_icon" />
+                                    <div className="w-100 flex items-center gap-4">
+                                        {
+                                            Array.from({ length: product.rating - 1 }).map(() => <AiFillStar className="text-(--color-primary)" />)
                                         }
-                                        ) */}
-                                        <img src="/assets/img/star.svg" alt="star_icon" />
+                                        <AiFillStar className="text-(--color-primary)" />
                                         <span>{product.rating}.0</span>
                                     </div>
                                     :
@@ -217,19 +244,19 @@ const ProductDetail = () => {
                                                 <div className="flex gap-4 justify-center items-center">
                                                     <label htmlFor="reguler" className="group flex-1 flex justify-center items-center">
                                                         <input type="radio" {...register("size")} id="reguler" value="reguler" className="hidden" />
-                                                        <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                        <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) hover:bg-(--color-primary) hover:text-white cursor-pointer ">
                                                             <span>Reguler</span>
                                                         </div>
                                                     </label>
                                                     <label htmlFor="medium" className="group flex-1 flex justify-center items-center">
-                                                        <input type="radio" {...register("size")} id="medium" value="medium" className="hidden" checked />
-                                                        <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                        <input type="radio" {...register("size")} id="medium" value="medium" className="hidden" />
+                                                        <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) hover:bg-(--color-primary) hover:text-white cursor-pointer ">
                                                             <span>Medium</span>
                                                         </div>
                                                     </label>
                                                     <label htmlFor="large" className="group flex-1 flex justify-center items-center">
                                                         <input type="radio" {...register("size")} id="large" value="large" className="hidden" />
-                                                        <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                        <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) hover:bg-(--color-primary) hover:text-white cursor-pointer ">
                                                             <span>Large</span>
                                                         </div>
                                                     </label>
@@ -238,20 +265,20 @@ const ProductDetail = () => {
                                                 <div className="flex gap-4 justify-center items-center">
                                                     <label htmlFor="hot" className="group flex-1 flex justify-center items-center">
                                                         <input type="radio" {...register("hotice")} id="hot" value="hot" className="hidden" />
-                                                        <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                        <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) hover:bg-(--color-primary) hover:text-white cursor-pointer ">
                                                             <span>Hot</span>
                                                         </div>
                                                     </label>
                                                     <label htmlFor="ice" className="group flex-1 flex justify-center items-center">
-                                                        <input type="radio" {...register("hotice")} id="ice" value="ice" className="hidden" checked />
-                                                        <div className="w-full group-has-[input:checked]:border-amber-400 flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) cursor-pointer ">
+                                                        <input type="radio" {...register("hotice")} id="ice" value="ice" className="hidden" />
+                                                        <div className="w-full group-has-[input:checked]:bg-(--color-primary) group-has-[input:checked]:text-white flex flex-col p-4 justify-center items-center border border-black/40 rounded flex-1 hover:border-(--color-primary-active) hover:bg-(--color-primary) hover:text-white cursor-pointer ">
                                                             <span>Ice</span>
                                                         </div>
                                                     </label>
                                                 </div>
                                                 <div className="flex flex-col md:flex-row gap-4">
                                                     <button type="submit" className="flex-4 px-4 py-2 bg-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer">Buy</button>
-                                                    <button type="button" className="px-4 py-2 border rounded flex-1 flex justify-center items-center cursor-pointer text-(--color-primary) border-(--color-primary) hover:text-(--color-primary-active) hover:border-(--color-primary-active)" onClick={handleSubmit(data=>{addToCart(data)})}>
+                                                    <button type="button" className="px-4 py-2 border rounded flex-1 flex justify-center items-center cursor-pointer text-(--color-primary) border-(--color-primary) hover:border-(--color-primary-active) hover:bg-(--color-primary) hover:text-white" onClick={handleSubmit(data => { addToCart(data) })}>
                                                         <BsCart3 /> Add to cart
                                                     </button>
                                                 </div>

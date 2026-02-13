@@ -9,22 +9,17 @@ import { useContext, useEffect, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 import { AiOutlineCloseCircle } from "react-icons/ai"
 import UserContext from "/src/components/context/UserContext"
+import AlertContext from "../../components/context/AlertContext"
 
-const Login = ({ setUser }) => {
-    const user = useContext(UserContext)
+const Login = () => {
+    const { user, setUser } = useContext(UserContext)
+    const { setAlert } = useContext(AlertContext)
     const [users, setUsers] = useState([])
-    const [alert, setAlert] = useState([])
     const { register, handleSubmit } = useForm()
-    const modal = useRef()
     const navigator = useNavigate()
-
-    function modalRemove() {
-        setAlert([])
-    }
 
     function login({ email, password }) {
         const userFound = users.find(user => user.email === email)
-        console.log(userFound)
         if (userFound) {
             if (password === userFound.password) {
                 window.localStorage.setItem("user", JSON.stringify({ fullname: userFound.fullname, avatar: userFound.avatar, email: userFound.email, role: userFound.role }))
@@ -55,8 +50,6 @@ const Login = ({ setUser }) => {
             <div className="flex gap-4 w-full">
                 <div className="hidden md:block bg-[url('../../assets/img/login.jpg')] bg-cover bg-center flex-1"></div>
                 <div className="w-full flex flex-col justify-center items-center gap-4 p-10 flex-3 text-(--color-secondary)">
-                    {(alert[0] === "success" ? <div ref={modal} className="fixed top-0 left-0 right-0 bottom-0 bg-black/40 backdrop-blur-lg flex justify-center items-center"><div className="bg-green-400 text-green-700 w-[50%] h-[50%] flex items-center justify-center relative"><button type="button" className="text-red-700 w-10 h-10 absolute -top-4 -right-4 cursor-pointer" onClick={modalRemove}><AiOutlineCloseCircle className="text-red-700 w-10 h-10" /></button><span className="text-green-700 text-xl font-bold">{alert[1]}</span></div></div> : "")}
-                    {(alert[0] === "fail" ? <div ref={modal} className="fixed top-0 left-0 right-0 bottom-0 bg-black/40 backdrop-blur-lg flex justify-center items-center"><div className="bg-red-400 text-red-700 w-[50%] h-[50%] flex items-center justify-center relative"><button type="button" className="text-red-700 w-10 h-10 absolute -top-4 -right-4 cursor-pointer" onClick={modalRemove}><AiOutlineCloseCircle className="text-red-700 w-10 h-10" /></button><span className="text-red-700 text-xl font-bold">{alert[1]}</span></div></div> : "")}
                     <form className="flex w-full flex-col justify-center gap-4 p-4 flex-3" onSubmit={handleSubmit(login)}>
                         <div className="brand">
                             <img src={brand_logo} alt="Coffee Shop" />
