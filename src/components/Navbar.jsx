@@ -71,14 +71,14 @@ const navbar = ({ absolute, theme }) => {
                                             cartData != null
                                                 ?
                                                 cartData.map(
-                                                    item => {
+                                                    (item,index) => {
                                                         const product = products.find(product => product.id === parseInt(item.productId))
                                                         total = cartData.reduce(
                                                             (total, item) => total + parseInt(item.productPrice * item.quantity), 0
                                                         )
                                                         if (product != null) {
                                                             return (
-                                                                <Link to={"/product/" + product.id} className="w-full bg-gray-100 text-black hover:bg-gray-400">
+                                                                <Link key={"cart-item-"+index} to={"/product/" + product.id} className="w-full bg-gray-100 text-black hover:bg-gray-400">
                                                                     <div className="flex flex-col lg:flex-row w-full lg:h-18 items-center gap-4 p-2">
                                                                         <img src={product.images[0]} alt={product.name} className="w-10" />
                                                                         <div className="flex flex-col gap-4">

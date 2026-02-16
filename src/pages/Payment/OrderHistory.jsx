@@ -78,12 +78,12 @@ const Payment = () => {
                                             (
                                                 productsData != null
                                                     ?
-                                                    historiesOrder != null
+                                                    historiesOrder.length > 0
                                                         ?
                                                         historiesOrder.map(
                                                             history => {
                                                                 return (
-                                                                    <div className="w-full h-fit md:h-45 flex flex-col md:flex-row justify-center md:justify-start items-center md:items-start text-center md:text-start rounded overflow-hidden bg-gray-100 p-4">
+                                                                    <div key={"history-item-"+history.id} className="w-full h-fit md:h-45 flex flex-col md:flex-row justify-center md:justify-start items-center md:items-start text-center md:text-start rounded overflow-hidden bg-gray-100 p-4">
                                                                         <div className="overflow-hidden flex-1 h-full">
                                                                             <img src={productsData[parseInt(history.cart[0].productId)].images[0]} alt={productsData[parseInt(history.cart[0].productId)].name} className="h-full" />
                                                                         </div>
