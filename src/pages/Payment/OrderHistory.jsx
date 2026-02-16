@@ -14,8 +14,7 @@ const Payment = () => {
     const { register, handleSubmit } = useForm(
         {
             defaultValues: {
-                status: 0,
-                date: moment().format("YYYY-MM-DD")
+                status: "0"
             }
         }
     )
@@ -28,7 +27,7 @@ const Payment = () => {
             filteredHistories = histories.filter(history => history.status === parseInt(status))
         }
         if (date.length > 0) {
-            filteredHistories = filteredHistories.filter(history => moment(history.date).format("DD MMMM YYYY").trim() === moment(date.replaceAll("-", " "), "YYYY-MM-DD").format("DD MMMM YYYY").trim())
+            filteredHistories = filteredHistories.filter(history => moment(history.orderDate).format("DD MMMM YYYY").trim() === moment(date.replaceAll("-", " "), "YYYY-MM-DD").format("DD MMMM YYYY").trim())
         }
         if (filteredHistories != null) {
             setHistoriesOrder(filteredHistories)
