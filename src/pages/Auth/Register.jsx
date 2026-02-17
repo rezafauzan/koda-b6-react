@@ -1,4 +1,4 @@
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import Input from "../../components/Input"
 import profile_icon from "/src/assets/img/Profile.svg"
 import mail_icon from "/src/assets/img/mail.svg"
 import password_icon from "/src/assets/img/Password.svg"
@@ -7,7 +7,6 @@ import facebook_logo from "/src/assets/img/bx_bxl-facebook-circle.svg"
 import google_logo from "/src/assets/img/flat-color-icons_google.svg"
 import phone_icon from "/src/assets/img/PhoneCall.svg"
 import location_icon from "/src/assets/img/Location.svg"
-import Input from "/src/components/Input"
 import { useForm } from "react-hook-form"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -17,14 +16,14 @@ import { useNavigate } from "react-router-dom";
 import AlertContext from "../../components/context/AlertContext";
 
 const Register = () => {
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = useState(null)
     const { user } = useContext(UserContext)
     const { setAlert } = useContext(AlertContext)
     const navigator = useNavigate()
 
     useEffect(
         () => {
-            const usersLocalStorage = JSON.parse(localStorage.getItem("users")) || []
+            const usersLocalStorage = JSON.parse(localStorage.getItem("users")) || null
             setUsers(usersLocalStorage)
             if (user.role != null) {
                 navigator("/")
@@ -42,13 +41,37 @@ const Register = () => {
     })
     const { register, handleSubmit, formState } = useForm({ resolver: yupResolver(validator) })
     function signUp({ fullname = "", email = "", phone = "", address = "", password = "", confirmPassword = "" }) {
-        const registeredUsers = users
-        const emailExist = registeredUsers.filter(user => user.email === email)
-        if (emailExist.length > 0) {
-            setAlert(['fail', 'Email sudah terdaftar silahkan login'])
-        } else {
+        if(users != null){
+            const registeredUsers = users
+            const emailExist = (users != null ? registeredUsers.filter(user => user.email === email) : 0)
+            if (emailExist.length > 0) {
+                setAlert(['fail', 'Email sudah terdaftar silahkan login'])
+            } else {
+                registeredUsers.push(
+                    {
+                        id: users.length,
+                        avatar: "https://i.pravatar.cc/400?img=54",
+                        fullname: fullname.trim(),
+                        email: email.trim(),
+                        phone: phone.trim(),
+                        address: address.trim(),
+                        password: password.trim(),
+                        confirmPassword: confirmPassword.trim(),
+                        role: "user",
+                        cart: [],
+                        historyOrders: []
+                    }
+                )
+                setUsers(registeredUsers)
+                window.localStorage.setItem("users", JSON.stringify(users))
+                setAlert(['success', 'Registrasi berhasil silahkan login'])
+                navigator("/login")
+            }
+        }else{
+            const registeredUsers = []
             registeredUsers.push(
                 {
+                    id: 0,
                     avatar: "https://i.pravatar.cc/400?img=54",
                     fullname: fullname.trim(),
                     email: email.trim(),
@@ -56,7 +79,9 @@ const Register = () => {
                     address: address.trim(),
                     password: password.trim(),
                     confirmPassword: confirmPassword.trim(),
-                    role: "user"
+                    role: "user",
+                    cart: [],
+                    historyOrders: []
                 }
             )
             setUsers(registeredUsers)
@@ -64,8 +89,6 @@ const Register = () => {
             setAlert(['success', 'Registrasi berhasil silahkan login'])
             navigator("/login")
         }
-        setAlert(['success', 'Registrasi berhasil silahkan login'])
-
     }
 
     return (
