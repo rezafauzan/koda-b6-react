@@ -13,9 +13,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup"
 import moment from "moment";
 import useLocalStorage from "../../hooks/useLocalStorage"
+import UserContext from "../../components/context/UserContext"
 
 const Payment = () => {
     const { cartData, setCartData } = useContext(CartContext)
+    const { user } = useContext(UserContext)
     const [products, setProducts] = useState(null)
     const [deliveryFee, setDeliveryFee] = useState(0)
     const [historyOrder, setHistoryOrder] = useLocalStorage("history-order")
@@ -33,6 +35,10 @@ const Payment = () => {
     })
     const { register, handleSubmit, formState } = useForm({
         defaultValues: {
+            fullname: user.fullname,
+            phone: user.phone,
+            email: user.email,
+            address: user.address,
             delivery: "dineIn"
         },
         resolver: yupResolver(validator)
