@@ -46,44 +46,44 @@ const OrderHistoryDetail = () => {
                                 <div className="flex gap-4 items-center justify-between h-10">
                                     <h2 className="text-xl font-bold">Order Information</h2>
                                 </div>
-                                <div className="flex flex-col gap-4 items-center h-128 p-4 overflow-y-auto">
+                                <div className="flex flex-col gap-4 items-center">
                                     <div className="flex flex-col gap-4 p-4 w-full">
-                                        <div className="flex justify-between items-center border-b border-b-black/10">
+                                        <div className="flex justify-between items-center border-b border-b-black/10 p-4">
                                             <div className="flex items-center gap-4 flex-1">
                                                 <AiOutlineUser />
                                                 <span>Fullname</span>
                                             </div>
                                             <span className="font-bold text-end">{(historyOrder != null ? historyOrder.orderDetail.fullname : "Loading...")}</span>
                                         </div>
-                                        <div className="flex justify-between items-center border-b border-b-black/10">
+                                        <div className="flex justify-between items-center border-b border-b-black/10 p-4">
                                             <div className="flex items-center gap-4 flex-1">
                                                 <GoLocation />
                                                 <span>Address</span>
                                             </div>
                                             <span className="font-bold text-end">{(historyOrder != null ? historyOrder.orderDetail.address : "Loading...")}</span>
                                         </div>
-                                        <div className="flex justify-between items-center border-b border-b-black/10">
+                                        <div className="flex justify-between items-center border-b border-b-black/10 p-4">
                                             <div className="flex items-center gap-4 flex-1">
                                                 <BiPhone />
                                                 <span>Phone</span>
                                             </div>
                                             <span className="font-bold text-end">{(historyOrder != null ? historyOrder.orderDetail.phone : "Loading...")}</span>
                                         </div>
-                                        <div className="flex justify-between items-center border-b border-b-black/10">
+                                        <div className="flex justify-between items-center border-b border-b-black/10 p-4">
                                             <div className="flex items-center gap-4 flex-1">
                                                 <BiCreditCardFront />
                                                 <span>Payment Method</span>
                                             </div>
                                             <span className="font-bold text-end">{"Cash"}</span>
                                         </div>
-                                        <div className="flex justify-between items-center border-b border-b-black/10">
+                                        <div className="flex justify-between items-center border-b border-b-black/10 p-4">
                                             <div className="flex items-center gap-4 flex-1">
                                                 <BsTruck />
                                                 <span>Shiping</span>
                                             </div>
                                             <span className="font-bold text-end">{(historyOrder != null ? historyOrder.orderDetail.delivery : "Loading...")}</span>
                                         </div>
-                                        <div className="flex justify-between items-center border-b border-b-black/10">
+                                        <div className="flex justify-between items-center border-b border-b-black/10 p-4">
                                             <div className="flex items-center gap-4 flex-1">
                                                 <GrCycle />
                                                 <span>Status</span>
@@ -122,7 +122,7 @@ const OrderHistoryDetail = () => {
                                                 }
                                             </span>
                                         </div>
-                                        <div className="flex justify-between items-center border-b border-b-black/10">
+                                        <div className="flex justify-between items-center border-b border-b-black/10 p-4">
                                             <div className="flex items-center gap-4 flex-1">
                                                 <span>Total Transaction</span>
                                             </div>
@@ -159,7 +159,6 @@ const OrderHistoryDetail = () => {
                                                                         <h3 className="text-xl font-bold">{product.name}</h3>
                                                                         <span className="text-black/70">{`${item.quantity}pcs ${product.name} ${item.size} ${item.hotice}`}</span>
                                                                         {(product.discount > 0.0 ? <span className="text-xl bold text-(--color-primary)"><span className="text-red-700 line-through text-xs">{`Rp.${product.price},-`}</span> Rp.{product.price - (product.price * product.discount)},-</span> : <span className="text-xl bold text-(--color-primary)">Rp.{product.price},-</span>)}
-                                                                        <button className="absolute flex justify-center items-center top-0 right-4 md:top-[50%] md:translate-y-[-50%] md:right-4 md:bottom-[50%] h-10 w-10 cursor-pointer"><CgCloseO className="h-10 w-10 text-red-700" /></button>
                                                                     </div>
                                                                 </div>
                                                             )
