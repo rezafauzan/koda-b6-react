@@ -46,7 +46,7 @@ const navbar = ({ absolute, theme }) => {
                 <ul className="flex items-center gap-4 flex-1">
                     <li className="hover:text-white"><Link to="/"><img src={brand_white} alt="Coffee Shop" /></Link></li>
                     <li className={"hover:text-white hidden md:block" + (location.pathname === '/' ? " text-white border-b border-(--color-primary)" : " text-white/40")}><Link to="/">Home</Link></li>
-                    <li className={"hover:text-white hidden md:block" + (location.pathname.includes('/product') || location.pathname.includes('/payment') ? " text-white border-b border-(--color-primary)" : " text-white/40")}><Link to="/product">Product</Link></li>
+                    <li className={"hover:text-white hidden md:block" + (location.pathname.includes('/product') ? " text-white border-b border-(--color-primary)" : " text-white/40")}><Link to="/product">Product</Link></li>
                 </ul>
                 <ul className="flex justify-end items-center gap-4 flex-1">
                     <li className="text-white">
@@ -71,14 +71,14 @@ const navbar = ({ absolute, theme }) => {
                                             cartData != null
                                                 ?
                                                 cartData.map(
-                                                    item => {
+                                                    (item,index) => {
                                                         const product = products.find(product => product.id === parseInt(item.productId))
                                                         total = cartData.reduce(
                                                             (total, item) => total + parseInt(item.productPrice * item.quantity), 0
                                                         )
                                                         if (product != null) {
                                                             return (
-                                                                <Link to={"/product/" + product.id} className="w-full bg-gray-100 text-black hover:bg-gray-400">
+                                                                <Link key={"cart-item-"+index} to={"/product/" + product.id} className="w-full bg-gray-100 text-black hover:bg-gray-400">
                                                                     <div className="flex flex-col lg:flex-row w-full lg:h-18 items-center gap-4 p-2">
                                                                         <img src={product.images[0]} alt={product.name} className="w-10" />
                                                                         <div className="flex flex-col gap-4">

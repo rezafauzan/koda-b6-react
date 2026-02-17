@@ -14,8 +14,7 @@ const Payment = () => {
     const { register, handleSubmit } = useForm(
         {
             defaultValues: {
-                status: 0,
-                date: moment().format("YYYY-MM-DD")
+                status: "0"
             }
         }
     )
@@ -28,7 +27,7 @@ const Payment = () => {
             filteredHistories = histories.filter(history => history.status === parseInt(status))
         }
         if (date.length > 0) {
-            filteredHistories = filteredHistories.filter(history => moment(history.date).format("DD MMMM YYYY").trim() === moment(date.replaceAll("-", " "), "YYYY-MM-DD").format("DD MMMM YYYY").trim())
+            filteredHistories = filteredHistories.filter(history => moment(history.orderDate).format("DD MMMM YYYY").trim() === moment(date.replaceAll("-", " "), "YYYY-MM-DD").format("DD MMMM YYYY").trim())
         }
         if (filteredHistories != null) {
             setHistoriesOrder(filteredHistories)
@@ -78,12 +77,12 @@ const Payment = () => {
                                             (
                                                 productsData != null
                                                     ?
-                                                    historiesOrder != null
+                                                    historiesOrder.length > 0
                                                         ?
                                                         historiesOrder.map(
                                                             history => {
                                                                 return (
-                                                                    <div className="w-full h-fit md:h-45 flex flex-col md:flex-row justify-center md:justify-start items-center md:items-start text-center md:text-start rounded overflow-hidden bg-gray-100 p-4">
+                                                                    <div key={"history-item-" + history.id} className="w-full h-fit md:h-45 flex flex-col md:flex-row justify-center md:justify-start items-center md:items-start text-center md:text-start rounded overflow-hidden bg-gray-100 p-4">
                                                                         <div className="overflow-hidden flex-1 h-full">
                                                                             <img src={productsData[parseInt(history.cart[0].productId)].images[0]} alt={productsData[parseInt(history.cart[0].productId)].name} className="h-full" />
                                                                         </div>
@@ -91,7 +90,7 @@ const Payment = () => {
                                                                             <div className="flex flex-col gap-4 text-[14px]">
                                                                                 <h4>No. Order</h4>
                                                                                 <span className="font-bold">#{history.id}</span>
-                                                                                <Link to={"/order/" + history.id} className="text-(--color-primary) underline">Views Order Detail</Link>
+                                                                                <Link to={"/payment/order/" + history.id} className="text-(--color-primary) underline">Views Order Detail</Link>
                                                                             </div>
                                                                             <div className="flex flex-col gap-4 text-[14px]">
                                                                                 <h4>Date</h4>
@@ -117,7 +116,9 @@ const Payment = () => {
                                                                                                     ?
                                                                                                     <span className="w-48 md:w-40 flex justify-center items-center font-bold bg-green-400 text-green-700 px-4 rounded-full">Done</span>
                                                                                                     :
-                                                                                                    ""
+                                                                                                    <span class="w-48 md:w-40 flex justify-center items-center font-bold bg-red-400 text-red-700 px-4 rounded-full">
+                                                                                                        Rejected
+                                                                                                    </span>
                                                                                     )
                                                                                 }
                                                                             </div>

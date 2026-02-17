@@ -14,11 +14,13 @@ import UserContext from './components/context/UserContext'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import CartContext from './components/context/CartContext'
 import AlertContext from './components/context/AlertContext'
+import OrderHistoryDetail from './pages/Payment/OrderHistoryDetail'
+import useLocalStorage from './hooks/useLocalStorage'
 
 const App = () => {
     const [alert, setAlert] = useState([])
-    const [user, setUser] = useState({})
-    const [cartData, setCartData] = useState(null)
+    const [user, setUser] = useLocalStorage("user")
+    const [cartData, setCartData] = useLocalStorage("cart")
 
     const modal = useRef()
     function modalRemove() {
@@ -27,10 +29,6 @@ const App = () => {
 
     useEffect(
         () => {
-            const usersLocalStorage = JSON.parse(localStorage.getItem("user")) || {}
-            setUser(usersLocalStorage)
-            const cartLocalStorage = JSON.parse(localStorage.getItem("cart")) || null
-            setCartData(cartLocalStorage)
         }
         , []
     )
@@ -77,6 +75,10 @@ const App = () => {
                 {
                     path: 'order-history',
                     element: <OrderHistory />
+                },
+                {
+                    path: 'order/:orderId',
+                    element: <OrderHistoryDetail />
                 }
             ]
         },
