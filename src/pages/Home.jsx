@@ -201,10 +201,10 @@ const Testimoni = () => {
                         <button ref={nextButton} className="rounded-full w-10 h-10 bg-(--color-primary) flex justify-center items-center cursor-pointer" onClick={nextTestimoni}><BsArrowRight className="text-black" /></button>
                     </div>
                     <div className="flex gap-1 justify-evenly">
-                        <span className={"w-8 h-1 rounded-full" + (activeTestimoniIndex === 0 ? " bg-(--color-primary)" : " bg-white/40")}></span>
-                        <span className={"w-8 h-1 rounded-full" + (activeTestimoniIndex === 1 ? " bg-(--color-primary)" : " bg-white/40")}></span>
-                        <span className={"w-8 h-1 rounded-full" + (activeTestimoniIndex === 2 ? " bg-(--color-primary)" : " bg-white/40")}></span>
-                        <span className={"w-8 h-1 rounded-full" + (activeTestimoniIndex === 3 ? " bg-(--color-primary)" : " bg-white/40")}></span>
+                        <span className={"w-8 h-4 rounded-full cursor-pointer " + (activeTestimoniIndex === 0 ? " bg-(--color-primary)" : " bg-white/40")} onClick={()=>{setActiveTestimoniIndex(0)}}></span>
+                        <span className={"w-8 h-4 rounded-full cursor-pointer " + (activeTestimoniIndex === 1 ? " bg-(--color-primary)" : " bg-white/40")} onClick={()=>{setActiveTestimoniIndex(1)}}></span>
+                        <span className={"w-8 h-4 rounded-full cursor-pointer " + (activeTestimoniIndex === 2 ? " bg-(--color-primary)" : " bg-white/40")} onClick={()=>{setActiveTestimoniIndex(2)}}></span>
+                        <span className={"w-8 h-4 rounded-full cursor-pointer " + (activeTestimoniIndex === 3 ? " bg-(--color-primary)" : " bg-white/40")} onClick={()=>{setActiveTestimoniIndex(3)}}></span>
                     </div>
                 </div>
             </div>
