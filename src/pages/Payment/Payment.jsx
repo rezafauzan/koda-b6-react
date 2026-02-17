@@ -14,10 +14,12 @@ import * as yup from "yup"
 import moment from "moment";
 import useLocalStorage from "../../hooks/useLocalStorage"
 import UserContext from "../../components/context/UserContext"
+import AlertContext from "../../components/context/AlertContext";
 
 const Payment = () => {
     const { cartData, setCartData } = useContext(CartContext)
     const { user } = useContext(UserContext)
+    const { alert, setAlert } = useContext(AlertContext)
     const [products, setProducts] = useState(null)
     const [deliveryFee, setDeliveryFee] = useState(0)
     const [historyOrder, setHistoryOrder] = useLocalStorage("history-order")
@@ -55,6 +57,7 @@ const Payment = () => {
         let data = historyOrder || []
         if (!paymentData) {
             paymentDetailForm.current?.scrollIntoView({ behavior: "smooth" })
+            setAlert(["fail", "Submit payment detail terlebih dahulu"])
         } else {
             const order = {
                 id: (data.length === 0 ? 0 : data.length + 1),
