@@ -14,17 +14,16 @@ import { useContext, useEffect, useRef, useState } from "react"
 import UserContext from "/src/components/context/UserContext";
 import { useNavigate } from "react-router-dom";
 import AlertContext from "../../components/context/AlertContext";
+import useLocalStorage from "../../hooks/useLocalStorage"
 
 const Register = () => {
-    const [users, setUsers] = useState(null)
+    const [users, setUsers] = useLocalStorage("users")
     const { user } = useContext(UserContext)
     const { setAlert } = useContext(AlertContext)
     const navigator = useNavigate()
 
     useEffect(
         () => {
-            const usersLocalStorage = JSON.parse(localStorage.getItem("users")) || null
-            setUsers(usersLocalStorage)
             if (user.role != null) {
                 navigator("/")
             }
@@ -55,15 +54,13 @@ const Register = () => {
                         email: email.trim(),
                         phone: phone.trim(),
                         address: address.trim(),
-                        password: password.trim(),
-                        confirmPassword: confirmPassword.trim(),
+                        password: btoa(password.trim()),
                         role: "user",
                         cart: [],
                         historyOrders: []
                     }
                 )
                 setUsers(registeredUsers)
-                window.localStorage.setItem("users", JSON.stringify(users))
                 setAlert(['success', 'Registrasi berhasil silahkan login'])
                 navigator("/login")
             }
@@ -77,15 +74,13 @@ const Register = () => {
                     email: email.trim(),
                     phone: phone.trim(),
                     address: address.trim(),
-                    password: password.trim(),
-                    confirmPassword: confirmPassword.trim(),
+                    password: btoa(password.trim()),
                     role: "user",
                     cart: [],
                     historyOrders: []
                 }
             )
             setUsers(registeredUsers)
-            window.localStorage.setItem("users", JSON.stringify(users))
             setAlert(['success', 'Registrasi berhasil silahkan login'])
             navigator("/login")
         }
