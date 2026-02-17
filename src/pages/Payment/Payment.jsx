@@ -2,6 +2,7 @@ import { CgCloseO } from "react-icons/cg";
 import Input from "/src/components/Input.jsx";
 import profile_icon from "/src/assets/img/Profile.svg"
 import mail_icon from "/src/assets/img/mail.svg"
+import phone_icon from "/src/assets/img/PhoneCall.svg"
 import location_icon from "/src/assets/img/Location.svg"
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -25,6 +26,7 @@ const Payment = () => {
     const navigator = useNavigate()
     const validator = yup.object({
         fullname: yup.string("Nama tidak valid").required("Nama harus diisi").min(4, "Nama minimal 4 karakter"),
+        phone: yup.string("Nomor telepon tidak valid").required("Nomor telepon harus diisi").min(10, "Nomor telepon terlalu pendek"),
         email: yup.string("Email tidak valid").required("Email harus diisi").min(4, "Email terlalu pendek").email("Email tidak valid"),
         address: yup.string("Alamat tidak valid").required("Alamat harus diisi").min(10, "Alamat terlalu pendek minimal 10 karakter"),
         delivery: yup.string("Delivery option tidak valid").required("Delivery option harus dipilih")
@@ -191,6 +193,8 @@ const Payment = () => {
                     <form ref={paymentDetailForm} className="flex flex-col gap-4 p-4 flex-1" onSubmit={handleSubmit(toPayment)}>
                         <Input type="text" {...register("fullname")} labelName="Fullname" icon={profile_icon} placeholder="Enter your fullname" />
                         {formState.errors.fullname && (<span className="bg-red-400 p-4 rounded border border-red-700 text-red-700">{formState.errors.fullname.message}</span>)}
+                        <Input type="text" {...register("phone")} labelName="Phone" icon={phone_icon} placeholder="Enter phone number" />
+                        {formState.errors.phone && (<span className="bg-red-400 p-4 rounded border border-red-700 text-red-700">{formState.errors.phone.message}</span>)}
                         <Input type="email" {...register("email")} labelName="Email" icon={mail_icon} placeholder="Enter email address" />
                         {formState.errors.email && (<span className="bg-red-400 p-4 rounded border border-red-700 text-red-700">{formState.errors.email.message}</span>)}
                         <Input type="text" {...register("address")} labelName="Address" icon={location_icon} placeholder="Enter your address" />
