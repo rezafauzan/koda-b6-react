@@ -90,7 +90,7 @@ const Payment = () => {
                                                                             <div className="flex flex-col gap-4 text-[14px]">
                                                                                 <h4>No. Order</h4>
                                                                                 <span className="font-bold">#{history.id}</span>
-                                                                                <Link to={"/order/" + history.id} className="text-(--color-primary) underline">Views Order Detail</Link>
+                                                                                <Link to={"/payment/order/" + history.id} className="text-(--color-primary) underline">Views Order Detail</Link>
                                                                             </div>
                                                                             <div className="flex flex-col gap-4 text-[14px]">
                                                                                 <h4>Date</h4>
