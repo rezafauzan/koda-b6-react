@@ -36,7 +36,7 @@ const OrderHistoryDetail = () => {
         <section>
             <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="flex flex-col gap-4 col-span-1 md:col-span-2">
-                    <div className="flex flex-col col-span-1 md:col-span-2 lg:flex-row gap-4 p-4">
+                    <div className="flex flex-col col-span-1 md:col-span-2 gap-4 p-4">
                         <h1 className="text-4xl font-bold">Order #{(historyOrder != null ? historyOrder.id : "Loading...")}</h1>
                         <span>{(historyOrder != null ? historyOrder.orderDate : "Loading...")}</span>
                     </div>
