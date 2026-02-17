@@ -88,7 +88,39 @@ const OrderHistoryDetail = () => {
                                                 <GrCycle />
                                                 <span>Status</span>
                                             </div>
-                                            <span className="font-bold text-end">{(historyOrder != null ? historyOrder.status : "Loading...")}</span>
+                                            <span className="font-bold text-end">
+                                                {
+                                                    (
+                                                        historyOrder != null
+                                                            ?
+                                                            (
+                                                                historyOrder.status === 0
+                                                                    ?
+                                                                    <span class="w-48 md:w-40 flex justify-center items-center font-bold bg-amber-400 text-amber-700 px-4 rounded-full">
+                                                                        On Progress
+                                                                    </span>
+                                                                    :
+                                                                    historyOrder.status === 1
+                                                                    ?
+                                                                    <span class="w-48 md:w-40 flex justify-center items-center font-bold bg-orange-400 text-orange-700 px-4 rounded-full">
+                                                                        On Delivery
+                                                                    </span>
+                                                                    :
+                                                                    historyOrder.status === 2
+                                                                    ?
+                                                                    <span class="w-48 md:w-40 flex justify-center items-center font-bold bg-green-400 text-green-700 px-4 rounded-full">
+                                                                        Done
+                                                                    </span>
+                                                                    :
+                                                                    <span class="w-48 md:w-40 flex justify-center items-center font-bold bg-red-400 text-red-700 px-4 rounded-full">
+                                                                        Rejected
+                                                                    </span>
+                                                            )
+                                                            :
+                                                            "Loading..."
+                                                    )
+                                                }
+                                            </span>
                                         </div>
                                         <div className="flex justify-between items-center border-b border-b-black/10">
                                             <div className="flex items-center gap-4 flex-1">
