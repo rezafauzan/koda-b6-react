@@ -21,7 +21,7 @@ const Login = () => {
     function login({ email, password }) {
         const userFound = users.find(user => user.email === email)
         if (userFound) {
-            if (password === userFound.password) {
+            if (btoa(password) === userFound.password) {
                 window.localStorage.setItem("user", JSON.stringify({ fullname: userFound.fullname, avatar: userFound.avatar, phone: userFound.phone, email: userFound.email, address: userFound.address, role: userFound.role }))
                 setUser(JSON.parse(window.localStorage.getItem("user")))
                 setAlert(['success', "Login berhasil !"])
