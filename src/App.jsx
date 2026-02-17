@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from "./pages/Home"
 import Login from './pages/Auth/Login'
 import Register from './pages/Auth/Register'
+import Profile from './pages/Auth/Profile'
 import ForgotPassword from './pages/Auth/Forgot'
 import ProductLayout from './pages/Product/ProductLayout'
 import Product from './pages/Product/Product'
@@ -49,6 +50,10 @@ const App = () => {
         {
             path: '/forgot-password',
             element: <ForgotPassword />
+        },
+        {
+            path: '/profile',
+            element: <Profile />
         },
         {
             path: '/product',
