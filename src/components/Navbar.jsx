@@ -13,7 +13,7 @@ import ProductContext from "/src/components/context/ProductContext"
 import CartContext from "./context/CartContext";
 import AlertContext from "./context/AlertContext";
 
-const navbar = ({ absolute, theme }) => {
+const Navbar = ({ absolute, theme }) => {
     const { user, setUser } = useContext(UserContext)
     const { setAlert } = useContext(AlertContext)
     const products = useContext(ProductContext) || null
@@ -149,4 +149,4 @@ const navbar = ({ absolute, theme }) => {
             </nav>
         </header >)
 }
-export default navbar
+export default Navbar
