@@ -233,7 +233,7 @@ const ProductDetail = () => {
                                     ?
                                     product.stock > 0
                                         ?
-                                        user.role != null ?
+                                        user != null && user.role != null ?
                                             <form onSubmit={handleSubmit(buy)} className="flex flex-col gap-4">
                                                 <div className="flex items-center p-4">
                                                     <button type="button" className="w-18 h-10 px-4 py-2 border border-(--color-primary) hover:bg-(--color-primary-active) rounded flex justify-center items-center cursor-pointer" onClick={more}>+</button>

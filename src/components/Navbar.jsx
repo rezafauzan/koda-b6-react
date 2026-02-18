@@ -1,4 +1,4 @@
-import { AiOutlineHistory } from "react-icons/ai"; 
+import { AiOutlineHistory } from "react-icons/ai";
 import { MdPayments } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
 import { AiOutlineUser } from "react-icons/ai";
@@ -71,14 +71,14 @@ const navbar = ({ absolute, theme }) => {
                                             cartData != null
                                                 ?
                                                 cartData.map(
-                                                    (item,index) => {
+                                                    (item, index) => {
                                                         const product = products.find(product => product.id === parseInt(item.productId))
                                                         total = cartData.reduce(
                                                             (total, item) => total + parseInt(item.productPrice * item.quantity), 0
                                                         )
                                                         if (product != null) {
                                                             return (
-                                                                <Link key={"cart-item-"+index} to={"/product/" + product.id} className="w-full bg-gray-100 text-black hover:bg-gray-400">
+                                                                <Link key={"cart-item-" + index} to={"/product/" + product.id} className="w-full bg-gray-100 text-black hover:bg-gray-400">
                                                                     <div className="flex flex-col lg:flex-row w-full lg:h-18 items-center gap-4 p-2">
                                                                         <img src={product.images[0]} alt={product.name} className="w-10" />
                                                                         <div className="flex flex-col gap-4">
@@ -110,34 +110,40 @@ const navbar = ({ absolute, theme }) => {
 
                     <li className="text-white hidden md:block">
                         {
-                            user.role != null ?
-                                <div className="flex justify-between items-center gap-4">
-                                    <div className="flex justify-center items-center gap-4 text-white/40 hover:text-white cursor-pointer" onClick={() => { toggleDropdown(setUserDropdown, userDropdown) }}>
-                                        <div className="rounded-full w-10 h-10 overflow-hidden">
-                                            <img src={user.avatar} alt={user.fullname} />
+                            (
+                                user != null && user != null && user.role != null
+                                    ?
+                                    <div className="flex justify-between items-center gap-4">
+                                        <div className="flex justify-center items-center gap-4 text-white/40 hover:text-white cursor-pointer" onClick={() => { toggleDropdown(setUserDropdown, userDropdown) }}>
+                                            <div className="rounded-full w-10 h-10 overflow-hidden">
+                                                <img src={user.avatar} alt={user.fullname} />
+                                            </div>
+                                            <span className="hidden md:block">{(user.fullname).slice(0, 4)}</span>
                                         </div>
-                                        <span className="hidden md:block">{(user.fullname).slice(0, 4)}</span>
-                                    </div>
 
-                                    <div className={"absolute bg-white border border-black/10 shadow w-40 h-40 -bottom-40 right-0 flex-col justify-center items-center gap-4 p-4 rounded" + (userDropdown ? " flex" : " hidden")}>
-                                        <button className="w-full hover:text-black text-black/40 cursor-pointer" onClick={logout}>
-                                            <span className="flex items-center gap-4 text-xs"><FiLogOut className="text-lg" />Logout</span>
-                                        </button>
-                                        <Link to="/profile" className="w-full hover:text-black text-black/40 cursor-pointer"><span className="flex items-center gap-4 text-xs"><AiOutlineUser className="text-lg" />Profile</span></Link>
-                                        <Link to="/payment/order-history" className="w-full hover:text-black text-black/40 cursor-pointer"><span className="flex items-center gap-4 text-xs"><AiOutlineHistory className="text-lg"/>Order History</span></Link>
+                                        <div className={"absolute bg-white border border-black/10 shadow w-40 h-40 -bottom-40 right-0 flex-col justify-center items-center gap-4 p-4 rounded" + (userDropdown ? " flex" : " hidden")}>
+                                            <button className="w-full hover:text-black text-black/40 cursor-pointer" onClick={logout}>
+                                                <span className="flex items-center gap-4 text-xs"><FiLogOut className="text-lg" />Logout</span>
+                                            </button>
+                                            <Link to="/profile" className="w-full hover:text-black text-black/40 cursor-pointer"><span className="flex items-center gap-4 text-xs"><AiOutlineUser className="text-lg" />Profile</span></Link>
+                                            <Link to="/payment/order-history" className="w-full hover:text-black text-black/40 cursor-pointer"><span className="flex items-center gap-4 text-xs"><AiOutlineHistory className="text-lg" />Order History</span></Link>
+                                        </div>
                                     </div>
-                                </div>
-                                :
-                                <Link to="/login" className="p-4 border border-white rounded">Sign In</Link>
+                                    :
+                                    <Link to="/login" className="p-4 border border-white rounded">Sign In</Link>
+                            )
                         }
                     </li>
                     {
-                        user.role != null ?
-                            ""
-                            :
-                            <li className="hover:text-white hidden md:block">
-                                <Link to="/register" className="p-4 bg-(--color-primary) border border-(--color-primary) rounded">Sign Up</Link>
-                            </li>
+                        (
+                            user != null && user != null && user.role != null
+                                ?
+                                ""
+                                :
+                                <li className="hover:text-white hidden md:block">
+                                    <Link to="/register" className="p-4 bg-(--color-primary) border border-(--color-primary) rounded">Sign Up</Link>
+                                </li>
+                        )
                     }
                 </ul>
             </nav>
