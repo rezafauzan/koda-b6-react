@@ -58,9 +58,9 @@ const Login = () => {
                         <span>Fill out the form correctly</span>
                         <Input {...register("email")} type="email" labelName="Email" icon={mail_icon} placeholder="Enter email address" />
                         <Input {...register("password")} type="password" labelName="Password" icon={password_icon} placeholder="Enter your password" autoComplete="off" />
-                        <a href="/forgot-password" className="text-(--color-primary) self-end">Forgot Password?</a>
+                        <Link to="/forgot-password" className="text-(--color-primary) self-end">Forgot Password?</Link>
                         <button className="bg-(--color-primary) text-black p-4 rounded cursor-pointer">Login</button>
-                        <span className="self-center">Not have an account? <a href="/register" className="text-(--color-primary)">Register</a></span>
+                        <span className="self-center">Not have an account? <Link to="/register" className="text-(--color-primary)">Register</Link></span>
                         <span className="self-center">or</span>
                         <div className="flex justify-between gap-4 social-login">
                             <button className="flex items-center justify-center flex-1 gap-4 p-4 text-black bg-white rounded shadow-lg cursor-pointer"><img src={facebook_logo} alt="Facebook_Login_Icon" />Facebook</button>

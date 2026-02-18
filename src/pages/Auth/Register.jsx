@@ -110,7 +110,7 @@ const Register = () => {
                         <Input type="password" {...register("confirmPassword")} labelName="Confirm Password" icon={password_icon} placeholder="Confirm your password" required autoComplete="off" />
                         {formState.errors.confirmPassword && (<span className="bg-red-400 p-4 rounded border border-red-700 text-red-700">{formState.errors.confirmPassword.message}</span>)}
                         <button className="bg-(--color-primary) text-black p-4 rounded cursor-pointer">Register</button>
-                        <span className="self-center">have an account? <a href="/login" className="text-(--color-primary)">Login</a></span>
+                        <span className="self-center">have an account? <Link to="/login" className="text-(--color-primary)">Login</a></span>
                         <span className="self-center">or</span>
                         <div className="flex justify-between gap-4 social-login">
                             <button className="flex items-center justify-center flex-1 gap-4 p-4 text-black bg-white rounded shadow-lg cursor-pointer"><img src={facebook_logo} alt="Facebook_Login_Icon" />Facebook</button>
