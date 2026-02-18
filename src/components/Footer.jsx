@@ -1,6 +1,7 @@
 import { ImInstagram } from "react-icons/im";
 import { FaTwitter } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -19,36 +20,36 @@ const Footer = () => {
                 <div className="flex-1 w-full flex justify-center md:justify-start items-center md:items-start">
                     <ul className="flex flex-col justify-center md:justify-start items-center md:items-start gap-4 h-full w-full">
                         <li><span className="font-bold">Product</span></li>
-                        <li><a href="product.html" className="text-black/70 hover:text-black">Our Product</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">Pricing</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">Location</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">Countries</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">Blog</a></li>
+                        <li><Link to="product.html" className="text-black/70 hover:text-black">Our Product</Link></li>
+                        <li><Link to="#" className="text-black/70 hover:text-black">Pricing</Link></li>
+                        <li><Link to="#" className="text-black/70 hover:text-black">Location</Link></li>
+                        <li><Link to="#" className="text-black/70 hover:text-black">Countries</Link></li>
+                        <li><Link to="#" className="text-black/70 hover:text-black">Blog</Link></li>
                     </ul>
                 </div>
                 <div className="flex-1 w-full flex justify-center md:justify-start items-center md:items-start">
                     <ul className="flex flex-col justify-center md:justify-start items-center md:items-start gap-4 h-full w-full">
                         <li><span className="font-bold">Engage</span></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">Partner</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">FAQ</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">About Us</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">Privacy Policy</a></li>
-                        <li><a href="#" className="text-black/70 hover:text-black">Term Of Service</a></li>
+                        <li><Link to="#" className="text-black/70 hover:text-black">Partner</Link></li>
+                        <li><Link to="#" className="text-black/70 hover:text-black">FAQ</Link></li>
+                        <li><Link to="#" className="text-black/70 hover:text-black">About Us</Link></li>
+                        <li><Link to="#" className="text-black/70 hover:text-black">Privacy Policy</Link></li>
+                        <li><Link to="#" className="text-black/70 hover:text-black">Term Of Service</Link></li>
                     </ul>
                 </div>
                 <div className="flex-1 w-full flex justify-center md:justify-start items-center md:items-start">
                     <ul className="flex flex-col justify-center md:justify-start items-center md:items-start gap-4 h-full w-full">
                         <li><span className="font-bold">Social Media</span></li>
                         <li className="flex gap-4 items-center">
-                            <a href="#" className="w-10 h-10 rounded-full bg-(--color-primary) hover:bg-(--color-primary-active) flex justify-center items-center">
+                            <Link to="#" className="w-10 h-10 rounded-full bg-(--color-primary) hover:bg-(--color-primary-active) flex justify-center items-center">
                                 <FaFacebookF />
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-full bg-(--color-primary) hover:bg-(--color-primary-active) flex justify-center items-center">
+                            </Link>
+                            <Link to="#" className="w-10 h-10 rounded-full bg-(--color-primary) hover:bg-(--color-primary-active) flex justify-center items-center">
                                 <FaTwitter />
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-full bg-(--color-primary) hover:bg-(--color-primary-active) flex justify-center items-center">
+                            </Link>
+                            <Link to="#" className="w-10 h-10 rounded-full bg-(--color-primary) hover:bg-(--color-primary-active) flex justify-center items-center">
                                 <ImInstagram />
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

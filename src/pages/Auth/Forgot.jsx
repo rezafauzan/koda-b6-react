@@ -30,7 +30,7 @@ const ForgotPassword = () => {
         () => {
             const usersLocalStorage = JSON.parse(localStorage.getItem("users")) || []
             setUsers(usersLocalStorage)
-            if (user.role != null) {
+            if (user != null && user.role != null) {
                 navigator("/")
             }
         },

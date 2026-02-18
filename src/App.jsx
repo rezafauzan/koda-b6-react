@@ -17,6 +17,7 @@ import CartContext from './components/context/CartContext'
 import AlertContext from './components/context/AlertContext'
 import OrderHistoryDetail from './pages/Payment/OrderHistoryDetail'
 import useLocalStorage from './hooks/useLocalStorage'
+import FourZeroFour from './pages/FourZeroFour'
 
 const App = () => {
     const [alert, setAlert] = useState([])
@@ -86,6 +87,10 @@ const App = () => {
                     element: <OrderHistoryDetail />
                 }
             ]
+        },
+        {
+            path: '*',
+            element: <FourZeroFour />,
         },
     ])
     return (

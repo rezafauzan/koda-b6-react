@@ -4,10 +4,9 @@ import brand_logo from "/src/assets/img/brand.svg"
 import facebook_logo from "/src/assets/img/bx_bxl-facebook-circle.svg"
 import google_logo from "/src/assets/img/flat-color-icons_google.svg"
 import Input from "/src/components/Input"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useContext, useEffect, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
-import { AiOutlineCloseCircle } from "react-icons/ai"
 import UserContext from "/src/components/context/UserContext"
 import AlertContext from "../../components/context/AlertContext"
 
@@ -38,7 +37,7 @@ const Login = () => {
         () => {
             const usersLocalStorage = JSON.parse(localStorage.getItem("users")) || []
             setUsers(usersLocalStorage)
-            if (user.role != null) {
+            if (user != null && user.role != null) {
                 navigator("/")
             }
         },
@@ -58,9 +57,9 @@ const Login = () => {
                         <span>Fill out the form correctly</span>
                         <Input {...register("email")} type="email" labelName="Email" icon={mail_icon} placeholder="Enter email address" />
                         <Input {...register("password")} type="password" labelName="Password" icon={password_icon} placeholder="Enter your password" autoComplete="off" />
-                        <a href="/forgot-password" className="text-(--color-primary) self-end">Forgot Password?</a>
+                        <Link to="/forgot-password" className="text-(--color-primary) self-end">Forgot Password?</Link>
                         <button className="bg-(--color-primary) text-black p-4 rounded cursor-pointer">Login</button>
-                        <span className="self-center">Not have an account? <a href="/register" className="text-(--color-primary)">Register</a></span>
+                        <span className="self-center">Not have an account? <Link to="/register" className="text-(--color-primary)">Register</Link></span>
                         <span className="self-center">or</span>
                         <div className="flex justify-between gap-4 social-login">
                             <button className="flex items-center justify-center flex-1 gap-4 p-4 text-black bg-white rounded shadow-lg cursor-pointer"><img src={facebook_logo} alt="Facebook_Login_Icon" />Facebook</button>
