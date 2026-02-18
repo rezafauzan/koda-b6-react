@@ -213,12 +213,16 @@ const Testimoni = () => {
 }
 
 const FloatingChat = () => {
+    const chatboxContainer = useRef()
     const chatbox = useRef()
     function chatboxToggler() {
+        chatboxContainer.current.classList.toggle('w-16')
+        chatboxContainer.current.classList.toggle('w-70')
+        chatboxContainer.current.classList.toggle('md:w-100')
         chatbox.current.classList.toggle('hidden')
     }
     return (
-        <div className="w-70  md:w-100 flex flex-col justify-center gap-2 fixed bottom-4 right-4">
+        <div ref={chatboxContainer} className="w-16 flex flex-col justify-center gap-2 fixed bottom-4 right-4">
             <div ref={chatbox} className=" bg-white rounded-b border-t-10 border-t-(--color-primary) rounded-xl hidden">
                 <div className="flex items-center gap-4 border-b border-b-black/10 p-4">
                     <div className="rounded-full w-10 h-10 bg-sky-400 flex justify-center items-center">
