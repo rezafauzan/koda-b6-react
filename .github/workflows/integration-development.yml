@@ -55,4 +55,4 @@ jobs:
           script: |
             docker pull ghcr.io/rezafauzan/coffeeshop:v2.0.0-alpha
             docker rm -f web-reza
-            docker run -d -p 20001:80 --name web-reza --network pman_web ghcr.io/rezafauzan/coffeeshop:latest        
+            docker run -d -p 20001:80 --name web-reza --network pman_web ghcr.io/rezafauzan/coffeeshop:v2.0.0-alpha       
