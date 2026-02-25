@@ -28,6 +28,7 @@ CREATE TABLE user_profiles (
     updated_at TIMESTAMP
 );
 
+
 CREATE TABLE user_credentials (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -123,18 +124,6 @@ CREATE TABLE carts(
     updated_at TIMESTAMP
 );
 
-CREATE TABLE testimonies (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255),
-    proffesion VARCHAR(255),
-    picture VARCHAR(255),
-    review VARCHAR(255),
-    rating INT,
-    created_at TIMESTAMP DEFAULT NOW(),
-    updated_at TIMESTAMP
-);
-
-
 CREATE TABLE carts(
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -166,3 +155,7 @@ CREATE TABLE orders(
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP
 );
+
+ALTER TABLE user ADD CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES roles(id);
+ALTER TABLE user_profiles ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES user(id);
+ALTER TABLE user_credentials ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES user(id);
