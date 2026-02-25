@@ -191,3 +191,5 @@ INSERT INTO user_credentials (user_id, email, phone, password) VALUES
 (10,'hannah.clark@example.com','081234567899','password123');
 
 INSERT INTO product_categories (name) VALUES  ('fruit'), ('coffee'), ('smoothie'), ('noodle'), ('dessert'),('addon'), ('snack'), ('cake'), ('non-coffee'), ('food');
+
+INSERT INTO products (category_id, favorite_product, name, description, price, campaign_id, stock) VALUES (1, TRUE, 'Hazzelnut Latte','Delicious latte with hazelnut flavor',22000,1,10), (1, TRUE, 'Kopi Liong','Strong black coffee',10000,1,15), (1, TRUE, 'Kopi Kirr','Smooth coffee with chocolate',80000,1,8), (1, TRUE, 'Kopiru Rariru','Sweet coffee drink',5000,1,12), (2, FALSE,'Avocado Juice','Healthy avocado juice',11000,2,16), (2, FALSE,'Mango Smoothie','Fresh mango smoothie',10000,2,14), (2, FALSE,'Classic Hot Chocolate','Rich hot chocolate',7000,2,10), (2, FALSE,'Strawberry Milkshake','Sweet strawberry milkshake',24000,2,18), (3, FALSE,'Chicken Sandwich','Tasty chicken sandwich',32000,3,12), (3, FALSE,'Cheese Croissant','Buttery croissant with cheese',28000,3,18);
