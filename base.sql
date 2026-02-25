@@ -132,13 +132,6 @@ CREATE TABLE carts(
     updated_at TIMESTAMP
 );
 
-CREATE TABLE carts(
-    id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
-    created_at TIMESTAMP DEFAULT NOW(),
-    updated_at TIMESTAMP
-);
-
 CREATE TABLE cart_items(
     id SERIAL PRIMARY KEY,
     cart_id INT NOT NULL,
