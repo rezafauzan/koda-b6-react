@@ -157,6 +157,6 @@ CREATE TABLE orders(
     updated_at TIMESTAMP
 );
 
-ALTER TABLE user ADD CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES roles(id);
-ALTER TABLE user_profiles ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES user(id);
-ALTER TABLE user_credentials ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES user(id);
+ALTER TABLE users ADD CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES roles(id);
+ALTER TABLE user_profiles ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id);
+ALTER TABLE user_credentials ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id);
