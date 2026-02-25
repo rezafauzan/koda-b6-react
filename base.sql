@@ -52,8 +52,15 @@ CREATE TABLE products (
     name VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
     price INT NOT NULL,
-    discount FLOAT NOT NULL,
+    campaign_id INT NOT NULL,
     stock INT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE product_categories (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP
 );
@@ -76,6 +83,39 @@ CREATE TABLE product_reviews (
     updated_at TIMESTAMP
 );
 
+CREATE TABLE product_variants (
+    id SERIAL PRIMARY KEY,
+    product_id INT NOT NULL,
+    variant_name VARCHAR(255) NOT NULL,
+    additional_price INT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE product_portions (
+    id SERIAL PRIMARY KEY,
+    product_id INT NOT NULL,
+    portion_size VARCHAR(255) NOT NULL,
+    additional_price INT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE product_discounts (
+    id SERIAL PRIMARY KEY,
+    discount_rate FLOAT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE product_campaigns (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    discount_id FLOAT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP
+);
+
 CREATE TABLE carts(
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -94,12 +134,6 @@ CREATE TABLE testimonies (
     updated_at TIMESTAMP
 );
 
-CREATE TABLE product_categories (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT NOW(),
-    updated_at TIMESTAMP
-);
 
 CREATE TABLE carts(
     id SERIAL PRIMARY KEY,
