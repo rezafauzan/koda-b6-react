@@ -255,7 +255,7 @@ INSERT INTO product_variants (product_id, variant_name, additional_price) VALUES
 (8, 'Extra Strawberry', 4000),
 (9, 'regular', 0),
 (9, 'Whole Wheat Bread', 2200),
-(10, 'regular', 0);
+(10, 'regular', 0),
 (10, 'Extra Cheese', 3000);
 
 INSERT INTO product_portions (product_id, portion_size, additional_price) VALUES
@@ -267,7 +267,11 @@ INSERT INTO product_portions (product_id, portion_size, additional_price) VALUES
 (2, 'Large', 5000),
 (3, 'Regular', 0),
 (3, 'Extra Chocolate', 8000),
+(4, 'Small', 0),
+(4, 'Medium', 2000),
+(4, 'Large', 5000),
 (5, 'Regular', 0);
+(5, 'Medium', 5000);
 
 INSERT INTO product_reviews (product_id, user_id, rating, messages) VALUES
 (1, 1, 5, 'Hazzelnut Latte is creamy and aromatic, really enjoyed it!'),
