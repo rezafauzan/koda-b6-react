@@ -12,9 +12,9 @@ DROP TABLE IF EXISTS product_campaigns;
 DROP TABLE IF EXISTS product_discounts;
 DROP TABLE IF EXISTS product_reviews;
 DROP TABLE IF EXISTS product_categories;
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS user_profiles;
 DROP TABLE IF EXISTS user_credentials;
+DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS testimonies;
 
@@ -157,6 +157,11 @@ CREATE TABLE orders(
     updated_at TIMESTAMP
 );
 
+
 ALTER TABLE users ADD CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES roles(id);
 ALTER TABLE user_profiles ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id);
 ALTER TABLE user_credentials ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id);
+
+INSERT INTO roles (role_name) VALUES ('Admin'), ('Member');
+
+INSERT INTO users (role_id, verified) VALUES (1, TRUE), (2, FALSE), (2, TRUE), (2, TRUE), (2, FALSE), (2, TRUE), (2, FALSE), (2, TRUE), (2, TRUE), (2, TRUE);
