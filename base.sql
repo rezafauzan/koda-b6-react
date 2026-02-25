@@ -50,16 +50,28 @@ CREATE TABLE products (
     category_id INT NOT NULL,
     favorite_product BOOLEAN NOT NULL DEFAULT FALSE,
     name VARCHAR(255) NOT NULL,
-    image1 VARCHAR(255) NOT NULL,
-    image2 VARCHAR(255) NOT NULL,
-    image3 VARCHAR(255) NOT NULL,
-    image4 VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
     price INT NOT NULL,
     discount FLOAT NOT NULL,
-    rating INT NOT NULL,
-    review INT NOT NULL,
     stock INT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE product_images (
+    id SERIAL PRIMARY KEY,
+    product_id INT NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE product_reviews (
+    id SERIAL PRIMARY KEY,
+    product_id INT NOT NULL,
+    user_id INT NOT NULL,
+    rating INT NOT NULL,
+    messages VARCHAR(255),
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP
 );
