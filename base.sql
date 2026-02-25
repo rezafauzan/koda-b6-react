@@ -165,3 +165,15 @@ ALTER TABLE user_credentials ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERE
 INSERT INTO roles (role_name) VALUES ('Admin'), ('Member');
 
 INSERT INTO users (role_id, verified) VALUES (1, TRUE), (2, FALSE), (2, TRUE), (2, TRUE), (2, FALSE), (2, TRUE), (2, FALSE), (2, TRUE), (2, TRUE), (2, TRUE);
+
+INSERT INTO user_profiles (user_id, first_name, last_name, address) VALUES
+(1,'Reza','Fauzan Adhima','Jl. Terusan Soreang Cipatik No.16 RT:03 RW:01 Kp.Sukarame Desa Parungserab Kecamatan Soreang Kabupaten Bandung Jawa Barat'),
+(2,'Someone','<3','Jl. Terusan Soreang Cipatik Desa Parungserab Kecamatan Soreang Kabupaten Bandung Jawa Barat'),
+(3,'Orang','Khayalan','Planet Jupiter jl. ber gas'),
+(4,'Lumba','Lumba','Jl. Laut aman 1246'),
+(5,'Kucing','Putih','Jl. Thamrin 8'),
+(6,'Kucing','Putih','Jl. langit'),
+(7,'Kucing','Hallo','Jl. usaha'),
+(8,'Orang','Asing','Jl. antah berantah wkwk'),
+(9,'George','Harris','Jl. Matraman 20'),
+(10,'Hannah','Clark','Jl. Melawai 3');
