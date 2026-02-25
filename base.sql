@@ -284,3 +284,4 @@ INSERT INTO product_reviews (product_id, user_id, rating, messages) VALUES
 (8, 8, 5, 'Strawberry Milkshake is delicious and refreshing, highly recommend.'),
 (9, 9, 4, 'Chicken Sandwich is tasty with fresh ingredients, satisfied.'),
 (10, 10, 5, 'Cheese Croissant is buttery and soft, one of the best I had!');
+INSERT INTO product_categories (name) VALUES  ('fruit'), ('coffee'), ('smoothie'), ('noodle'), ('dessert'),('addon'), ('snack'), ('cake'), ('non-coffee'), ('food');
