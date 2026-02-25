@@ -237,27 +237,36 @@ INSERT INTO product_images (product_id, image) VALUES
 (10, 'https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg');
 
 INSERT INTO product_variants (product_id, variant_name, additional_price) VALUES
-(1, 'Large', 5000),
-(2, 'Small', 2000),
-(3, 'Extra Chocolate', 8000),
-(4, 'Decaf', 0),
-(5, 'With Ice', 2000),
+(1, 'Hot', 0),
+(1, 'Ice', 0),
+(2, 'Hot', 0),
+(2, 'Ice', 0),
+(3, 'Hot', 0),
+(3, 'Ice', 0),
+(4, 'Hot', 0),
+(4, 'Ice', 0),
+(5, 'No Sugar', 0),
+(5, 'Extra Sugar', 2200),
 (6, 'No Sugar', 0),
+(6, 'Extra Sugar', 2200),
+(7, 'regular', 0),
 (7, 'Whipped Cream Topping', 3000),
+(8, 'regular', 0),
 (8, 'Extra Strawberry', 4000),
-(9, 'Whole Wheat Bread', 2000),
+(9, 'regular', 0),
+(9, 'Whole Wheat Bread', 2200),
+(10, 'regular', 0);
 (10, 'Extra Cheese', 3000);
 
 INSERT INTO product_portions (product_id, portion_size, additional_price) VALUES
 (1, 'Small', 0),
 (1, 'Medium', 2000),
 (1, 'Large', 5000),
-(2, 'Single', 0),
-(2, 'Double', 5000),
+(2, 'Small', 0),
+(2, 'Medium', 2000),
+(2, 'Large', 5000),
 (3, 'Regular', 0),
 (3, 'Extra Chocolate', 8000),
-(4, 'Hot', 0),
-(4, 'Iced', 2000),
 (5, 'Regular', 0);
 
 INSERT INTO product_reviews (product_id, user_id, rating, messages) VALUES
