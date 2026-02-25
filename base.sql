@@ -259,3 +259,15 @@ INSERT INTO product_portions (product_id, portion_size, additional_price) VALUES
 (4, 'Hot', 0),
 (4, 'Iced', 2000),
 (5, 'Regular', 0);
+
+INSERT INTO product_reviews (product_id, user_id, rating, messages) VALUES
+(1, 1, 5, 'Hazzelnut Latte is creamy and aromatic, really enjoyed it!'),
+(2, 2, 4, 'Kopi Liong has a strong flavor, perfect for morning coffee.'),
+(3, 3, 3, 'Kopi Kirr is okay, a bit too sweet for my taste.'),
+(4, 4, 5, 'Kopiru Rariru is smooth and delightful, my favorite!'),
+(5, 5, 4, 'Avocado Juice is fresh and healthy, quite refreshing.'),
+(6, 6, 5, 'Mango Smoothie is perfectly sweet and creamy, loved it!'),
+(7, 7, 3, 'Classic Hot Chocolate is good but a little too rich.'),
+(8, 8, 5, 'Strawberry Milkshake is delicious and refreshing, highly recommend.'),
+(9, 9, 4, 'Chicken Sandwich is tasty with fresh ingredients, satisfied.'),
+(10, 10, 5, 'Cheese Croissant is buttery and soft, one of the best I had!');
