@@ -10,20 +10,30 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS testimonies;
 
-CREATE TABLE product_categories (
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    role_id INT NOT NULL DEFAULT 2,
+    verified BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP
 );
 
-CREATE TABLE testimonies (
+CREATE TABLE user_profiles (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255),
-    proffesion VARCHAR(255),
-    picture VARCHAR(255),
-    review VARCHAR(255),
-    rating INT,
+    user_id INT NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE user_credentials (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP
 );
@@ -35,22 +45,9 @@ CREATE TABLE roles(
     updated_at TIMESTAMP
 );
 
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phone VARCHAR(255) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    role_id INT REFERENCES roles(id) NOT NULL,
-    created_at TIMESTAMP DEFAULT NOW(),
-    updated_at TIMESTAMP
-);
-
 CREATE TABLE products (
     id SERIAL PRIMARY KEY,
-    category_id INT REFERENCES product_categories(id) NOT NULL,
+    category_id INT NOT NULL,
     favorite_product BOOLEAN NOT NULL DEFAULT FALSE,
     name VARCHAR(255) NOT NULL,
     image1 VARCHAR(255) NOT NULL,
@@ -69,15 +66,40 @@ CREATE TABLE products (
 
 CREATE TABLE carts(
     id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(id) NOT NULL,
+    user_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE testimonies (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    proffesion VARCHAR(255),
+    picture VARCHAR(255),
+    review VARCHAR(255),
+    rating INT,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE product_categories (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE carts(
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP
 );
 
 CREATE TABLE cart_items(
     id SERIAL PRIMARY KEY,
-    cart_id INT REFERENCES carts(id) NOT NULL,
-    product_id INT REFERENCES products(id) NOT NULL,
+    cart_id INT NOT NULL,
+    product_id INT NOT NULL,
     size VARCHAR(255) NOT NULL,
     hotice VARCHAR(255) NOT NULL,
     quantity INT NOT NULL,
@@ -87,7 +109,7 @@ CREATE TABLE cart_items(
 
 CREATE TABLE orders(
     id SERIAL PRIMARY KEY,
-    cart_id INT REFERENCES carts(id) NOT NULL,
+    cart_id INT NOT NULL,
     total INT NOT NULL,
     status INT NOT NULL,
     fullname VARCHAR(255) NOT NULL,
