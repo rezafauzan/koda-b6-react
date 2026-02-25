@@ -189,3 +189,5 @@ INSERT INTO user_credentials (user_id, email, phone, password) VALUES
 (8,'orang.asing@example.com','081234567897','password123'),
 (9,'george.harris@example.com','081234567898','password123'),
 (10,'hannah.clark@example.com','081234567899','password123');
+
+INSERT INTO product_categories (name) VALUES  ('fruit'), ('coffee'), ('smoothie'), ('noodle'), ('dessert'),('addon'), ('snack'), ('cake'), ('non-coffee'), ('food');
