@@ -177,3 +177,15 @@ INSERT INTO user_profiles (user_id, first_name, last_name, address) VALUES
 (8,'Orang','Asing','Jl. antah berantah wkwk'),
 (9,'George','Harris','Jl. Matraman 20'),
 (10,'Hannah','Clark','Jl. Melawai 3');
+
+INSERT INTO user_credentials (user_id, email, phone, password) VALUES
+(1,'reza.fauzan@example.com','085183356072','someone<3'),
+(2,'someone.love@example.com','085183356072','rezaFA<3'),
+(3,'orang.khayalan@example.com','081234567892','password123'),
+(4,'lumba.lumba@example.com','081234567893','password123'),
+(5,'kucing.putih@example.com','081234567894','password123'),
+(6,'kucing.langit@example.com','081234567895','password123'),
+(7,'kucing.hallo@example.com','081234567896','password123'),
+(8,'orang.asing@example.com','081234567897','password123'),
+(9,'george.harris@example.com','081234567898','password123'),
+(10,'hannah.clark@example.com','081234567899','password123');
