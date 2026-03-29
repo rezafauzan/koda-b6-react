@@ -29,8 +29,9 @@ const Register = () => {
         },
         [user]
     )
+
     const validator = yup.object({
-        // first_name: yup.string("Nama depan tidak valid").required("Nama depan harus diisi").min(4, "Nama depan minimal 4 karakter"),
+        first_name: yup.string("Nama depan tidak valid").required("Nama depan harus diisi").min(4, "Nama depan minimal 4 karakter"),
         last_name: yup.string("Nama belakang tidak valid").required("Nama belakang harus diisi").min(4, "Nama belakang minimal 4 karakter"),
         email: yup.string("Email tidak valid").required("Email harus diisi").min(4, "Email terlalu pendek").email("Email tidak valid"),
         phone: yup.string("Nomor telepon tidak valid").required("Nomor telepon harus diisi").min(10, "Nomor telepon terlalu pendek minimal 10 digit"),

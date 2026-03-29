@@ -35,11 +35,11 @@ const Navbar = ({ absolute, theme }) => {
     }
 
     function logout() {
-        window.localStorage.removeItem("user")
-        setUser({})
+        window.localStorage.removeItem("token")
         setAlert(["success", "Anda berhasil logout !"])
+        setUser(null)
     }
-
+    console.log(user)
     return (
         <header className="relative">
             <nav className={(absolute ? "absolute top-0 left-0 right-0 " : "") + "flex items-center justify-between h-16 p-8 md:px-16" + (theme === "dark" ? " bg-black" : " bg-black/40")}>
@@ -107,18 +107,17 @@ const Navbar = ({ absolute, theme }) => {
                             <Link to="/payment" className="cursor-pointer p-4 w-full h-10  bg-(--color-primary) flex justify-center items-center gap-4 rounded"><MdPayments />Payment</Link>
                         </div>
                     </li>
-
                     <li className="text-white hidden md:block">
                         {
                             (
-                                user != null && user != null && user.role != null
+                                user != null
                                     ?
                                     <div className="flex justify-between items-center gap-4">
                                         <div className="flex justify-center items-center gap-4 text-white/40 hover:text-white cursor-pointer" onClick={() => { toggleDropdown(setUserDropdown, userDropdown) }}>
                                             <div className="rounded-full w-10 h-10 overflow-hidden">
-                                                <img src={user.avatar} alt={user.fullname} />
+                                                <img src={user.user_avatar} alt={user.first_name + " " + user.last_name} />
                                             </div>
-                                            <span className="hidden md:block">{(user.fullname).slice(0, 4)}</span>
+                                            <span className="hidden md:block">{(user.first_name + " " + user.last_name).slice(0, 4)}</span>
                                         </div>
 
                                         <div className={"absolute bg-white border border-black/10 shadow w-40 h-40 -bottom-40 right-0 flex-col justify-center items-center gap-4 p-4 rounded" + (userDropdown ? " flex" : " hidden")}>
@@ -136,7 +135,7 @@ const Navbar = ({ absolute, theme }) => {
                     </li>
                     {
                         (
-                            user != null && user != null && user.role != null
+                            user != null
                                 ?
                                 ""
                                 :

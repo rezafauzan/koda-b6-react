@@ -9,6 +9,7 @@ import { useContext, useEffect, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
 import UserContext from "/src/components/context/UserContext"
 import AlertContext from "../../components/context/AlertContext"
+import http from "/src/lib/dataFetcher"
 
 const Login = () => {
     const { user, setUser } = useContext(UserContext)
@@ -17,26 +18,37 @@ const Login = () => {
     const { register, handleSubmit } = useForm()
     const navigator = useNavigate()
 
-    function login({ email, password }) {
-        const userFound = users.find(user => user.email === email)
-        if (userFound) {
-            if (btoa(password) === userFound.password) {
-                window.localStorage.setItem("user", JSON.stringify({ fullname: userFound.fullname, avatar: userFound.avatar, phone: userFound.phone, email: userFound.email, address: userFound.address, role: userFound.role }))
-                setUser(JSON.parse(window.localStorage.getItem("user")))
-                setAlert(['success', "Login berhasil !"])
-                navigator("/")
-            } else {
-                setAlert(['fail', "Email atau password salah"])
+    async function login({ email, password }) {
+        const body = {
+            "email": email.trim().toLowerCase(),
+            "password": password,
+        }
+
+        const req = await http("/auth/login", JSON.stringify(body), { method: "POST", headers: { "Content-Type": "application/json" } })
+        const data = await req.json()
+
+        if (data.success) {
+            window.localStorage.setItem("token", data.results.token)
+            const token = window.localStorage.getItem("token")
+            if (!token) return
+            
+            const userdatareq = await http("/users/logged-in", null, { token })
+            const user = await userdatareq.json()
+            if (!data.success) {
+                window.localStorage.removeItem("token")
             }
+            
+            setUser(user.results)
+            
+            setAlert(['success', data.messages])
+            navigator("/")
         } else {
-            setAlert(['fail', "Email atau password salah"])
+            setAlert(['fail', data.messages])
         }
     }
 
     useEffect(
         () => {
-            const usersLocalStorage = JSON.parse(localStorage.getItem("users")) || []
-            setUsers(usersLocalStorage)
             if (user != null && user.role != null) {
                 navigator("/")
             }

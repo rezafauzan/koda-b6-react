@@ -166,16 +166,15 @@ const Testimoni = () => {
     }
 
     const nextButton = useRef()
-    useEffect(
-        () => {
-            setInterval(
-                () => {
-                    nextButton.current.click()
-                }, 4000
-            )
-        }
-        , []
-    )
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (nextButton.current) {
+                nextButton.current.click()
+            }
+        }, 4000)
+
+        return () => clearInterval(interval)
+    }, [])
 
     return (
         <section>
@@ -201,10 +200,10 @@ const Testimoni = () => {
                         <button ref={nextButton} className="rounded-full w-10 h-10 bg-(--color-primary) flex justify-center items-center cursor-pointer" onClick={nextTestimoni}><BsArrowRight className="text-black" /></button>
                     </div>
                     <div className="flex gap-1 justify-evenly">
-                        <span className={"w-8 h-4 rounded-full cursor-pointer " + (activeTestimoniIndex === 0 ? " bg-(--color-primary)" : " bg-white/40")} onClick={()=>{setActiveTestimoniIndex(0)}}></span>
-                        <span className={"w-8 h-4 rounded-full cursor-pointer " + (activeTestimoniIndex === 1 ? " bg-(--color-primary)" : " bg-white/40")} onClick={()=>{setActiveTestimoniIndex(1)}}></span>
-                        <span className={"w-8 h-4 rounded-full cursor-pointer " + (activeTestimoniIndex === 2 ? " bg-(--color-primary)" : " bg-white/40")} onClick={()=>{setActiveTestimoniIndex(2)}}></span>
-                        <span className={"w-8 h-4 rounded-full cursor-pointer " + (activeTestimoniIndex === 3 ? " bg-(--color-primary)" : " bg-white/40")} onClick={()=>{setActiveTestimoniIndex(3)}}></span>
+                        <span className={"w-8 h-4 rounded-full cursor-pointer " + (activeTestimoniIndex === 0 ? " bg-(--color-primary)" : " bg-white/40")} onClick={() => { setActiveTestimoniIndex(0) }}></span>
+                        <span className={"w-8 h-4 rounded-full cursor-pointer " + (activeTestimoniIndex === 1 ? " bg-(--color-primary)" : " bg-white/40")} onClick={() => { setActiveTestimoniIndex(1) }}></span>
+                        <span className={"w-8 h-4 rounded-full cursor-pointer " + (activeTestimoniIndex === 2 ? " bg-(--color-primary)" : " bg-white/40")} onClick={() => { setActiveTestimoniIndex(2) }}></span>
+                        <span className={"w-8 h-4 rounded-full cursor-pointer " + (activeTestimoniIndex === 3 ? " bg-(--color-primary)" : " bg-white/40")} onClick={() => { setActiveTestimoniIndex(3) }}></span>
                     </div>
                 </div>
             </div>
@@ -349,9 +348,9 @@ const Home = () => {
     const [data, setData] = useState([])
     useEffect(
         () => {
-            dataFetcher("https://raw.githubusercontent.com/rezafauzan/koda-b6-react/refs/heads/feat/product-populating/public/assets/data/product.json").then(
-                products => { setData(products) }
-            )
+            // dataFetcher("https://raw.githubusercontent.com/rezafauzan/koda-b6-react/refs/heads/feat/product-populating/public/assets/data/product.json").then(
+            //     products => { setData(products) }
+            // )
         }, []
     )
     return (
