@@ -23,7 +23,7 @@ const Register = () => {
 
     useEffect(
         () => {
-            if (user != null && user.role != null) {
+            if (user != null) {
                 navigator("/")
             }
         },
