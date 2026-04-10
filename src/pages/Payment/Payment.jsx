@@ -15,15 +15,15 @@ import moment from "moment";
 import useLocalStorage from "../../hooks/useLocalStorage"
 import UserContext from "../../components/context/UserContext"
 import AlertContext from "../../components/context/AlertContext";
+import http from "../../lib/dataFetcher";
 
 const Payment = () => {
-    const { cartData, setCartData } = useContext(CartContext)
+    const { cart } = useContext(CartContext)
     const { user } = useContext(UserContext)
     const { alert, setAlert } = useContext(AlertContext)
-    const [products, setProducts] = useState(null)
+    const [products, setProducts] = useState([])
     const [deliveryFee, setDeliveryFee] = useState(0)
     const [historyOrder, setHistoryOrder] = useLocalStorage("history-order")
-    const [cart, setCart] = useLocalStorage("cart")
     const [paymentData, setPaymentData] = useState(null)
     const productsData = useContext(ProductContext)
     const paymentDetailForm = useRef()
@@ -36,22 +36,42 @@ const Payment = () => {
         delivery: yup.string("Delivery option tidak valid").required("Delivery option harus dipilih")
     })
     const { register, handleSubmit, formState } = useForm({
-        defaultValues: {
-            fullname: user.fullname,
-            phone: user.phone,
-            email: user.email,
-            address: user.address,
-            delivery: "dineIn"
-        },
         resolver: yupResolver(validator)
     })
     let total = 0
-    useEffect(
-        () => {
-            setProducts(productsData)
-            setCart(cartData)
-        }, [productsData]
-    )
+    useEffect(() => {
+        const fetchUser = async () => {
+            const token = window.localStorage.getItem("token")
+            if (!token) {
+                return
+            }
+
+            const req = await http("/profile", null, { token })
+            const data = await req.json()
+            if (!data.success) {
+                window.localStorage.removeItem("token")
+            }
+
+            const reqCart = await http("/cart", null, { token })
+            const cartData = await reqCart.json()
+            if (!data.success) {
+                window.localStorage.removeItem("token")
+                navigator("/login")
+            }
+
+            if (cartData.data.length < 0) {
+                setCart(null)
+            }
+            cartData.data.forEach(async (cartItem) => {
+                const reqProduct = await http(`/products/${cartItem.product_id}`, null, { token })
+                const productData = await reqProduct.json()
+                setProducts(products.push(productData.data))
+                console.log(products)
+            })
+        }
+
+        fetchUser()
+    }, [])
 
     function pay() {
         let data = historyOrder || []
@@ -61,7 +81,7 @@ const Payment = () => {
         } else {
             const order = {
                 id: (data.length === 0 ? 0 : data.length + 1),
-                cart: cartData,
+                cart: cart,
                 total,
                 orderDate: moment().format("DD MMMM YYYY"),
                 status: 0,
@@ -69,7 +89,7 @@ const Payment = () => {
             }
             data.push(order)
             setHistoryOrder(data)
-            setCartData(null)
+            setCart(null)
             window.localStorage.removeItem("cart")
             navigator("/payment/order-history")
         }
@@ -107,37 +127,38 @@ const Payment = () => {
                                     <div className="flex flex-col gap-4 p-4 w-full">
                                         {
                                             (
-                                                products != null ?
-                                                    cartData != null
+                                                products != null
+                                                    ?
+                                                    cart != null
                                                         ?
-                                                        cartData.map(
-                                                            item => {
-                                                                const product = products.find(product => product.id === parseInt(item.productId))
-                                                                total = cartData.reduce(
-                                                                    (total, item) => total + parseInt(item.productPrice * item.quantity), 0
-                                                                )
-                                                                if (product != null) {
-                                                                    return (
-                                                                        <div className="h-90 lg:h-52 w-full lg:w-full flex flex-col md:flex-row rounded overflow-hidden bg-gray-100 px-4 relative">
-                                                                            <div className="overflow-hidden flex-2 flex flex-col justify-center items-center gap-4 h-90 lg:h-full">
-                                                                                <img src={product.images[0]} alt={product.name} className="w-full h-full object-contain" />
-                                                                            </div>
-                                                                            <div className="h-fit flex flex-col gap-4 left-4 right-4 bottom-0 p-4 rounded flex-3">
-                                                                                {(product.discount > 0.0 ? <div className="w-fit h-4 p-4 text-white bg-red-700 top-4 left-4 flex flex-col justify-center items-center rounded-full"><span>Flash Sale</span></div> : "")}
-                                                                                <h3 className="text-xl font-bold">{product.name}</h3>
-                                                                                <span className="text-black/70">{`${item.quantity}pcs ${product.name} ${item.size} ${item.hotice}`}</span>
-                                                                                {(product.discount > 0.0 ? <span className="text-xl bold text-(--color-primary)"><span className="text-red-700 line-through text-xs">{`Rp.${product.price},-`}</span> Rp.{product.price - (product.price * product.discount)},-</span> : <span className="text-xl bold text-(--color-primary)">Rp.{product.price},-</span>)}
-                                                                                <button className="absolute flex justify-center items-center top-0 right-4 md:top-[50%] md:translate-y-[-50%] md:right-4 md:bottom-[50%] h-10 w-10 cursor-pointer"><CgCloseO className="h-10 w-10 text-red-700" /></button>
+                                                        cart.map(
+                                                            (item, index) => {
+                                                                if(products != null){
+                                                                    console.log(products)
+                                                                    const product = products.find(()=>product.id == item.product_id)
+                                                                }
+                                                                return (
+                                                                    <Link key={"cart-item-" + index} to={"/product/" + item.product_id} className="w-full bg-gray-100 text-black hover:bg-gray-400">
+                                                                        <div className="flex flex-col lg:flex-row w-full lg:h-18 items-center gap-4 p-2">
+                                                                            <img src={'https://images.pexels.com/photos/14463785/pexels-photo-14463785.jpeg'} alt={item.product_id} className="w-10" />
+                                                                            <div className="flex flex-col gap-4">
+                                                                                <span className="flex-1 text-xs">Id Product : {item.product_id}</span>
+                                                                                <div className="flex gap-4">
+                                                                                    <span className="flex-1 text-xs">{item.quantity}pcs</span>
+                                                                                    <span className="flex-1 text-xs">{item.size}</span>
+                                                                                    <span className="flex-1 text-xs">{item.hotice}</span>
+                                                                                    {/* <span className="flex-1 text-xs">{"Rp." + (item.price * item.quantity).toLocaleString("id-ID") + ",-"}</span> */}
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    )
-                                                                }
+                                                                    </Link>
+                                                                )
                                                             }
                                                         )
                                                         :
-                                                        <span className="text-black p-4 bg-gray-400 rounded w-full h-full text-center">Keranjang masih kosong !</span>
+                                                        <span className="text-black p-4 bg-gray-400 rounded w-full text-center">Keranjang masih kosong !</span>
                                                     :
-                                                    <span className="text-black">Loading...</span>
+                                                    <span className="text-black p-4 bg-gray-400 rounded w-full text-center">Loading...</span>
                                             )
                                         }
                                     </div>
@@ -170,7 +191,7 @@ const Payment = () => {
                                         </div>
                                         {
                                             (
-                                                cartData != null
+                                                cart != null
                                                     ?
                                                     <button className="cursor-pointer flex justify-center items-center h-10 bg-(--color-primary) rounded" onClick={pay}>Checkout</button>
                                                     :
@@ -232,7 +253,7 @@ const Payment = () => {
                         {formState.errors.delivery && (<span className="bg-red-400 p-4 rounded border border-red-700 text-red-700">{formState.errors.delivery.message}</span>)}
                         {
                             (
-                                cartData != null
+                                cart != null
                                     ?
                                     <button className="bg-(--color-primary) hover:bg-(--color-primary-active) hover:text-white text-black p-4 rounded cursor-pointer">Submit</button>
                                     :

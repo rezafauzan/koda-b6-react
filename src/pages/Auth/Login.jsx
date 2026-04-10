@@ -13,36 +13,62 @@ import AlertContext from "../../components/context/AlertContext"
 const Login = () => {
     const { user, setUser } = useContext(UserContext)
     const { setAlert } = useContext(AlertContext)
-    const [users, setUsers] = useState([])
     const { register, handleSubmit } = useForm()
     const navigator = useNavigate()
 
-    function login({ email, password }) {
-        const userFound = users.find(user => user.email === email)
-        if (userFound) {
-            if (btoa(password) === userFound.password) {
-                window.localStorage.setItem("user", JSON.stringify({ fullname: userFound.fullname, avatar: userFound.avatar, phone: userFound.phone, email: userFound.email, address: userFound.address, role: userFound.role }))
-                setUser(JSON.parse(window.localStorage.getItem("user")))
-                setAlert(['success', "Login berhasil !"])
-                navigator("/")
-            } else {
-                setAlert(['fail', "Email atau password salah"])
-            }
+    async function login({ email, password }) {
+        const body = {
+            "email": email.trim().toLowerCase(),
+            "password": password,
+        }
+
+        const req = await http("/auth/login", JSON.stringify(body), { method: "POST", headers: { "Content-Type": "application/json" } })
+        const data = await req.json()
+        if (data.success) {
+            window.localStorage.setItem("token", data.data.token)
+            setAlert(['success', data.message])
+            navigator("/")
         } else {
             setAlert(['fail', "Email atau password salah"])
         }
     }
 
-    useEffect(
-        () => {
-            const usersLocalStorage = JSON.parse(localStorage.getItem("users")) || []
-            setUsers(usersLocalStorage)
-            if (user != null && user.role != null) {
-                navigator("/")
+    async function fetchUserData(token) {
+        const userProfileDataReq = await http("/profile", null, { token })
+        const userProfile = await userProfileDataReq.json()
+
+        if (!userProfile.success) {
+            return userProfile
+        }
+
+        setUser(userProfile.data)
+        return userProfile
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const token = window.localStorage.getItem("token")
+
+            if (token) {
+                try {
+                    const data = await fetchUserData(token)
+
+                    if (!data?.success) {
+                        window.localStorage.removeItem("token")
+                        setAlert(['fail', data?.message || 'Unauthorized'])
+                        return
+                    }
+
+                    navigator("/")
+                } catch (error) {
+                    setAlert(['fail', error.message || 'Error'])
+                    window.localStorage.removeItem("token")
+                }
             }
-        },
-        [user]
-    )
+        }
+
+        fetchData()
+    }, [])
 
     return (
         <section>
