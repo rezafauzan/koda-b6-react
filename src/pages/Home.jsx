@@ -11,8 +11,10 @@ import ProductCard from "../components/ProductCard"
 import { MdOutlineGirl } from "react-icons/md";
 import { useContext, useEffect, useRef, useState } from "react";
 import ProductContext from "../components/context/ProductContext";
-import dataFetcher from "/src/lib/dataFetcher.jsx"
 import { Link } from "react-router-dom";
+import UserContext from '../components/context/UserContext'
+import CartContext from '../components/context/CartContext'
+import http from '../lib/dataFetcher'
 
 const Hero = () => {
     return (
@@ -347,17 +349,45 @@ const FloatingChat = () => {
 
 const Home = () => {
     const [data, setData] = useState([])
-    useEffect(
-        () => {
-            dataFetcher("https://raw.githubusercontent.com/rezafauzan/koda-b6-react/refs/heads/feat/product-populating/public/assets/data/product.json").then(
-                products => { setData(products) }
-            )
-        }, []
-    )
+    const [user, setUser] = useState(null)
+    const [cart, setCart] = useState(null)
+    useEffect(() => {
+        const fetchUser = async () => {
+            const token = window.localStorage.getItem("token")
+            if (!token) {
+                return
+            }
+
+            const req = await http("/profile", null, { token })
+            const data = await req.json()
+            if (!data.success) {
+                window.localStorage.removeItem("token")
+            }
+
+            setUser(data.data)
+            const reqCart = await http("/cart", null, { token })
+            const cartData = await reqCart.json()
+            if (!data.success) {
+                window.localStorage.removeItem("token")
+            }
+
+            if (cartData.data.length < 0) {
+                setCart(null)
+            }
+
+            setCart(cartData.data)
+        }
+
+        fetchUser()
+    }, [])
     return (
         <div className="container max-w-360 mx-auto flex flex-col">
             <ProductContext value={data}>
-                <Navbar absolute={true} />
+                <UserContext value={{ user, setUser }}>
+                    <CartContext value={{ cart, setCart }}>
+                        <Navbar absolute={true} />
+                    </CartContext>
+                </UserContext>
             </ProductContext>
             <Hero />
             <About />

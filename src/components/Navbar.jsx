@@ -6,26 +6,27 @@ import { FiLogOut } from "react-icons/fi";
 import { BsCart3 } from "react-icons/bs";
 import brand_white from "../assets/img/brand-white.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserContext from "/src/components/context/UserContext"
 import { useForm } from "react-hook-form";
 import ProductContext from "/src/components/context/ProductContext"
 import CartContext from "./context/CartContext";
 import AlertContext from "./context/AlertContext";
+import http from "/src/lib/dataFetcher"
 
 const Navbar = ({ absolute, theme }) => {
     const { user, setUser } = useContext(UserContext)
     const { setAlert } = useContext(AlertContext)
-    const products = useContext(ProductContext) || null
+    const [loading, setLoading] = useState(true)
+    const products = useContext(ProductContext)
     const { register, handleSubmit } = useForm()
     const location = useLocation();
     const [userDropdown, setUserDropdown] = useState(false);
     const [searchbox, setSearchbox] = useState(false);
     const [cartbox, setCartbox] = useState(false);
-    const { cartData } = useContext(CartContext)
+    const { cart } = useContext(CartContext)
     const navigator = useNavigate()
     let total = 0
-
     function toggleDropdown(setter, getter) {
         setter(!getter)
     }
@@ -38,8 +39,33 @@ const Navbar = ({ absolute, theme }) => {
         window.localStorage.removeItem("user")
         setUser({})
         setAlert(["success", "Anda berhasil logout !"])
+        setUser(null)
+        navigator("/login")
     }
 
+    useEffect(() => {
+        const checkAuth = async () => {
+            const token = localStorage.getItem("token")
+
+            if (!token) {
+                setLoading(false)
+                return
+            }
+            try {
+                const res = await http("/profile", null, { token })
+                const data = await res.json()
+                if (!data.success) {
+                    throw new Error("Token invalid")
+                }
+                setUser(data.data)
+            } catch (err) {
+                localStorage.removeItem("token")
+            } finally {
+                setLoading(false)
+            }
+        }
+        checkAuth()
+    }, [cart])
     return (
         <header className="relative">
             <nav className={(absolute ? "absolute top-0 left-0 right-0 " : "") + "flex items-center justify-between h-16 p-8 md:px-16" + (theme === "dark" ? " bg-black" : " bg-black/40")}>
@@ -67,83 +93,79 @@ const Navbar = ({ absolute, theme }) => {
                             <div className="w-full h-90 p-4 flex flex-col items-center gap-4 rounded overflow-y-auto">
                                 {
                                     (
-                                        products != null ?
-                                            cartData != null
-                                                ?
-                                                cartData.map(
-                                                    (item, index) => {
-                                                        const product = products.find(product => product.id === parseInt(item.productId))
-                                                        total = cartData.reduce(
-                                                            (total, item) => total + parseInt(item.productPrice * item.quantity), 0
-                                                        )
-                                                        if (product != null) {
-                                                            return (
-                                                                <Link key={"cart-item-" + index} to={"/product/" + product.id} className="w-full bg-gray-100 text-black hover:bg-gray-400">
-                                                                    <div className="flex flex-col lg:flex-row w-full lg:h-18 items-center gap-4 p-2">
-                                                                        <img src={product.images[0]} alt={product.name} className="w-10" />
-                                                                        <div className="flex flex-col gap-4">
-                                                                            <span className="flex-1 text-xs">{product.name}</span>
-                                                                            <div className="flex gap-4">
-                                                                                <span className="flex-1 text-xs">{item.quantity}pcs</span>
-                                                                                <span className="flex-1 text-xs">{item.size}</span>
-                                                                                <span className="flex-1 text-xs">{item.hotice}</span>
-                                                                                <span className="flex-1 text-xs">{"Rp." + (product.price * item.quantity).toLocaleString("id-ID") + ",-"}</span>
-                                                                            </div>
-                                                                        </div>
+                                        cart != null
+                                            ?
+                                            cart.map(
+                                                (item, index) => {
+                                                    return (
+                                                        <Link key={"cart-item-" + index} to={"/product/" + item.product_id} className="w-full bg-gray-100 text-black hover:bg-gray-400">
+                                                            <div className="flex flex-col lg:flex-row w-full lg:h-18 items-center gap-4 p-2">
+                                                                <img src={'https://images.pexels.com/photos/14463785/pexels-photo-14463785.jpeg'} alt={item.product_id} className="w-10" />
+                                                                <div className="flex flex-col gap-4">
+                                                                    <span className="flex-1 text-xs">Id Product : {item.product_id}</span>
+                                                                    <div className="flex gap-4">
+                                                                        <span className="flex-1 text-xs">{item.quantity}pcs</span>
+                                                                        <span className="flex-1 text-xs">{item.size}</span>
+                                                                        <span className="flex-1 text-xs">{item.hotice}</span>
+                                                                        {/* <span className="flex-1 text-xs">{"Rp." + (item.price * item.quantity).toLocaleString("id-ID") + ",-"}</span> */}
                                                                     </div>
-                                                                </Link>
-                                                            )
-                                                        }
-                                                    }
-                                                )
-                                                :
-                                                <span className="text-black p-4 bg-gray-400 rounded w-full text-center">Keranjang masih kosong !</span>
+                                                                </div>
+                                                            </div>
+                                                        </Link>
+                                                    )
+                                                }
+                                            )
                                             :
-                                            <span className="text-black">Loading...</span>
+                                            <span className="text-black p-4 bg-gray-400 rounded w-full text-center">Keranjang masih kosong !</span>
                                     )
                                 }
                             </div>
-                            <span className="flex-1 text-black font-bold border-t border-t-black/40 w-full p-4 text-center">{"Total: Rp." + (total).toLocaleString("id-ID") + ",-"}</span>
+                            {/* <span className="flex-1 text-black font-bold border-t border-t-black/40 w-full p-4 text-center">{"Total: Rp." + (total).toLocaleString("id-ID") + ",-"}</span> */}
                             <Link to="/payment" className="cursor-pointer p-4 w-full h-10  bg-(--color-primary) flex justify-center items-center gap-4 rounded"><MdPayments />Payment</Link>
                         </div>
                     </li>
 
                     <li className="text-white hidden md:block">
                         {
-                            (
-                                user != null && user != null && user.role != null
-                                    ?
-                                    <div className="flex justify-between items-center gap-4">
-                                        <div className="flex justify-center items-center gap-4 text-white/40 hover:text-white cursor-pointer" onClick={() => { toggleDropdown(setUserDropdown, userDropdown) }}>
-                                            <div className="rounded-full w-10 h-10 overflow-hidden">
-                                                <img src={user.avatar} alt={user.fullname} />
+                            loading && user == null ? <div>Loading ...</div> :
+                                (
+                                    user != null
+                                        ?
+                                        <div className="flex justify-between items-center gap-4">
+                                            <div className="flex justify-center items-center gap-4 text-white/40 hover:text-white cursor-pointer" onClick={() => { toggleDropdown(setUserDropdown, userDropdown) }}>
+                                                <div className="rounded-full w-10 h-10 overflow-hidden">
+                                                    <img src={user.user_avatar} alt={user.first_name + " " + user.last_name} />
+                                                </div>
+                                                <span className="hidden md:block">{(user.first_name + " " + user.last_name).slice(0, 4)}</span>
                                             </div>
-                                            <span className="hidden md:block">{(user.fullname).slice(0, 4)}</span>
-                                        </div>
 
-                                        <div className={"absolute bg-white border border-black/10 shadow w-40 h-40 -bottom-40 right-0 flex-col justify-center items-center gap-4 p-4 rounded" + (userDropdown ? " flex" : " hidden")}>
-                                            <button className="w-full hover:text-black text-black/40 cursor-pointer" onClick={logout}>
-                                                <span className="flex items-center gap-4 text-xs"><FiLogOut className="text-lg" />Logout</span>
-                                            </button>
-                                            <Link to="/profile" className="w-full hover:text-black text-black/40 cursor-pointer"><span className="flex items-center gap-4 text-xs"><AiOutlineUser className="text-lg" />Profile</span></Link>
-                                            <Link to="/payment/order-history" className="w-full hover:text-black text-black/40 cursor-pointer"><span className="flex items-center gap-4 text-xs"><AiOutlineHistory className="text-lg" />Order History</span></Link>
+                                            <div className={"absolute bg-white border border-black/10 shadow w-40 h-40 -bottom-40 right-0 flex-col justify-center items-center gap-4 p-4 rounded" + (userDropdown ? " flex" : " hidden")}>
+                                                <button className="w-full hover:text-black text-black/40 cursor-pointer" onClick={logout}>
+                                                    <span className="flex items-center gap-4 text-xs"><FiLogOut className="text-lg" />Logout</span>
+                                                </button>
+                                                <Link to="/profile" className="w-full hover:text-black text-black/40 cursor-pointer"><span className="flex items-center gap-4 text-xs"><AiOutlineUser className="text-lg" />Profile</span></Link>
+                                                <Link to="/payment/order-history" className="w-full hover:text-black text-black/40 cursor-pointer"><span className="flex items-center gap-4 text-xs"><AiOutlineHistory className="text-lg" />Order History</span></Link>
+                                            </div>
                                         </div>
-                                    </div>
-                                    :
-                                    <Link to="/login" className="p-4 border border-white rounded">Sign In</Link>
-                            )
+                                        :
+                                        <Link to="/login" className="p-4 border border-white rounded">Sign In</Link>
+                                )
                         }
                     </li>
                     {
-                        (
-                            user != null && user != null && user.role != null
-                                ?
-                                ""
-                                :
-                                <li className="hover:text-white hidden md:block">
-                                    <Link to="/register" className="p-4 bg-(--color-primary) border border-(--color-primary) rounded">Sign Up</Link>
-                                </li>
-                        )
+                        loading && user == null
+                            ?
+                            <div>Loading ...</div>
+                            :
+                            (
+                                user != null
+                                    ?
+                                    ""
+                                    :
+                                    <li className="hover:text-white hidden md:block">
+                                        <Link to="/register" className="p-4 bg-(--color-primary) border border-(--color-primary) rounded">Sign Up</Link>
+                                    </li>
+                            )
                     }
                 </ul>
             </nav>
